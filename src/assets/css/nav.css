@@ -2,15 +2,21 @@
     width: 10%;
 }
 
-#navbar {
-    background-color: rgba(215, 218, 223, 0.1) !important;
+#content {
+    margin-top: 60px;
 }
 
-#navbarNav {
-    background-color: transparent;
+#nav-container {
+    background-color: rgb(215, 218, 223);
 }
-.transparent-background {
-    background-color: rgba(215, 218, 223, 0.1);
+
+.nav-link {
+    color: #000 !important;
+}
+
+#navbar {
+    height: 60px;
+    background-color: rgb(215, 218, 223) !important;
 }
 
 #nav-brand { 

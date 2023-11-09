@@ -3,13 +3,11 @@ import './assets/css/animista.css'
 import './assets/css/styles.css'
 
 function App() {
-  return(
-    <>
-      <Navbar/>
-      <h1>HI</h1>
-    </>
-    
-  )
+	return(
+		<>
+			<Navbar/>
+		</>
+	)
 }
 
 export default App
