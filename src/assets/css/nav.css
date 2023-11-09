@@ -1,0 +1,39 @@
+.w-10 {
+    width: 10%;
+}
+
+#navbar {
+    background-color: rgba(215, 218, 223, 0.1) !important;
+}
+
+#navbarNav {
+    background-color: transparent;
+}
+.transparent-background {
+    background-color: rgba(215, 218, 223, 0.1);
+}
+
+#nav-brand { 
+    margin: 0;
+    text-decoration: none;
+    color: #000;
+}
+
+@media screen and (max-width: 991px) {
+    #nav-brand {order:2}
+    #nav-btn {order:1}
+    #nav-user {
+        order:3;
+        width: 25%;
+    }
+    #navbarNav {order:4}
+}
+
+@media screen and (max-width: 480px) {
+    #nav-user {
+        display: flex;
+        flex-flow: column wrap;
+        align-content: flex-end; 
+        justify-content: flex-end;
+    }
+}
