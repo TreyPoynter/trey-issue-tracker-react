@@ -14,3 +14,16 @@
     background-color: #f8f8f8;
     width: 40%; /* Adjust the width as needed */
 }
+
+@media screen and (max-width: 1000px) {
+    .centered-form {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .register-now {
+        display: flex;
+        flex-direction: column;
+    }
+}
