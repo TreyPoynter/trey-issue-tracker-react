@@ -54,5 +54,6 @@
         flex-flow: column wrap;
         align-content: flex-end; 
         justify-content: flex-end;
+        text-align: end;
     }
 }

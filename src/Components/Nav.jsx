@@ -1,19 +1,20 @@
 import '../assets/css/nav.css'
 import '../assets/js/nav.js'
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
     return (
         <>
             <nav id='navbar' className="navbar bg-body-tertiary d-flex" style={{ position: 'fixed', top: 0, width: '100%' }}>
-                <div className="container-fluid d-flex flex-around" id='nav-container'>
-                    <button id='nav-btn' className="navbar-toggler justify-content-end d-flex"
+                <div className="container-fluid d-flex justify-content-between" id='nav-container'>
+                    <button onClick={() => {
+                            document.getElementById('navbarNav').classList.add('slide-in-left');
+                        }} id='nav-btn' className="navbar-toggler justify-content-end d-flex"
                         type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span onClick={() => {
-                            document.getElementById('navbarNav').classList.add('slide-in-left');
-                        }} className="navbar-toggler-icon"></span>
+                        <span className="navbar-toggler-icon"></span>
                     </button>
-                    <a id='nav-brand' className="display-6" href="#">Issue-Tracker</a>
+                    <a id='nav-brand' className="display-6 ms-5" href="#">Issue-Tracker</a>
                     <div id='nav-user' className="w-10 justify-content-around d-flex">
                         <a href="#">Register</a>
                         <a href="#">Login</a>
