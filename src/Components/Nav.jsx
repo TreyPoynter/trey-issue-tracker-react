@@ -14,7 +14,6 @@ export default function Navbar() {
                         }} className="navbar-toggler-icon"></span>
                     </button>
                     <a id='nav-brand' className="display-6" href="#">Issue-Tracker</a>
-
                     <div id='nav-user' className="w-10 justify-content-around d-flex">
                         <a href="#">Register</a>
                         <a href="#">Login</a>

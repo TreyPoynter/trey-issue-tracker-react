@@ -1,13 +1,10 @@
-.w-10 {
-    width: 10%;
-}
-
 #content {
     margin-top: 60px;
 }
 
 #nav-container {
-    background-color: rgb(215, 218, 223);
+    background-color: rgba(215, 218, 223, 0.8);
+    backdrop-filter: blur(5px);
 }
 
 .nav-link {
@@ -16,7 +13,8 @@
 
 #navbar {
     height: 60px;
-    background-color: rgb(215, 218, 223) !important;
+    background-color: rgba(215, 218, 223, 0.8) !important;
+    backdrop-filter: blur(5px);
 }
 
 #nav-brand { 
@@ -41,6 +39,9 @@
         flex-direction: column;
         justify-content: center;
         align-content: center;
+    }
+    #nav-user {
+        margin-right: 10px;
     }
     .nav-item {
         width: 100%
