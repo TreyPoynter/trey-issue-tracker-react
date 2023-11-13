@@ -1,6 +1,7 @@
 import { useState } from "react";
 import '../assets/css/loginForm.css'
 import { nanoid } from "nanoid";
+import { Link } from 'react-router-dom';
 
 const users = [
     {
@@ -18,8 +19,8 @@ export default function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    function handleBtnAnimation() {
-        var btn = document.getElementById('btnLogin');
+    function handleBtnAnimation(evt) {
+        var btn = document.getElementById(evt.target.id);
         if (!btn.classList.contains('jello-horizontal')) {
             btn.classList.add('jello-horizontal');
 
@@ -48,11 +49,11 @@ export default function LoginForm() {
                                 <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                                 <input onChange={(evt) => setPassword(evt.target.value)} placeholder="Please enter password" type="password" className="form-control" id="exampleInputPassword1"/>
                             </div>
-                            <button onClick={() => handleBtnAnimation()} 
+                            <button onClick={(e) => handleBtnAnimation(e)}
                             type="button" id='btnLogin' className="btn btn-primary w-75 mb-3">Click to Login</button>
                         </div>
                     </form>
-                    <p className="mb-0 register-now">Dont have an account? <a  href="">Register Now</a></p>
+                    <p className="mb-0 register-now">Dont have an account? <Link to='/register'>Register</Link></p>
                 </div>
             </div>
         </>

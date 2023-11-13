@@ -1,8 +1,9 @@
 import '../assets/css/loginForm.css'
+import { Link } from 'react-router-dom';
 
 export default function RegisterForm() {
-    function handleBtnAnimation() {
-        var btn = document.getElementById('btnLogin');
+    function handleBtnAnimation(evt) {
+        var btn = document.getElementById(evt.target.id);
         if (!btn.classList.contains('jello-horizontal')) {
             btn.classList.add('jello-horizontal');
 
@@ -40,11 +41,11 @@ export default function RegisterForm() {
                                 <label htmlFor="txtPass" className="form-label">Password</label>
                                 <input placeholder="Please enter password" type="password" className="form-control" id="txtPass" />
                             </div>
-                            <button onClick={() => handleBtnAnimation()}
-                                type="button" id='btnLogin' className="btn btn-primary w-75 mb-3">Click to Register</button>
+                            <button onClick={(e) => handleBtnAnimation(e)}
+                                type="button" id='btnRegister' className="btn btn-primary w-75 mb-3">Click to Register</button>
                         </div>
                     </form>
-                    <p className="mb-0 register-now">Already have an account? <a href="">Login</a></p>
+                    <p className="mb-0 register-now">Already have an account? <Link to='/login'>Login</Link></p>
                 </div>
             </div>
         </>

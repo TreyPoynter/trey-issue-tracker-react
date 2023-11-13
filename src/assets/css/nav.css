@@ -1,8 +1,9 @@
 #content {
-    margin-top: 60px;
+    margin-top: 70px;
 }
 
 #nav-container {
+    z-index: -1;
     background-color: rgba(215, 218, 223, 0.8);
     backdrop-filter: blur(5px);
 }
@@ -12,7 +13,8 @@
 }
 
 #navbar {
-    height: 60px;
+    z-index: 1000;
+    height: 5;
     background-color: rgba(215, 218, 223, 0.8) !important;
     backdrop-filter: blur(5px);
 }

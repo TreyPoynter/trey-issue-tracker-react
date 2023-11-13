@@ -15,6 +15,7 @@
     width: 40%; /* Adjust the width as needed */
 }
 
+
 @media screen and (max-width: 1000px) {
     .centered-form {
         width: 90%;
