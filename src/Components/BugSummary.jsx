@@ -5,12 +5,17 @@ import BugList from './BugList';
 
 export default function BugSummary() {
     const [isClosed, setIsClosed] = useState(false);
+
     function handleExitAnimation() {
-        document.getElementById('bug-card').classList.add('slide-out-elliptic-top-bck');
-        setTimeout(() => {
-            window.location.href= '/bugs'
-        }, 750);
+    document.getElementById('bug-card').classList.add('slide-out-elliptic-top-bck');
+
+    function navigateToBugs() {
+        window.location.href = '/bugs';
     }
+
+    // Listen for the 'animationend' event
+    document.getElementById('bug-card').addEventListener('animationend', navigateToBugs, { once: true });
+}
     return (
         <>
             <div id="body-div">
