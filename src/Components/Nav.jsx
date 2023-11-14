@@ -57,7 +57,11 @@ export default function Navbar({isLoggedIn, handleLogout}) {
                                     <h3 className='text-center border-bottom border-black w-50 pb-2'>Users</h3>
                                     <div className='text-center  d-flex flex-column align-items-center justify-content-center'>
                                         <li className="nav-item">
-                                            <Link to='users' className="nav-link active">Show all Users</Link>
+                                            {isLoggedIn ? (
+                                                <Link to='users' className="nav-link active">Show all Users</Link>
+                                            ) : (
+                                                <Link to='login' className="nav-link active">Login to Show all Users</Link>
+                                            )}
                                         </li>
                                     </div>
                                 </div>
@@ -65,7 +69,12 @@ export default function Navbar({isLoggedIn, handleLogout}) {
                                     <h3 className='text-center border-bottom border-black w-50 pb-2'>Bugs</h3>
                                     <div className='text-center d-flex flex-column align-items-center justify-content-center'>
                                         <li className="nav-item">
-                                            <Link to='bugs' className="nav-link active">Show all Bugs</Link>
+                                            {isLoggedIn ? (
+                                                <Link to='bugs' className="nav-link active">Show all Bugs</Link>
+                                            ) : (
+                                                <Link to='login' className="nav-link active">Login to Show all Bugs</Link>
+                                            )}
+                                            
                                         </li>
                                     </div>
                                 </div>
