@@ -1,8 +1,26 @@
+/* eslint-disable */
 import '../assets/css/nav.css'
 import '../assets/js/nav.js'
+import { useEffect } from 'react';
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({isLoggedIn, handleLogout}) {
+    useEffect(() => {
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.getElementsByClassName('nav-link');
+        
+            navLinks.forEach((link) => {
+                link.addEventListener('click', () => {
+                    const navbarNav = document.getElementById('navbarNav');
+                    console.log('dwdad')
+                    if (navbarNav.classList.contains('show')) {
+                        navbarNav.classList.remove('show');
+                    }
+                });
+            });
+        });
+    });
+
     return (
         <>
             <nav id='navbar' className="navbar bg-body-tertiary d-flex" style={{ position: 'fixed', top: 0, width: '100%' }}>
@@ -20,10 +38,18 @@ export default function Navbar() {
                     <div className="w-50 d-flex justify-content-center text-center">
                         <a id='nav-brand' className="display-6" href="#">Issue-Tracker</a>
                     </div>
-                    <div id='nav-user' className="w-10 justify-content-around d-flex">
-                        <Link to='register'>Register</Link>
-                        <Link to='login'>Login</Link>
-                    </div>
+                    {
+                        isLoggedIn ?
+                        <div id='nav-user' className="w-10 justify-content-around d-flex align-items-center">
+                            <Link class="fa-solid fa-user fa-xl text-black" to='users/user'></Link>
+                            <Link type='button' onClick={() => {handleLogout();}} to='login'>Logout</Link>
+                        </div> :
+                        <div id='nav-user' className="w-10 justify-content-around d-flex">
+                            <Link to='register'>Register</Link>
+                            <Link to='login'>Login</Link>
+                        </div>
+                    }
+                    
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul id='nav-list' className="navbar-nav">
                             <div id="navbar-row" className="row">
@@ -33,9 +59,6 @@ export default function Navbar() {
                                         <li className="nav-item">
                                             <Link to='users' className="nav-link active">Show all Users</Link>
                                         </li>
-                                        <li className="nav-item">
-                                            <Link to='users/edit' className="nav-link active">Edit a User</Link>
-                                        </li>
                                     </div>
                                 </div>
                                 <div className='w-50 d-flex flex-column align-items-center'>
@@ -43,9 +66,6 @@ export default function Navbar() {
                                     <div className='text-center d-flex flex-column align-items-center justify-content-center'>
                                         <li className="nav-item">
                                             <Link to='bugs' className="nav-link active">Show all Bugs</Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link to='bugs/edit' className="nav-link active">Edit a Bug</Link>
                                         </li>
                                     </div>
                                 </div>

@@ -1,9 +1,8 @@
-import '../assets/css/bugSummary.css'
+import '../assets/css/summaryCard.css'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import BugList from './BugList';
 
-export default function BugSummary() {
+export default function BugSummary({title, classification, }) {
     const [isClosed, setIsClosed] = useState(false);
 
     function handleExitAnimation() {
@@ -15,11 +14,11 @@ export default function BugSummary() {
 
     // Listen for the 'animationend' event
     document.getElementById('bug-card').addEventListener('animationend', navigateToBugs, { once: true });
-}
+    }
     return (
         <>
             <div id="body-div">
-                <div className="bug-form d-flex flex-column" id='bug-card'>
+                <div className="form d-flex flex-column" id='bug-card'>
                     <div className='d-flex justify-content-between'>
                         <Link to='/bugs'><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
                         <button onClick={() => isClosed ? setIsClosed(false) : setIsClosed(true)} className={isClosed ? 'closed' : 'open'}></button>
@@ -49,14 +48,13 @@ export default function BugSummary() {
                     </div>
 
 
-                    <div id='btns' className='mt-auto sticky-bottom d-flex justify-content-lg-around'> {/* Use mt-auto to push the buttons to the bottom */}
+                    <div id='btns' className='mt-auto d-flex justify-content-lg-around'> {/* Use mt-auto to push the buttons to the bottom */}
                         <button onClick={() => handleExitAnimation()} className='btn btn-danger w-40 mr-2'>Delete</button>
-                        <button className='btn btn-warning w-40'>Edit</button>
+                        <Link className='btn btn-warning w-40' to='/bugs/bug/edit'>Edit</Link>
+                        
                     </div>
                 </div>
             </div>
-
-
         </>
     )
 }

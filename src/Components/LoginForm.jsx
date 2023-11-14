@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useState } from "react";
 import '../assets/css/loginForm.css'
 import { nanoid } from "nanoid";
@@ -15,7 +16,7 @@ const users = [
     }
 ]
 
-export default function LoginForm() {
+export default function LoginForm({isLoggedIn, handleLogin}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -31,7 +32,10 @@ export default function LoginForm() {
     }
 
     function Login() {
-        return users.some(e => e.email == email && e.password == password);
+        if (email == "admin@example.com" && password == "password") {
+            console.log('logged in')
+            handleLogin();
+        }
     }
 
     return (
@@ -49,7 +53,7 @@ export default function LoginForm() {
                                 <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                                 <input onChange={(evt) => setPassword(evt.target.value)} placeholder="Please enter password" type="password" className="form-control" id="exampleInputPassword1"/>
                             </div>
-                            <button onClick={(e) => handleBtnAnimation(e)}
+                            <button onClick={(e) => {handleBtnAnimation(e); Login();}}
                             type="button" id='btnLogin' className="btn btn-primary w-75 mb-3">Click to Login</button>
                         </div>
                     </form>
