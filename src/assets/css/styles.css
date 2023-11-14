@@ -17,16 +17,4 @@ body {
     height: 100vh;
     margin: 0;
 }
-
-@media screen and (max-height: 600px) and (max-width: 300px) {
-    .display-5 {
-        font-size: 20px !important;
-    }
-    .fs-5 {
-        font-size: 10px !important;
-    }
-    body {
-        font-size: 9px !important;
-    }
-}
   
