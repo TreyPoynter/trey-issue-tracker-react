@@ -33,7 +33,8 @@ export default function LoginForm({isLoggedIn, handleLogin}) {
 
     function Login() {
         if (email == "admin@example.com" && password == "password") {
-            console.log('logged in')
+            document.getElementById('txtEmail').value = '';
+            document.getElementById('txtPass').value = '';
             handleLogin();
         }
     }
@@ -46,12 +47,14 @@ export default function LoginForm({isLoggedIn, handleLogin}) {
                     <form action="" >
                         <div>
                             <div className="mb-3 d-flex flex-column align-items-start">
-                                <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                                <input onChange={(evt) => setEmail(evt.target.value)} placeholder="example@example.com" type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                                <label htmlFor="txtEmail" className="form-label">Email address</label>
+                                <input onChange={(evt) => setEmail(evt.target.value)} placeholder="example@example.com" 
+                                type="email" className="form-control" id="txtEmail" aria-describedby="emailHelp"/>
                             </div>
                             <div className="mb-3 d-flex flex-column align-items-start">
-                                <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                                <input onChange={(evt) => setPassword(evt.target.value)} placeholder="Please enter password" type="password" className="form-control" id="exampleInputPassword1"/>
+                                <label htmlFor="txtPass" className="form-label">Password</label>
+                                <input onChange={(evt) => setPassword(evt.target.value)} placeholder="Please enter password" 
+                                type="password" className="form-control" id="txtPass"/>
                             </div>
                             <button onClick={(e) => {handleBtnAnimation(e); Login();}}
                             type="button" id='btnLogin' className="btn btn-primary w-75 mb-3">Click to Login</button>
