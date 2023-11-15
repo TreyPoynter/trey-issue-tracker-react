@@ -6,12 +6,12 @@ export default function BugList() {
             <div id="content">
             </div>
             <h3 className='text-center display-1'>Bug List</h3>
-            <ul className="list-group container mt-5" id="bug-list">
-                <Bug title='BUG' classification='unclassified'/>
-                <Bug title='SOME BUG' classification='approved'/>
-                <Bug title='BUG' classification='unclassified'/>
-                <Bug title='BUG' classification='unclassified'/>
-            </ul>
+            <div className='row d-flex justify-content-start '>
+                <Bug title='BUG' classification='unclassified' isClosed={true}/>
+                <Bug title='SOME BUG' classification='approved' isClosed={false}/>
+                <Bug title='BUG' classification='unclassified' isClosed={true}/>
+                <Bug title='BUG' classification='unclassified' isClosed={true}/>
+            </div>
         </>
     )
 }
