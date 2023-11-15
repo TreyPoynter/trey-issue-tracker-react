@@ -19,13 +19,16 @@ import { useState } from 'react';
 
 function App() {
 	const [isLoggedIn, setLoggedIn] = useState(false);
+	const [currentUser, setCurrentUser] = useState(null);
+	console.log(currentUser);
 
 	return(
 		<BrowserRouter>
-			<Navbar isLoggedIn={isLoggedIn} handleLogout={() => setLoggedIn(false)}/>
+			<Navbar isLoggedIn={isLoggedIn} handleLogout={() => setLoggedIn(false)} setUser={() => setCurrentUser}/>
 			<Routes path='/'>
-				<Route path='login' element={<LoginForm isLoggedIn={isLoggedIn} handleLogin={() => setLoggedIn(true)}/>}/>
-				<Route path='register' element={<RegisterForm/>}/>
+				<Route path='login' element={<LoginForm isLoggedIn={isLoggedIn} 
+					handleLogin={() => setLoggedIn(true)} setUser={() => setCurrentUser}/>}/>
+				<Route path='register' element={<RegisterForm setUser ={() => setCurrentUser}/>} />
 				<Route path='bugs' element={<BugList/>}/>
 				<Route path='users' element={<UserList/>}/>
 				<Route path='bugs/bug' element={<BugSummary/>}/>
