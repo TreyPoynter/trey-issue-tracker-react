@@ -1,0 +1,57 @@
+.jumbotron {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.532), rgba(0, 0, 0, 0.586)), url('../images/code.jpg');
+    color: #fff;
+    padding: 60px 0;
+}
+
+h1 span {
+    font-size: 70px;
+}
+
+.jumbotron h1 {
+    font-size: 3em;
+    font-weight: 800;
+    font-size: 80px;
+}
+
+#header-slogan {
+    font-size: 2em;
+    white-space: nowrap; /* Prevent line break between the main text and the span */
+}
+
+h1 span {
+    animation: ease-out, colorChange 3s linear;
+    animation-fill-mode: forwards;
+}
+
+#header-slogan {
+    font-size: 50px;
+}
+
+.jumbotron p {
+    font-size: 1.5em;
+}
+
+@media screen and (max-width:1200px) {
+    .jumbotron {
+        background-position: center;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes colorChange {
+    0%, 25% {
+        color: white;
+    }
+    75%, 100% {
+        color: rgb(197, 21, 21);
+    }
+}

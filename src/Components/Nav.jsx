@@ -41,7 +41,7 @@ export default function Navbar({ isLoggedIn, handleLogout }) {
                     </div>
 
                     <div className="w-50 d-flex justify-content-center text-center">
-                        <a id='nav-brand' className="display-6" href="#">Issue-Tracker</a>
+                        <Link id='nav-brand' className="display-6" to='/'>Issue-Tracker</Link>
                     </div>
                     {
                         isLoggedIn ?

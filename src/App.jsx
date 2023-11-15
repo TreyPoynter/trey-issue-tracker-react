@@ -1,3 +1,4 @@
+import Home from './Components/Home.jsx';
 import Navbar from './Components/Nav.jsx';
 import LoginForm from './Components/LoginForm.jsx';
 import RegisterForm from './Components/RegisterForm.jsx';
@@ -10,7 +11,7 @@ import EditUser from './Components/UserEdit.jsx';
 import './assets/css/animista.css'
 import './assets/css/styles.css'
 import './assets/css/nav.css'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
 import { useState } from 'react';
 /*
 <div id="content">
@@ -26,6 +27,7 @@ function App() {
 		<BrowserRouter>
 			<Navbar isLoggedIn={isLoggedIn} handleLogout={() => setLoggedIn(false)} setUser={() => setCurrentUser}/>
 			<Routes path='/'>
+				<Route path='/' element={<Home/>}/>
 				<Route path='login' element={<LoginForm isLoggedIn={isLoggedIn} 
 					handleLogin={() => setLoggedIn(true)} setUser={() => setCurrentUser}/>}/>
 				<Route path='register' element={<RegisterForm setUser ={() => setCurrentUser}/>} />
