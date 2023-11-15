@@ -3,7 +3,7 @@ import '../assets/css/loginForm.css'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function RegisterForm() {
+export default function RegisterForm({handleLogin, updateUser}) {
     const [fullName, setFullName] = useState('');
     const [givenName, setGivenName] = useState('');
     const [familyname, setFamilyNaame] = useState('');
@@ -19,7 +19,7 @@ export default function RegisterForm() {
         setIsValidEmail(emailRegex.test(inputEmail));
     };
 
-    function validateInput({ setUser }) {
+    function validateInput() {
 
         const inputs = document.querySelectorAll('input');
 
@@ -104,18 +104,18 @@ export default function RegisterForm() {
                             </div>
                             <button onClick={(e) => {
                                 handleBtnAnimation(e);
-                                if (validateInput()) {
-                                    setUser(
-                                        {
-                                            fullName: fullName,
-                                            givenName: givenName,
-                                            familyname: familyname,
-                                            email: email,
-                                            password: password,
-                                            dateCreated: new Date()
-                                        }
-                                    )
-                                }
+                                handleLogin(true);
+                                updateUser(
+                                    {
+                                        fullName: fullName,
+                                        givenName: givenName,
+                                        familyname: familyname,
+                                        email: email,
+                                        password: password,
+                                        role: role,
+                                        dateCreated: new Date()
+                                    }
+                                )
                             }}
                                 type="button" id='btnRegister' className="btn btn-primary w-75 mb-3">Click to Register</button>
                         </div>

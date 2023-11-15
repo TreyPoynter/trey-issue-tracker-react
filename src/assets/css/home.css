@@ -16,7 +16,6 @@ h1 span {
 
 #header-slogan {
     font-size: 2em;
-    white-space: nowrap; /* Prevent line break between the main text and the span */
 }
 
 h1 span {
@@ -30,6 +29,24 @@ h1 span {
 
 .jumbotron p {
     font-size: 1.5em;
+}
+
+
+@media screen and (max-width:640px) {
+    #jumbotron-content {
+        flex-direction: column;
+    }
+    h1 span {
+        font-size: 40px;
+    }
+    #header-slogan {
+        display: flex;
+        flex-direction: column;
+        font-size: 35px;
+    }
+    #bug-img {
+        height: 150px !important;
+    }
 }
 
 @media screen and (max-width:1200px) {

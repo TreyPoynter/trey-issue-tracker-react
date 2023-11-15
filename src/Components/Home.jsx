@@ -9,11 +9,11 @@ export default function Home({ user }) {
             <div className=''>
                 <section className="jumbotron" id='home'>
                     <div className="pe=0 container">
-                        <div className="row mt-5 d-flex align-items-center">
+                        <div id='jumbotron-content' className="row mt-5 d-flex align-items-center">
                             <div className='slide-in-left col-8 d-flex justify-content-center flex-column'>
                                 <h1 id='header-slogan' >
                                     Navigate, Collaborate, Conquer: <br />
-                                    Bugs, Consider Yourself <span className=''>Warned</span>.
+                                    Bugs, Consider Yourself <span className=''>Warned.</span>
                                 </h1>
                                 {
                                     user ? (
@@ -27,7 +27,7 @@ export default function Home({ user }) {
                                 }
                             </div>
                             <div className='col-4 d-flex justify-content-center '>
-                                <img src={LootBug} alt="" height={250} />
+                                <img id='bug-img' src={LootBug} alt="" height={250} />
                             </div>
                         </div>
 

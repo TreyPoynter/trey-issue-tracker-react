@@ -11,7 +11,7 @@ import EditUser from './Components/UserEdit.jsx';
 import './assets/css/animista.css'
 import './assets/css/styles.css'
 import './assets/css/nav.css'
-import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from 'react';
 /*
 <div id="content">
@@ -21,22 +21,26 @@ import { useState } from 'react';
 function App() {
 	const [isLoggedIn, setLoggedIn] = useState(false);
 	const [currentUser, setCurrentUser] = useState(null);
-	console.log(currentUser);
+
+	const handleUserChange = (user) => {
+		setCurrentUser(user);
+	};
 
 	return(
 		<BrowserRouter>
-			<Navbar isLoggedIn={isLoggedIn} handleLogout={() => setLoggedIn(false)} setUser={() => setCurrentUser}/>
+			<Navbar isLoggedIn={isLoggedIn} handleLogout={() => setLoggedIn(false)} updateUser={handleUserChange}/>
 			<Routes path='/'>
-				<Route path='/' element={<Home/>}/>
+				<Route path='/' element={<Home user={currentUser}/>}/>
 				<Route path='login' element={<LoginForm isLoggedIn={isLoggedIn} 
-					handleLogin={() => setLoggedIn(true)} setUser={() => setCurrentUser}/>}/>
-				<Route path='register' element={<RegisterForm setUser ={() => setCurrentUser}/>} />
+					handleLogin={() => setLoggedIn(true)} updateUser={handleUserChange}/>}/>
+				<Route path='register' element={<RegisterForm user={currentUser} 
+					handleLogin={() => setLoggedIn(true)} updateUser ={handleUserChange}/>}/>
 				<Route path='bugs' element={<BugList/>}/>
 				<Route path='users' element={<UserList/>}/>
 				<Route path='bugs/bug' element={<BugSummary/>}/>
 				<Route path='bugs/bug/edit' element={<EditBug/>}/>
 				<Route path='users/user/edit' element={<EditUser/>}/>
-				<Route path='users/user' element={<UserSummary/>}/>
+				<Route path='users/user' element={<UserSummary user={currentUser}/>}/>
 			</Routes>
 		</BrowserRouter>
 	)

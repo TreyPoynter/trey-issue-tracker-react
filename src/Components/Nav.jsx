@@ -4,9 +4,8 @@ import '../assets/js/nav.js'
 import { useEffect } from 'react';
 import { Link } from "react-router-dom";
 
-export default function Navbar({ isLoggedIn, handleLogout }) {
+export default function Navbar({ isLoggedIn, handleLogout, updateUser }) {
     const navLinks = document.getElementsByClassName('nav-link');
-    console.log(navLinks)
     function collapseOnClick() {
         const navbarNav = document.getElementById('navbarNav');
         if (navbarNav.classList.contains('show')) {
@@ -46,8 +45,8 @@ export default function Navbar({ isLoggedIn, handleLogout }) {
                     {
                         isLoggedIn ?
                             <div id='nav-user' className="w-10 justify-content-around d-flex align-items-center">
-                                <Link class="fa-solid fa-user fa-xl text-black" to='users/user'></Link>
-                                <Link type='button' onClick={() => { handleLogout(); }} to='login'>Logout</Link>
+                                <Link className="fa-solid fa-user fa-xl text-black" to='users/user'></Link>
+                                <Link type='button' onClick={() => { handleLogout(); updateUser(null); }} to='login'>Logout</Link>
                             </div> :
                             <div id='nav-user' className="w-10 justify-content-around d-flex">
                                 <Link to='register'>Register</Link>

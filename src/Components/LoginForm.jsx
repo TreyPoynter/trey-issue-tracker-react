@@ -16,7 +16,7 @@ const users = [
     }
 ]
 
-export default function LoginForm({isLoggedIn, handleLogin, setUser}) {
+export default function LoginForm({isLoggedIn, handleLogin, updateUser}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -34,9 +34,9 @@ export default function LoginForm({isLoggedIn, handleLogin, setUser}) {
     function Login() {
         if (email == "admin@example.com" && password == "password") {
             document.getElementById('txtEmail').value = '';
-            document.getElementById('txtEmail').value = '';
+            document.getElementById('txtPass').value = '';
             handleLogin();
-            setUser(
+            updateUser(
                 {
                     fullName: 'Admin Dev',
                     givenName: 'Admin',
@@ -45,6 +45,7 @@ export default function LoginForm({isLoggedIn, handleLogin, setUser}) {
                     password: password
                 }
             );
+            loginUser();
         }
     }
 
