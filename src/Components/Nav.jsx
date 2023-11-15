@@ -27,7 +27,7 @@ export default function Navbar({ isLoggedIn, handleLogout, updateUser }) {
 
     return (
         <>
-            <nav id='navbar' className="navbar bg-body-tertiary d-flex" style={{ position: 'fixed', top: 0, width: '100%' }}>
+            <nav id='navbar' className="navbar bg-body-tertiary d-flex fixed-top" style={{ position: 'fixed', top: 0, width: '100%' }}>
                 <div className="container-fluid d-flex w-100" id='nav-container'>
                     <div className='w-10'>
                         <button onClick={() => {

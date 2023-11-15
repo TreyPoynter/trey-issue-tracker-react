@@ -22,7 +22,7 @@ export default function Home({ user }) {
                                         </p>) :
                                         <p className='display-2 fw-bold'>
                                             <Link to='/login' className='link-light'>Login</Link> or <Link to='/register'
-                                                className='link-light'>Register</Link> today
+                                                className='link-light'>Register</Link> today!
                                         </p>
                                 }
                             </div>
