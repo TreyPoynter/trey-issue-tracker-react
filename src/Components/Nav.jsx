@@ -4,7 +4,7 @@ import '../assets/js/nav.js'
 import { useEffect } from 'react';
 import { Link } from "react-router-dom";
 
-export default function Navbar({ isLoggedIn, handleLogout, updateUser }) {
+export default function Navbar({ user, updateUser }) {
     const navLinks = document.getElementsByClassName('nav-link');
     function collapseOnClick() {
         const navbarNav = document.getElementById('navbarNav');
@@ -43,7 +43,7 @@ export default function Navbar({ isLoggedIn, handleLogout, updateUser }) {
                         <Link id='nav-brand' className="display-6" to='/'>Issue-Tracker</Link>
                     </div>
                     {
-                        isLoggedIn ?
+                        user ?
                             <div id='nav-user' className="w-10 justify-content-around d-flex align-items-center">
                                 <Link className="fa-solid fa-user fa-xl text-black" to='users/user'></Link>
                                 <Link type='button' onClick={() => { handleLogout(); updateUser(null); }} to='login'>Logout</Link>
@@ -61,7 +61,7 @@ export default function Navbar({ isLoggedIn, handleLogout, updateUser }) {
                                     <h3 className='text-center border-bottom border-black w-50 pb-2'>Users</h3>
                                     <div className='text-center  d-flex flex-column align-items-center justify-content-center'>
                                         <li className="nav-item">
-                                            {isLoggedIn ? (
+                                            {user ? (
                                                 <Link to='user/list' className="nav-link active">Show all Users</Link>
                                             ) : (
                                                 <Link to='login' className="nav-link active">Login to Show all Users</Link>
@@ -73,7 +73,7 @@ export default function Navbar({ isLoggedIn, handleLogout, updateUser }) {
                                     <h3 className='text-center border-bottom border-black w-50 pb-2'>Bugs</h3>
                                     <div className='text-center d-flex flex-column align-items-center justify-content-center'>
                                         <li className="nav-item">
-                                            {isLoggedIn ? (
+                                            {user ? (
                                                 <Link to='bug/list' className="nav-link active">Show all Bugs</Link>
                                             ) : (
                                                 <Link to='login' className="nav-link active">Login to Show all Bugs</Link>

@@ -8,6 +8,7 @@ import UserList from './Components/UserList.jsx';
 import UserSummary from './Components/UserSummary.jsx';
 import EditBug from './Components/BugEdit.jsx';
 import EditUser from './Components/UserEdit.jsx';
+import Footer from './Components/Footer.jsx';
 import './assets/css/animista.css'
 import './assets/css/styles.css'
 import './assets/css/nav.css'
@@ -17,31 +18,39 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from 'react';
 /*
 <div id="content">
-            </div>
+			</div>
 */
 
 function App() {
-	const [isLoggedIn, setLoggedIn] = useState(false);
 	const [currentUser, setCurrentUser] = useState(null);
+	const [auth, setAuth] = useState(null);
+
+	function showError(message) {
+		toast(message, { type: 'error', position: 'bottom-right' });
+	}
+	function showSuccess(message) {
+		toast(message, { type: 'success', position: 'bottom-right' });
+	}
 
 	const handleUserChange = (user) => {
 		setCurrentUser(user);
 	};
 
-	return(
+	return (
 		<BrowserRouter>
-			<Navbar isLoggedIn={isLoggedIn} handleLogout={() => setLoggedIn(false)} updateUser={handleUserChange}/>
+			<Navbar user={currentUser} updateUser={handleUserChange} />
 			<Routes path='/'>
-				<Route path='/' element={<Home user={currentUser}/>}/>
-				<Route path='login' element={<LoginForm isLoggedIn={isLoggedIn} handleLogin={() => setLoggedIn(true)} updateUser={handleUserChange}/>}/>
-				<Route path='register' element={<RegisterForm user={currentUser} handleLogin={() => setLoggedIn(true)} updateUser ={handleUserChange}/>}/>
-				<Route path='bug/list' element={<BugList/>}/>
-				<Route path='user/list' element={<UserList/>}/>
-				<Route path='bugs/bug' element={<BugSummary/>}/>
-				<Route path='bugs/bug/edit' element={<EditBug/>}/>
-				<Route path='users/user/edit' element={<EditUser/>}/>
-				<Route path='users/user' element={<UserSummary user={currentUser}/>}/>
+				<Route path='/' element={<Home user={currentUser} />} />
+				<Route path='login' element={<LoginForm updateUser={handleUserChange} />} />
+				<Route path='register' element={<RegisterForm user={currentUser} updateUser={handleUserChange} />} />
+				<Route path='bug/list' element={<BugList />} />
+				<Route path='user/list' element={<UserList />} />
+				<Route path='bugs/bug' element={<BugSummary />} />
+				<Route path='bugs/bug/edit' element={<EditBug />} />
+				<Route path='users/user/edit' element={<EditUser />} />
+				<Route path='users/user' element={<UserSummary user={currentUser} />} />
 			</Routes>
+			<Footer/>
 		</BrowserRouter>
 	)
 }

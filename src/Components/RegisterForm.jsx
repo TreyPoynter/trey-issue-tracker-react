@@ -3,7 +3,7 @@ import '../assets/css/loginForm.css'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function RegisterForm({handleLogin, updateUser}) {
+export default function RegisterForm({updateUser}) {
     const [fullName, setFullName] = useState('');
     const [givenName, setGivenName] = useState('');
     const [familyname, setFamilyNaame] = useState('');
@@ -20,7 +20,6 @@ export default function RegisterForm({handleLogin, updateUser}) {
     };
 
     function validateInput() {
-
         const inputs = document.querySelectorAll('input');
 
         inputs.map(input => {
@@ -88,8 +87,8 @@ export default function RegisterForm({handleLogin, updateUser}) {
                             </div>
                             <div className="mb-3 d-flex flex-column align-items-start">
                                 <label htmlFor="cboRoles" className="form-label">Role</label>
-                                <select onChange={(e) => setRole(e.target.value)} id='cboRoles' class="form-select" aria-label="Default select example">
-                                    <option style={{ display: 'none' }} selected>Open this select menu</option>
+                                <select onChange={(e) => setRole(e.target.value)} id='cboRoles' className="form-select" aria-label="Default select example">
+                                    <option style={{ display: 'none' }} defaultValue="1">Open this select menu</option>
                                     <option value="1">Developer</option>
                                     <option value="2">Quality Assurance</option>
                                     <option value="3">Technical Manager</option>
@@ -104,7 +103,6 @@ export default function RegisterForm({handleLogin, updateUser}) {
                             </div>
                             <button onClick={(e) => {
                                 handleBtnAnimation(e);
-                                handleLogin(true);
                                 updateUser(
                                     {
                                         fullName: fullName,
