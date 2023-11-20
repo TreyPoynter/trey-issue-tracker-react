@@ -1,22 +1,10 @@
 /* eslint-disable */
 import { useState } from "react";
 import '../assets/css/loginForm.css'
-import { nanoid } from "nanoid";
 import { Link } from 'react-router-dom';
+import axios from "axios";
 
-const users = [
-    {
-        "id": nanoid(),
-        "givenName": "Trey",
-        "familyName": "Poynter",
-        "email": "tpoynter@farcebook.com",
-        "fullName": "Trey Poynter",
-        "password": "password",
-        "creationDate": "2022-08-16 20:22:22"
-    }
-]
-
-export default function LoginForm({updateUser}) {
+export default function LoginForm({updateUser, showError, showSuccess}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -32,19 +20,41 @@ export default function LoginForm({updateUser}) {
     }
 
     function Login() {
-        if (email == "admin@example.com" && password == "password") {
-            document.getElementById('txtEmail').value = '';
-            document.getElementById('txtPass').value = '';
-            updateUser(
-                {
-                    fullName: 'Admin Dev',
-                    givenName: 'Admin',
-                    familyname: 'Dev',
-                    email: email,
-                    password: password
-                }
-            );
+        if (!email && !password) {
+            showError('Email and Password is required'); return;
         }
+        if (!email) {
+            showError('Email is required'); return;
+        }
+        if (!password) {
+            showError('Password is required'); return;
+        }
+        axios.post('http://localhost:5000/api/users/login', {
+            email,password
+        },{
+            withCredentials: true
+        }).then(res => {
+            
+            const now = new Date();
+            const numHours = 1;
+            const expirationTime = now.getTime() + numHours * 60 * 60 * 1000;
+            const user = {
+                ...res.data.message.foundUser, 
+                expiration: expirationTime
+            };
+            showSuccess(`Logged in as ${user.fullName}`);
+            updateUser(user);
+            localStorage.setItem('user', JSON.stringify(user));
+            
+        }).catch(error => {
+            const resError = error?.response?.data;
+            console.log(resError);
+            if(resError) {
+                if (typeof resError === 'string' || resError.message) {
+                    showError(resError.message.message);
+                }
+            }
+        });
     }
 
     return (

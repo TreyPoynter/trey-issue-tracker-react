@@ -26,10 +26,10 @@ function App() {
 	const [auth, setAuth] = useState(null);
 
 	function showError(message) {
-		toast(message, { type: 'error', position: 'bottom-right' });
+		toast(message, { type: 'error', position: 'top-right' });
 	}
 	function showSuccess(message) {
-		toast(message, { type: 'success', position: 'bottom-right' });
+		toast(message, { type: 'success', position: 'top-right' });
 	}
 
 	const handleUserChange = (user) => {
@@ -39,10 +39,13 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Navbar user={currentUser} updateUser={handleUserChange} />
+			<ToastContainer/>
 			<Routes path='/'>
 				<Route path='/' element={<Home user={currentUser} />} />
-				<Route path='login' element={<LoginForm updateUser={handleUserChange} />} />
-				<Route path='register' element={<RegisterForm user={currentUser} updateUser={handleUserChange} />} />
+				<Route path='login' element={<LoginForm showError={showError} 
+				showSuccess={showSuccess} updateUser={handleUserChange} />} />
+				<Route path='register' element={<RegisterForm user={currentUser} 
+				showError={showError} showSuccess={showSuccess} updateUser={handleUserChange} />} />
 				<Route path='bug/list' element={<BugList />} />
 				<Route path='user/list' element={<UserList />} />
 				<Route path='bugs/bug' element={<BugSummary />} />
