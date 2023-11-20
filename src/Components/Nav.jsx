@@ -62,7 +62,7 @@ export default function Navbar({ isLoggedIn, handleLogout, updateUser }) {
                                     <div className='text-center  d-flex flex-column align-items-center justify-content-center'>
                                         <li className="nav-item">
                                             {isLoggedIn ? (
-                                                <Link to='users' className="nav-link active">Show all Users</Link>
+                                                <Link to='user/list' className="nav-link active">Show all Users</Link>
                                             ) : (
                                                 <Link to='login' className="nav-link active">Login to Show all Users</Link>
                                             )}
@@ -74,7 +74,7 @@ export default function Navbar({ isLoggedIn, handleLogout, updateUser }) {
                                     <div className='text-center d-flex flex-column align-items-center justify-content-center'>
                                         <li className="nav-item">
                                             {isLoggedIn ? (
-                                                <Link to='bugs' className="nav-link active">Show all Bugs</Link>
+                                                <Link to='bug/list' className="nav-link active">Show all Bugs</Link>
                                             ) : (
                                                 <Link to='login' className="nav-link active">Login to Show all Bugs</Link>
                                             )}

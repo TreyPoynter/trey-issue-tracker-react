@@ -11,6 +11,8 @@ import EditUser from './Components/UserEdit.jsx';
 import './assets/css/animista.css'
 import './assets/css/styles.css'
 import './assets/css/nav.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from 'react';
 /*
@@ -31,12 +33,10 @@ function App() {
 			<Navbar isLoggedIn={isLoggedIn} handleLogout={() => setLoggedIn(false)} updateUser={handleUserChange}/>
 			<Routes path='/'>
 				<Route path='/' element={<Home user={currentUser}/>}/>
-				<Route path='login' element={<LoginForm isLoggedIn={isLoggedIn} 
-					handleLogin={() => setLoggedIn(true)} updateUser={handleUserChange}/>}/>
-				<Route path='register' element={<RegisterForm user={currentUser} 
-					handleLogin={() => setLoggedIn(true)} updateUser ={handleUserChange}/>}/>
-				<Route path='bugs' element={<BugList/>}/>
-				<Route path='users' element={<UserList/>}/>
+				<Route path='login' element={<LoginForm isLoggedIn={isLoggedIn} handleLogin={() => setLoggedIn(true)} updateUser={handleUserChange}/>}/>
+				<Route path='register' element={<RegisterForm user={currentUser} handleLogin={() => setLoggedIn(true)} updateUser ={handleUserChange}/>}/>
+				<Route path='bug/list' element={<BugList/>}/>
+				<Route path='user/list' element={<UserList/>}/>
 				<Route path='bugs/bug' element={<BugSummary/>}/>
 				<Route path='bugs/bug/edit' element={<EditBug/>}/>
 				<Route path='users/user/edit' element={<EditUser/>}/>
