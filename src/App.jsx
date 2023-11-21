@@ -15,7 +15,7 @@ import './assets/css/nav.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 /*
 <div id="content">
 			</div>
@@ -24,6 +24,22 @@ import { useState } from 'react';
 function App() {
 	const [user, setUser] = useState(null);
 	const [auth, setAuth] = useState(null);
+
+	useEffect(() => {
+		const localUser = JSON.parse(localStorage.getItem('user'));
+		const now = new Date();
+		if (!localUser) {
+			return;
+		}
+		if (now.getTime() > localUser.expiration) {  //? If the item is expired, remove it from localStorage
+			localStorage.removeItem('user');
+			setUser(null);
+			location.reload();
+		}
+		if (localUser && localUser !== user) {
+			setUser(localUser);
+		}
+	}, []);
 
 	function showError(message) {
 		toast(message, { type: 'error', position: 'top-right' });
@@ -50,8 +66,8 @@ function App() {
 				<Route path='/' element={<Home user={user} />} />
 				<Route path='login' element={<LoginForm showError={showError}
 					showSuccess={showSuccess} onLogin={onLogin}/>} />
-				<Route path='register' element={<RegisterForm user={user}
-					showError={showError} showSuccess={showSuccess} onLogin={onLogin}/>} />
+				<Route path='register' element={<RegisterForm showError={showError} 
+					showSuccess={showSuccess} onLogin={onLogin}/>} />
 				<Route path='bug/list' element={<BugList />} />
 				<Route path='user/list' element={<UserList />} />
 				<Route path='bugs/bug' element={<BugSummary />} />
