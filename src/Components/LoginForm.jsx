@@ -47,6 +47,7 @@ export default function LoginForm({showError, showSuccess, onLogin}) {
                 expiration: expirationTime
             };
             showSuccess(`Logged in as ${user.fullName}`);
+            console.log(res);
             onLogin(res.data.authToken, user);
             localStorage.setItem('user', JSON.stringify(user));
             

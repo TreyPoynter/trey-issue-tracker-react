@@ -1,34 +1,23 @@
 /* eslint-disable */
 import { Link } from "react-router-dom"
 
-export default function Bug({ title, classification, isClosed }) {
+export default function Bug({ bug }) {
     return (
-        <>
-            <Link to='/bugs/bug' className="col-md-3 col-sm-12 d-flex justify-content-center mb-4 text-decoration-none">
-                <div className="folder-card">
-                    <div className={isClosed ? "top-section closed" : "top-section open"}>
-                        <div className="folder-border"></div>
-                        <div className="icons">
-                        </div>
+        <div className="col-lg-3 col-md-6 mb-3">
+            <Link to={`/bug/${bug._id}`} className="justify-content-center mb-4 text-decoration-none">
+                <div className="card p-1">
+                    <div className="">
+                        <span className={`badge bg-${bug.classification.classifiedAs == 'approved' ? 'success' :
+                            bug.classification.classifiedAs == 'unapproved' || bug.classification.classifiedAs == 'duplicate'
+                            ? 'danger' : 'warning'}`}>ur mom</span>
+                        <h3 className="text-center fs-5">{bug.title}</h3>
                     </div>
-                    <div className="bottom-section">
-                        <span className="title">BUG</span>
-                        <div className="row row1">
-                            <div className="item">
-                                <span className="big-text">2626</span>
-                                <span className="regular-text">BUG</span>
-                            </div>
-                            <div className="item">
-                                <span className="big-text">2626</span>
-                                <span className="regular-text">BUG</span>
-                            </div>
-                        </div>
+                    <div className="card-body text-center">
+                        <i className={`fas mb-2 fa-solid fa-5x ${bug.closedInfo.closed ? "fa-bug-slash" : "fa-bug"}`}></i>
+                        <h5>Assigned to : {bug?.assignedInfo?.assignedToName ? bug.assignedInfo.assignedToName : 'No One'}</h5>
                     </div>
                 </div>
             </Link>
-
-
-
-        </>
+        </div>
     )
 }

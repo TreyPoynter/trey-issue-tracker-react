@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-export default function Navbar({ user, onLogout }) {
+export default function Navbar({ auth, user, onLogout }) {
     const navigate = useNavigate();
     const navLinks = document.getElementsByClassName('nav-link');
     function collapseOnClick() {
@@ -75,7 +75,10 @@ export default function Navbar({ user, onLogout }) {
                                     <div className='text-center  d-flex flex-column align-items-center justify-content-center'>
                                         <li className="nav-item">
                                             {user ? (
-                                                <Link to='user/list' className="nav-link active">Show all Users</Link>
+                                                <>
+                                                    <Link to='user/list' className="nav-link active">Show all Users</Link>
+                                                </>
+                                                
                                             ) : (
                                                 <Link to='login' className="nav-link active">Login to Show all Users</Link>
                                             )}
@@ -87,10 +90,18 @@ export default function Navbar({ user, onLogout }) {
                                     <div className='text-center d-flex flex-column align-items-center justify-content-center'>
                                         <li className="nav-item">
                                             {user ? (
-                                                <Link to='bug/list' className="nav-link active">Show all Bugs</Link>
+                                                <>
+                                                    <Link to='bug/list' className="nav-link active">Show all Bugs</Link>
+                                                </>
+                                                
                                             ) : (
                                                 <Link to='login' className="nav-link active">Login to Show all Bugs</Link>
                                             )}
+                                            {auth && 
+                                            <>
+                                                {auth.permissions.canEditAnyBug && <Link to='bug/:bugId/edit' className="nav-link active">Edit Bugs</Link>}
+                                                {auth.permissions.canCreateBug && <Link to='bug/add' className="nav-link active">Add New Bug</Link>}
+                                            </>}
                                         </li>
                                     </div>
                                 </div>

@@ -9,6 +9,7 @@ import UserSummary from './Components/UserSummary.jsx';
 import EditBug from './Components/BugEdit.jsx';
 import EditUser from './Components/UserEdit.jsx';
 import Footer from './Components/Footer.jsx';
+import AddNewBug from './Components/AddNewBug.jsx';
 import './assets/css/animista.css'
 import './assets/css/styles.css'
 import './assets/css/nav.css'
@@ -49,6 +50,8 @@ function App() {
 	}
 
 	function onLogin(auth, user) {
+		console.log(auth)
+		console.log(user)
 		setAuth(auth);
 		setUser(user)
 	}
@@ -57,7 +60,7 @@ function App() {
 		setUser(null);
 		showSuccess('Logged out!');
 	}
-
+	console.log(auth)
 	return (
 		<BrowserRouter>
 			<Navbar auth={auth} onLogout={onLogout} user={user}/>
@@ -70,10 +73,12 @@ function App() {
 					showSuccess={showSuccess} onLogin={onLogin}/>} />
 				<Route path='bug/list' element={<BugList />} />
 				<Route path='user/list' element={<UserList />} />
-				<Route path='bugs/bug' element={<BugSummary />} />
+				<Route path='bug/:bugId' element={<BugSummary />} />
 				<Route path='bugs/bug/edit' element={<EditBug />} />
 				<Route path='users/user/edit' element={<EditUser />} />
 				<Route path='users/user' element={<UserSummary user={user} />} />
+				<Route path='bug/add' element={<AddNewBug auth={auth} user={user} showError={showError}
+					showSuccess={showSuccess}/>} />
 			</Routes>
 			<Footer />
 		</BrowserRouter>

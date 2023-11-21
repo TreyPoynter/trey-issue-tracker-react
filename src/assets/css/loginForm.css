@@ -15,6 +15,11 @@
     width: 40%; /* Adjust the width as needed */
 }
 
+#txtDesc, #txtSteps {
+    width: 100%;
+    resize: none;
+}
+
 
 @media screen and (max-width: 1000px) {
     .centered-form {
