@@ -1,12 +1,14 @@
 /* eslint-disable */
 import '../assets/css/loginForm.css'
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-export default function RegisterForm({onLogin}) {
+export default function RegisterForm({showError, showSuccess, onLogin}) {
+    const navigate = useNavigate();
     const [fullName, setFullName] = useState('');
     const [givenName, setGivenName] = useState('');
-    const [familyname, setFamilyNaame] = useState('');
+    const [familyName, setFamilyNaame] = useState('');
     const [email, setEmail] = useState('');
     const [role, setRole] = useState('');
     const [password, setPassword] = useState('');
@@ -19,14 +21,55 @@ export default function RegisterForm({onLogin}) {
         setIsValidEmail(emailRegex.test(inputEmail));
     };
 
-    function validateInput() {
-        const inputs = document.querySelectorAll('input');
+    function handleRegister(evt){
+        evt.preventDefault();
+        if(!fullName)
+            {showError('Full-Name is Required'); return}
+        else if(!givenName)
+            {showError('Given-Name is Required'); return}
+        if(!familyName)
+            {showError('Family-Name is Required'); return}
+        else if(!email && !password)
+            {showError('Email and Password is Required');return;}
+        else if(!email)
+            {showError('Email is Required');return;}
+        else if (!email.includes('@')) 
+            {showError('Email must contain an @'); return;}
+        else if(!password)
+            {showError('Password is Required');return;}
+        else if (password.length < 8) 
+            {showError('Password must be more than 8 characters'); return;}
+        
+        axios.post(`${import.meta.env.VITE_API_URL}/api/users/register`, {
+            fullName, givenName, familyName, email, password, role
+        }, {
+            withCredentials: true
+        }).then(response => {
+            console.log(response.data);
 
-        inputs.map(input => {
-            if (!input)
-                return false;
+            //? Immediately Login
+            return axios.post(`${import.meta.env.VITE_API_URL}/api/users/login`, {
+                email, password
+            }, {
+                withCredentials: true
+            });
+        }).then(res => {
+            console.log(res.data);
+            navigate('/');
+            const now = new Date();
+            const numHours = 1;
+            const expirationTime = now.getTime() + numHours * 60 * 60 * 1000;
+            const user = {
+                ...res.data.message.foundUser, 
+                expiration: expirationTime
+            };
+            localStorage.setItem('user', JSON.stringify(user));
+            onLogin(res.data.authToken, user);
+            showSuccess(`Welcome, ${fullName}`)
+        }).catch(error => {
+            // Handle errors
+            console.error(error);
         });
-        return true;
     }
 
     function handleBtnAnimation(evt) {
@@ -64,7 +107,7 @@ export default function RegisterForm({onLogin}) {
                                         className={`form-control`}
                                         id="txtFamilyName" aria-describedby="emailHelp"
                                         onChange={(e) => setFamilyNaame(e.target.value)} />
-                                    {!familyname && (
+                                    {!familyName && (
                                         <div className="invalid-feedback">
                                             Please enter a valid email address.
                                         </div>)}
@@ -89,9 +132,11 @@ export default function RegisterForm({onLogin}) {
                                 <label htmlFor="cboRoles" className="form-label">Role</label>
                                 <select onChange={(e) => setRole(e.target.value)} id='cboRoles' className="form-select" aria-label="Default select example">
                                     <option style={{ display: 'none' }} defaultValue="1">Open this select menu</option>
-                                    <option value="1">Developer</option>
-                                    <option value="2">Quality Assurance</option>
-                                    <option value="3">Technical Manager</option>
+                                    <option value="developer">Developer</option>
+                                    <option value="quality assurance">Quality Assurance</option>
+                                    <option value="business analyst">Business Analyst</option>
+                                    <option value="technical manager">Technical Manager</option>
+                                    <option value="product manager">Product Manager</option>
                                 </select>
                             </div>
                             
@@ -103,17 +148,7 @@ export default function RegisterForm({onLogin}) {
                             </div>
                             <button onClick={(e) => {
                                 handleBtnAnimation(e);
-                                updateUser(
-                                    {
-                                        fullName: fullName,
-                                        givenName: givenName,
-                                        familyname: familyname,
-                                        email: email,
-                                        password: password,
-                                        role: role,
-                                        dateCreated: new Date()
-                                    }
-                                )
+                                handleRegister(e);
                             }}
                                 type="button" id='btnRegister' className="btn btn-primary w-75 mb-3">Click to Register</button>
                         </div>
