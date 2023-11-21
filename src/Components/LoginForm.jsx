@@ -3,6 +3,7 @@ import { useState } from "react";
 import '../assets/css/loginForm.css'
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import dotenv from 'dotenv'
 
 export default function LoginForm({updateUser, showError, showSuccess}) {
     const [email, setEmail] = useState('');
@@ -29,12 +30,12 @@ export default function LoginForm({updateUser, showError, showSuccess}) {
         if (!password) {
             showError('Password is required'); return;
         }
-        axios.post('http://localhost:5000/api/users/login', {
+        axios.post(`${import.meta.env.VITE_API_URL}/api/users/login`, {
             email,password
         },{
             withCredentials: true
         }).then(res => {
-            
+            console.log(res);
             const now = new Date();
             const numHours = 1;
             const expirationTime = now.getTime() + numHours * 60 * 60 * 1000;
