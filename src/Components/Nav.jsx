@@ -2,9 +2,11 @@
 import '../assets/css/nav.css'
 import '../assets/js/nav.js'
 import { useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
 
-export default function Navbar({ user, updateUser }) {
+export default function Navbar({ user, onLogout }) {
+    const navigate = useNavigate();
     const navLinks = document.getElementsByClassName('nav-link');
     function collapseOnClick() {
         const navbarNav = document.getElementById('navbarNav');
@@ -24,6 +26,17 @@ export default function Navbar({ user, updateUser }) {
             };
         });
     }, []);
+
+    function handleLogout(evt) {
+        evt.preventDefault();
+        
+        axios.post(`${import.meta.env.VITE_API_URL}/api/users/logout`,{},
+        {withCredentials: true}).then(res => {
+            navigate('/');
+            localStorage.removeItem('user');
+            onLogout();
+        }).catch(err => {console.log(err)});
+    }
 
     return (
         <>
@@ -46,7 +59,7 @@ export default function Navbar({ user, updateUser }) {
                         user ?
                             <div id='nav-user' className="w-10 justify-content-around d-flex align-items-center">
                                 <Link className="fa-solid fa-user fa-xl text-black" to='users/user'></Link>
-                                <Link type='button' onClick={() => { handleLogout(); updateUser(null); }} to='login'>Logout</Link>
+                                <Link type='button' onClick={(evt) => {handleLogout(evt);}} to='login'>Logout</Link>
                             </div> :
                             <div id='nav-user' className="w-10 justify-content-around d-flex">
                                 <Link to='register'>Register</Link>
