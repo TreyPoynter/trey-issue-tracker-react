@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import dotenv from 'dotenv'
 
-export default function LoginForm({updateUser, showError, showSuccess}) {
+export default function LoginForm({showError, showSuccess, onLogin}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     function handleBtnAnimation(evt) {
         var btn = document.getElementById(evt.target.id);
@@ -21,15 +22,17 @@ export default function LoginForm({updateUser, showError, showSuccess}) {
     }
 
     function Login() {
-        if (!email && !password) {
-            showError('Email and Password is required'); return;
-        }
-        if (!email) {
-            showError('Email is required'); return;
-        }
-        if (!password) {
-            showError('Password is required'); return;
-        }
+        setError('');
+        if (!email && !password) 
+            {showError('Email and Password is required'); return;}
+        if (!email) 
+            {showError('Email is required'); return;}
+        if (!email.includes('@')) 
+            {showError('Email must contain an @'); return;}
+        if (!password) 
+            {showError('Password is required'); return;}
+        if (password.length < 8) 
+            {showError('Password must be more than 8 characters'); return;}
         axios.post(`${import.meta.env.VITE_API_URL}/api/users/login`, {
             email,password
         },{
@@ -44,7 +47,7 @@ export default function LoginForm({updateUser, showError, showSuccess}) {
                 expiration: expirationTime
             };
             showSuccess(`Logged in as ${user.fullName}`);
-            updateUser(user);
+            onLogin(res.data.authToken, user);
             localStorage.setItem('user', JSON.stringify(user));
             
         }).catch(error => {

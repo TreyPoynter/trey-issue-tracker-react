@@ -3,7 +3,7 @@ import '../assets/css/loginForm.css'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function RegisterForm({updateUser}) {
+export default function RegisterForm({onLogin}) {
     const [fullName, setFullName] = useState('');
     const [givenName, setGivenName] = useState('');
     const [familyname, setFamilyNaame] = useState('');
