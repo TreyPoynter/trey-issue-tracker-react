@@ -76,7 +76,7 @@ export default function Navbar({ auth, user, onLogout }) {
                                         <li className="nav-item">
                                             {user ? (
                                                 <>
-                                                    <Link to='user/list' className="nav-link active">Show all Users</Link>
+                                                    <Link to='users/list' className="nav-link active">Show all Users</Link>
                                                 </>
                                                 
                                             ) : (
@@ -91,16 +91,12 @@ export default function Navbar({ auth, user, onLogout }) {
                                         <li className="nav-item">
                                             {user ? (
                                                 <>
-                                                    <Link to='bug/list' className="nav-link active">Show all Bugs</Link>
+                                                    <Link to='bugs/list' className="nav-link active">Show all Bugs</Link>
                                                 </>
                                                 
                                             ) : (
                                                 <Link to='login' className="nav-link active">Login to Show all Bugs</Link>
                                             )}
-                                            {user &&
-                                            user.role.includes('developer', 'quality analyst', 
-                                            'business analyst', 'product manager', 'technical manager') && 
-                                            <Link to='bug/:bugId/edit' className="nav-link active">Edit Bugs</Link>}
                                         </li>
                                     </div>
                                 </div>

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-export default function BugSummary({ auth }) {
+export default function BugSummary() {
     const bugId = useParams().bugId;
     const [bug, setBug] = useState(null);
     useEffect(() => {
@@ -44,7 +44,7 @@ export default function BugSummary({ auth }) {
             <div id="body-div">
                 <div className="form d-flex flex-column" id='bug-card'>
                     <div className='d-flex justify-content-between'>
-                        <Link to='/bug/list'><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
+                        <Link to='/bugs/list'><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
                     </div>
                     <div className=''>
                         <h2 className="mb-0 pb-2 display-5 text-center">{bug.title}</h2>
