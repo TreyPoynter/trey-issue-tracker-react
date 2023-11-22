@@ -1,7 +1,33 @@
 import '../assets/css/summaryCard.css'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-export default function UserSummary({ name, role }) {
+export default function UserSummary() {
+    const userId = useParams().userId;
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_API_URL}/api/users/${userId}`, { withCredentials: true })
+            .then(
+                res => {
+                    console.log(res)
+                    setUser(res.data)
+                }
+            ).catch(error => { console.log(error) });
+    });
+    if (!user) {
+        return(
+            <>
+                <h1>User not found</h1>
+            </>
+        );
+    }
+    const dateCreated = new Date(user.creationDate);
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const month = monthNames[dateCreated.getMonth()];
+    const day = dateCreated.getDate();
+    const year = dateCreated.getFullYear();
+    const formattedDate = month + ' ' + day + ', ' + year;
     return (
         <>
             <div id="body-div">
@@ -10,21 +36,21 @@ export default function UserSummary({ name, role }) {
                         <Link to='/user/list'><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
                     </div>
                     <div className=''>
-                        <h2 className="mb-0 pb-2 display-5 text-center">USER</h2>
-                        <h3 className="pb-2 fs-5 text-center border-bottom">Role : developer</h3>
+                        <h2 className="mb-0 pb-2 display-5 text-center">{user.fullName}</h2>
+                        <h3 className="pb-2 fs-5 text-center border-bottom">
+                            Role : {user ? user.role.map(r => r).join(', ') : 'Placeholder'}
+                        </h3>
                     </div>
                     <div id='info'>
                         <div className="d-flex flex-column">
                             <p className='border-bottom fs-3 mb-0'>Account Summary</p>
                             <ul className='fs-5'>
-                                <li>Bugs Created : 2</li>
-                                <li>Comments made : 7</li>
-                                <li>Member Since : 2/6/2023</li>
+                                <li>Member Since : {formattedDate}</li>
                             </ul>
                         </div>
                     </div>
                     <div id='btns' className='mt-auto d-flex justify-content-lg-around'>
-                        <Link to='/users/user/edit' className='btn btn-warning w-100'>Edit</Link>
+                        <Link to={`/users/${user._id}/edit`} className='btn btn-warning w-100'>Edit</Link>
                     </div>
                 </div>
             </div>

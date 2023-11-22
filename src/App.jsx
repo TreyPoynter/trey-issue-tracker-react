@@ -74,9 +74,9 @@ function App() {
 				<Route path='bug/list' element={<BugList />} />
 				<Route path='user/list' element={<UserList />} />
 				<Route path='bug/:bugId' element={<BugSummary />} />
-				<Route path='bugs/bug/edit' element={<EditBug />} />
-				<Route path='users/user/edit' element={<EditUser />} />
-				<Route path='users/user' element={<UserSummary user={user} />} />
+				<Route path='bugs/:bugId/edit' element={<EditBug />} />
+				<Route path='users/:userId/edit' element={<EditUser />} />
+				<Route path='users/:userId' element={<UserSummary/>} />
 				<Route path='bug/add' element={<AddNewBug auth={auth} user={user} showError={showError}
 					showSuccess={showSuccess}/>} />
 			</Routes>

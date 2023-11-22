@@ -20,7 +20,6 @@ export default function Navbar({ auth, user, onLogout }) {
         links.forEach((link) => {
             link.addEventListener('click', collapseOnClick);
 
-            // Cleanup event listeners when the component unmounts
             return () => {
                 link.removeEventListener('click', collapseOnClick);
             };
@@ -35,6 +34,7 @@ export default function Navbar({ auth, user, onLogout }) {
             navigate('/');
             localStorage.removeItem('user');
             onLogout();
+            location.reload();
         }).catch(err => {console.log(err)});
     }
 
@@ -58,7 +58,7 @@ export default function Navbar({ auth, user, onLogout }) {
                     {
                         user ?
                             <div id='nav-user' className="w-10 justify-content-around d-flex align-items-center">
-                                <Link className="fa-solid fa-user fa-xl text-black" to='users/user'></Link>
+                                <Link className="fa-solid fa-user fa-xl text-black" to={`users/${user._id}`}></Link>
                                 <Link type='button' onClick={(evt) => {handleLogout(evt);}} to='login'>Logout</Link>
                             </div> :
                             <div id='nav-user' className="w-10 justify-content-around d-flex">
@@ -97,11 +97,10 @@ export default function Navbar({ auth, user, onLogout }) {
                                             ) : (
                                                 <Link to='login' className="nav-link active">Login to Show all Bugs</Link>
                                             )}
-                                            {auth && 
-                                            <>
-                                                {auth.permissions.canEditAnyBug && <Link to='bug/:bugId/edit' className="nav-link active">Edit Bugs</Link>}
-                                                {auth.permissions.canCreateBug && <Link to='bug/add' className="nav-link active">Add New Bug</Link>}
-                                            </>}
+                                            {user &&
+                                            user.role.includes('developer', 'quality analyst', 
+                                            'business analyst', 'product manager', 'technical manager') && 
+                                            <Link to='bug/:bugId/edit' className="nav-link active">Edit Bugs</Link>}
                                         </li>
                                     </div>
                                 </div>
