@@ -1,4 +1,4 @@
-import '../assets/css/bugList.css'
+import '../../assets/css/bugList.css'
 import User from './UserListItem'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -19,16 +19,18 @@ export default function UserList() {
         <>
             <div id="content">
             </div>
-            <h3 className='text-center display-1'>User List</h3>
-            <ul className="list-group container mt-5" id="bug-list">
-            {users.length < 1 ? <h3>No results...</h3> : 
-                     users.map(user => {
-                        return(
-                            <User key={user._id} user={user} />
-                        )
-                        
-                     })}
-            </ul>
+            <h3 className='text-center display-1 mb-4'>User List</h3>
+            <div className='container'>
+                <div className='row d-flex justify-content-start'>
+                    {users.length < 1 ? <h3>No results...</h3> :
+                        users.map(user => {
+                            return (
+                                <User key={user._id} user={user} />
+                            )
+
+                        })}
+                </div>
+            </div>
         </>
     )
 }

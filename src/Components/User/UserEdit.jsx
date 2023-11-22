@@ -1,5 +1,5 @@
 /*eslint-disable */
-import '../assets/css/loginForm.css'
+import '../../assets/css/loginForm.css'
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';

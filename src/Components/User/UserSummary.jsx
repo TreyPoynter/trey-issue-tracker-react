@@ -1,4 +1,4 @@
-import '../assets/css/summaryCard.css'
+import '../../assets/css/summaryCard.css'
 import { Link, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import axios from 'axios';

@@ -1,15 +1,15 @@
 import Home from './Components/Home.jsx';
 import Navbar from './Components/Nav.jsx';
-import LoginForm from './Components/LoginForm.jsx';
-import RegisterForm from './Components/RegisterForm.jsx';
-import BugSummary from './Components/BugSummary.jsx';
-import BugList from './Components/BugList.jsx';
-import UserList from './Components/UserList.jsx';
-import UserSummary from './Components/UserSummary.jsx';
-import EditBug from './Components/BugEdit.jsx';
-import EditUser from './Components/UserEdit.jsx';
+import LoginForm from './Components/User/LoginForm.jsx';
+import RegisterForm from './Components/User/RegisterForm.jsx';
+import BugSummary from './Components/Bug/BugSummary.jsx';
+import BugList from './Components/Bug/BugList.jsx';
+import UserList from './Components/User/UserList.jsx';
+import UserSummary from './Components/User/UserSummary.jsx';
+import EditBug from './Components/Bug/BugEdit.jsx';
+import EditUser from './Components/User/UserEdit.jsx';
 import Footer from './Components/Footer.jsx';
-import AddNewBug from './Components/AddNewBug.jsx';
+import AddNewBug from './Components/Bug/AddNewBug.jsx';
 import './assets/css/animista.css'
 import './assets/css/styles.css'
 import './assets/css/nav.css'
