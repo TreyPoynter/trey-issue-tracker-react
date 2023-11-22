@@ -66,13 +66,12 @@ export default function Navbar({ auth, user, onLogout }) {
                                 <Link to='login'>Login</Link>
                             </div>
                     }
-
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul id='nav-list' className="navbar-nav">
                             <div id="navbar-row" className="row">
                                 <div className='w-50 d-flex flex-column align-items-center'>
                                     <h3 className='text-center border-bottom border-black w-50 pb-2'>Users</h3>
-                                    <div className='text-center  d-flex flex-column align-items-center justify-content-center'>
+                                    <div className='text-center d-flex flex-column align-items-center justify-content-center'>
                                         <li className="nav-item">
                                             {user ? (
                                                 <>
