@@ -7,10 +7,14 @@ export default function Bug({ bug }) {
 		<div className="col-lg-3 col-md-6 mb-3">
 			<div className="justify-content-center mb-4 text-decoration-none card p-1">
 				<Link to={`/bug/${bug._id}`} className="text-black text-decoration-none">
-					<div className="text-decoration-none">
+					<div className="">
+						<div className="d-flex justify-content-between">
 						<span className={`badge bg-${bug.classification.classifiedAs == 'approved' ? 'success' :
 							bug.classification.classifiedAs == 'unapproved' || bug.classification.classifiedAs == 'duplicate'
 								? 'danger' : 'warning'}`}>{bug.classification.classifiedAs}</span>
+						<span className={`badge bg-${!bug.closedInfo.closed ? 'success' : 'danger'}`}>‎</span>
+						</div>
+						
 						<h3 className="text-center fs-5">{bug.title}</h3>
 					</div>
 					<div className="card-body text-center">
