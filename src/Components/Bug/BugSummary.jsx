@@ -14,17 +14,7 @@ export default function BugSummary() {
 				}
 			).catch(error => { console.log(error) });
 	});
-
-	function handleExitAnimation() {
-		document.getElementById('bug-card').classList.add('slide-out-elliptic-top-bck');
-
-		function navigateToBugs() {
-			window.location.href = '/bugs';
-		}
-
-		// Listen for the 'animationend' event
-		document.getElementById('bug-card').addEventListener('animationend', navigateToBugs, { once: true });
-	}
+	
 	if (!bug) {
 		return (
 			<>

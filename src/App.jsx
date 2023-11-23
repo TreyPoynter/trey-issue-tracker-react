@@ -10,6 +10,8 @@ import EditBug from './Components/Bug/BugEdit.jsx';
 import EditUser from './Components/User/UserEdit.jsx';
 import Footer from './Components/Footer.jsx';
 import AddNewBug from './Components/Bug/AddNewBug.jsx';
+import NotFound from './Components/NotFound.jsx';
+import ReassignBug from './Components/Bug/ReassignBug.jsx';
 import './assets/css/animista.css'
 import './assets/css/styles.css'
 import './assets/css/nav.css'
@@ -77,8 +79,10 @@ function App() {
 				<Route path='bugs/:bugId/edit' element={<EditBug />} />
 				<Route path='users/:userId/edit' element={<EditUser />} />
 				<Route path='users/:userId' element={<UserSummary/>} />
-				<Route path='bug/add' element={<AddNewBug auth={auth} user={user} showError={showError}
+				<Route path='bugs/add' element={<AddNewBug auth={auth} user={user} showError={showError}
 					showSuccess={showSuccess}/>} />
+				<Route path='*' element={<NotFound/>}/>
+				<Route path='bugs/:bugId/reassign' element={<ReassignBug showSuccess={showSuccess}/>}/>
 			</Routes>
 			<Footer />
 		</BrowserRouter>

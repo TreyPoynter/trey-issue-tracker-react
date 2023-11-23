@@ -24,9 +24,14 @@ export default function Bug({ bug }) {
 				</Link>
 				<div className="card-footer d-flex justify-content-around">
 					{user &&
-						user.role.includes('business analyst') ||
-						bug.createdBy.user_id == user._id &&
+						(user.role.includes('business analyst') ||
+						bug.createdBy.user_id == user._id) &&
 						<Link to={`/bugs/${bug._id}/edit`} className="btn btn-warning">Edit Bug</Link>
+					}
+					{user &&
+						(user.role.includes('business analyst', 'technical manager') ||
+						bug.createdBy.user_id == user._id) &&
+						<Link to={`/bugs/${bug._id}/reassign`} className="btn btn-reassign">Reassign Bug</Link>
 					}
 				</div>
 			</div>

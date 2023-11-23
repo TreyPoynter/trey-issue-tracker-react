@@ -77,7 +77,6 @@ export default function Navbar({ auth, user, onLogout }) {
                                                 <>
                                                     <Link to='users/list' className="nav-link active">Show all Users</Link>
                                                 </>
-                                                
                                             ) : (
                                                 <Link to='login' className="nav-link active">Login to Show all Users</Link>
                                             )}
@@ -98,7 +97,7 @@ export default function Navbar({ auth, user, onLogout }) {
                                             )}
                                             {user &&  //ku fucking b uch p retariuxxtduxi hate shut the fuc
 						                    user.role.includes('business analyst') &&
-						                        <Link to='bug/add' className="nav-link active">Create Bug</Link>
+						                        <Link to='bugs/add' className="nav-link active">Create Bug</Link>
 					                        }
                                         </li>
                                     </div>

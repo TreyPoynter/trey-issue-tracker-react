@@ -25,7 +25,7 @@ export default function UserList() {
                     {users.length < 1 ? <h3>No results...</h3> :
                         users.map(user => {
                             return (
-                                <User key={user._id} user={user} />
+                                <User isDisabled={false} key={user._id} user={user} />
                             )
 
                         })}

@@ -11,6 +11,13 @@
     width: 40%;
 }
 
+.btn-reassign {
+    background-color: #995ac9 !important;
+}
+.btn-reassign:hover {
+    background-color: #a57bc5 !important;
+}
+
 body {
     background: linear-gradient(to bottom right, rgb(215, 218, 223) 55%, rgb(68, 97, 143));
     background-attachment: fixed;

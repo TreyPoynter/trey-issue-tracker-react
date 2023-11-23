@@ -8,7 +8,7 @@ import dotenv from 'dotenv'
 export default function LoginForm({showError, showSuccess, onLogin}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false)
 
     function handleBtnAnimation(evt) {
         var btn = document.getElementById(evt.target.id);
@@ -22,7 +22,6 @@ export default function LoginForm({showError, showSuccess, onLogin}) {
     }
 
     function Login() {
-        setError('');
         if (!email && !password) 
             {showError('Email and Password is required'); return;}
         if (!email) 
@@ -33,11 +32,13 @@ export default function LoginForm({showError, showSuccess, onLogin}) {
             {showError('Password is required'); return;}
         if (password.length < 8) 
             {showError('Password must be more than 8 characters'); return;}
+        setIsLoading(true);
         axios.post(`${import.meta.env.VITE_API_URL}/api/users/login`, {
             email,password
         },{
             withCredentials: true
         }).then(res => {
+            
             console.log(res);
             const now = new Date();
             const numHours = 1;
@@ -59,6 +60,9 @@ export default function LoginForm({showError, showSuccess, onLogin}) {
                     showError(resError.message.message);
                 }
             }
+        }).finally(() => {
+            console.log('finally')
+            setIsLoading(false);
         });
     }
 
@@ -74,13 +78,22 @@ export default function LoginForm({showError, showSuccess, onLogin}) {
                                 <input onChange={(evt) => setEmail(evt.target.value)} placeholder="example@example.com" 
                                 type="email" className="form-control" id="txtEmail" aria-describedby="emailHelp"/>
                             </div>
+                            {isLoading && (
+                                <div className="lds-facebook">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                </div>
+                            )}
                             <div className="mb-3 d-flex flex-column align-items-start">
                                 <label htmlFor="txtPass" className="form-label">Password</label>
                                 <input onChange={(evt) => setPassword(evt.target.value)} placeholder="Please enter password" 
                                 type="password" className="form-control" id="txtPass"/>
                             </div>
-                            <button onClick={(e) => {handleBtnAnimation(e); Login();}}
-                            type="button" id='btnLogin' className="btn btn-primary w-75 mb-3">Click to Login</button>
+                            <button disabled={isLoading} onClick={(e) => {handleBtnAnimation(e); Login();}}
+                                type="button" id='btnLogin' className="btn btn-primary w-75 mb-3">
+                                {isLoading ? 'Logging in...' : 'Click to Login'}
+                            </button>
                         </div>
                     </form>
                     <p className="mb-0 register-now">Dont have an account? <Link to='/register'>Register</Link></p>
