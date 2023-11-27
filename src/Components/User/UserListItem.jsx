@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { Link } from "react-router-dom"
 
-export default function User({ user, isDisabled }) {
+export default function User({ user }) {
     const loggedUser = JSON.parse(localStorage.getItem('user'));
     return (
         <div className="col-lg-3 col-md-6 mb-3">
@@ -17,10 +17,9 @@ export default function User({ user, isDisabled }) {
                 </Link>
                 <div className="card-footer d-flex justify-content-around">
                     {loggedUser &&
-                        user.role.includes('business analyst') ||
-                        user._id == loggedUser._id &&
-                        <Link onClick={(e) => {isDisabled && e.preventDefault();}} 
-                        to={`/users/${user._id}/edit`} className="btn btn-warning">Edit User</Link>
+                        (loggedUser.role.includes('technical manager') ||
+                        user._id == loggedUser._id) &&
+                        <Link to={`/users/${user._id}/edit`} className="btn btn-warning">Edit User</Link>
                     }
                 </div>
             </div>

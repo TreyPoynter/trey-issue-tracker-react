@@ -64,7 +64,7 @@ export default function RegisterForm({showError, showSuccess, onLogin}) {
             };
             localStorage.setItem('user', JSON.stringify(user));
             onLogin(res.data.authToken, user);
-            showSuccess(`Welcome, ${fullName}`)
+            showSuccess(`Welcome, ${fullName}`);
         }).catch(error => {
             // Handle errors
             console.error(error);
