@@ -45,7 +45,6 @@ export default function ReassignBug({ showSuccess }) {
         });
     }
 
-
     return (
         <>
             <div id="content">

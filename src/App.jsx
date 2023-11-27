@@ -37,7 +37,7 @@ function App() {
 		if (now.getTime() > localUser.expiration) {  //? If the item is expired, remove it from localStorage
 			localStorage.removeItem('user');
 			setUser(null);
-			location.reload();
+			window.location.reload();
 		}
 		if (localUser && localUser !== user) {
 			setUser(localUser);
@@ -76,8 +76,8 @@ function App() {
 				<Route path='bugs/list' element={<BugList />} />
 				<Route path='users/list' element={<UserList />} />
 				<Route path='bug/:bugId' element={<BugSummary />} />
-				<Route path='bugs/:bugId/edit' element={<EditBug />} />
-				<Route path='users/:userId/edit' element={<EditUser />} />
+				<Route path='bugs/:bugId/edit' element={<EditBug auth={auth} showError={showError} showSuccess={showSuccess}/>} />
+				<Route path='users/:userId/edit' element={<EditUser auth={auth} showError={showError} showSuccess={showSuccess} />} />
 				<Route path='users/:userId' element={<UserSummary/>} />
 				<Route path='bugs/add' element={<AddNewBug auth={auth} user={user} showError={showError}
 					showSuccess={showSuccess}/>} />

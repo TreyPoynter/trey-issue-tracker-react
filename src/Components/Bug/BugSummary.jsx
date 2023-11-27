@@ -22,12 +22,15 @@ export default function BugSummary() {
 			</>
 		);
 	}
-	const dateCreated = new Date(bug.dateCreated);
-	const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-	const month = monthNames[dateCreated.getMonth()];
-	const day = dateCreated.getDate();
-	const year = dateCreated.getFullYear();
-	const formattedDate = month + ' ' + day + ', ' + year;
+	function formatDate(dateCreated) {
+		const date = new Date(dateCreated);
+		const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+		const month = monthNames[date.getMonth()];
+		const day = date.getDate();
+		const year = date.getFullYear();
+		return month + ' ' + day + ', ' + year;
+	}
+	
 	return (
 		<>
 			<div id="body-div">
@@ -45,16 +48,15 @@ export default function BugSummary() {
 							<p className='border-bottom fs-3 mb-0'>Created Info</p>
 							<ul>
 								<li>Created By - {bug.createdBy.name}</li>
-								<li>Created On - {formattedDate}</li>
+								<li>Created On - {formatDate(bug.dateCreated)}</li>
 							</ul>
 						</div>
 						<div className="d-flex flex-column" id='assignment-info'>
 							<p className='border-bottom fs-3 mb-0'>Assigned Info</p>
 							{bug.assignedInfo ?
 								<ul>
-									<li>Assigned To - John Doe</li>
-									<li>Assigned On - 11/13/2023</li>
-									<li>Last Assignment Change - 11/13/2023</li>
+									<li>Assigned To - {bug.assignedInfo.assignedToName}</li>
+									<li>Assigned On - {formatDate(bug.assignedInfo.assignedOn)}</li>
 								</ul> :
 								<h5>Not Assigned to Anyone</h5>}
 
