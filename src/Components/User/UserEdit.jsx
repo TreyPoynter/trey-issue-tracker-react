@@ -3,9 +3,8 @@ import '../../assets/css/loginForm.css'
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { forEach } from 'lodash';
 
-export default function EditUser({auth, showSuccess, showError}) {
+export default function EditUser({auth, showSuccess, showError, onLogin}) {
     const loggedUser = JSON.parse(localStorage.getItem("user"));
     const nav = useNavigate();
     const userId = useParams().userId;
@@ -33,8 +32,9 @@ export default function EditUser({auth, showSuccess, showError}) {
             ).catch(error => { console.log(error) });
         }
     });
-    let apiLink = '';
     function editUser(evt) {
+        const apiLink = user._id != loggedUser._id ? `${import.meta.env.VITE_API_URL}/api/users/${userId}` :
+        `${import.meta.env.VITE_API_URL}/api/users/me`;
         evt.preventDefault();
         if(!fullName)
             {showError('Full-Name is Required'); return}
@@ -61,22 +61,26 @@ export default function EditUser({auth, showSuccess, showError}) {
             givenName, familyName,
             email
         }
-        if (loggedUser.role.includes('technical manager')) {
+        if (loggedUser.role.includes('technical manager') && loggedUser._id != user._id) {
             console.log('hit');
             updatedUser.role = role;
         }
         if(password){
             updatedUser.password = password;
         }
-        console.log(updatedUser)
-        delete updatedUser.creationDate;
-        delete updatedUser._id;
-        axios.put(apiLink,
-		{...updatedUser}, {withCredentials: true})
+        axios.put(apiLink,{...updatedUser}, {withCredentials: true})
 		.then( res => {
+            if (loggedUser._id == user._id) {
+                console.log('SELF EDIT');
+                console.log(res)
+                user.role = loggedUser.role;
+                user._id = loggedUser._id;
+                console.log(user);
+                localStorage.setItem('user', JSON.stringify(user));
+                onLogin(res.data.authToken, user);
+            }
 			nav('/users/list');
 			showSuccess(`Successfully Updated ${userId}`);
-			console.log(res);
 		})
 		.catch(err => {
 			showError(`Failed to Update ${userId}`);
@@ -97,15 +101,12 @@ export default function EditUser({auth, showSuccess, showError}) {
             </>
         )
     }
-    apiLink = user._id != loggedUser._id ? `${import.meta.env.VITE_API_URL}/api/users/${userId}` :
-    `${import.meta.env.VITE_API_URL}/api/users/me`;
-    console.log(apiLink);
     return (
         <>
             <div id="body-div">
                 <div className="centered-form" id='edit-form'>
                     <div className='d-flex justify-content-between'>
-                        <Link to={`/users/${user._id}`}><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
+                        <Link to={`/users/list`}><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
                     </div>
                     <h2 className="mb-3">Edit User</h2>
                     <form onSubmit={(evt) => editUser(evt)}>
@@ -120,7 +121,7 @@ export default function EditUser({auth, showSuccess, showError}) {
                                 <input placeholder="Enter Email" onChange={(e) => setEmail(e.target.value)}
                                 defaultValue={user.email} type="text" className="form-control" id="txtEmail"/>
                             </div>
-                            {loggedUser.role.includes('technical manager') && 
+                            {loggedUser.role.includes('technical manager') && loggedUser._id != user._id && 
                                 <div className="mb-3 d-flex flex-column align-items-start">
                                     <label htmlFor="txtRole" className="form-label mb-0">Role (comma delimited)</label>
                                     <input placeholder="Enter role" onChange={(e) => setRole(e.target.value.split(','))}

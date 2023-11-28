@@ -52,8 +52,6 @@ function App() {
 	}
 
 	function onLogin(auth, user) {
-		console.log(auth)
-		console.log(user)
 		setAuth(auth);
 		setUser(user)
 	}
@@ -77,7 +75,8 @@ function App() {
 				<Route path='users/list' element={<UserList />} />
 				<Route path='bug/:bugId' element={<BugSummary />} />
 				<Route path='bugs/:bugId/edit' element={<EditBug auth={auth} showError={showError} showSuccess={showSuccess}/>} />
-				<Route path='users/:userId/edit' element={<EditUser auth={auth} showError={showError} showSuccess={showSuccess} />} />
+				<Route path='users/:userId/edit' element={<EditUser auth={auth} showError={showError} showSuccess={showSuccess} 
+					onLogin={onLogin}/>} />
 				<Route path='users/:userId' element={<UserSummary/>} />
 				<Route path='bugs/add' element={<AddNewBug auth={auth} user={user} showError={showError}
 					showSuccess={showSuccess}/>} />

@@ -44,7 +44,7 @@ export default function LoginForm({showError, showSuccess, onLogin}) {
             const numHours = 1;
             const expirationTime = now.getTime() + numHours * 60 * 60 * 1000;
             const user = {
-                ...res.data.message.foundUser, 
+                ...res.data.message.foundUser,
                 expiration: expirationTime
             };
             showSuccess(`Logged in as ${user.fullName}`);
