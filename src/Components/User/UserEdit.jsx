@@ -3,6 +3,7 @@ import '../../assets/css/loginForm.css'
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import ConfirmDelete from '../ConfirmDelete';
 
 export default function EditUser({auth, showSuccess, showError, onLogin}) {
     const loggedUser = JSON.parse(localStorage.getItem("user"));
@@ -15,6 +16,7 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
     const [email, setEmail] = useState('');
     const [role, setRole] = useState([]);
     const [password, setPassword] = useState('');
+    const [isDeleting, setIsDeleting] = useState(false);
     useEffect(() => {
         if (!user) {
             axios.get(`${import.meta.env.VITE_API_URL}/api/users/${userId}`, { withCredentials: true })
@@ -87,7 +89,7 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
 			console.log(err);
 		})
     }
-
+    
     if (!user) {
         return(
             <>
@@ -101,9 +103,13 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
             </>
         )
     }
+    function handleCancel() {
+        setIsDeleting(false);
+    }
     return (
         <>
-            <div id="body-div">
+            <div id={'body-div'}>
+                {isDeleting && <ConfirmDelete deleteWhat={"User"} handleCancel={handleCancel} obj={user}/>}
                 <div className="centered-form" id='edit-form'>
                     <div className='d-flex justify-content-between'>
                         <Link to={`/users/list`}><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
@@ -147,7 +153,7 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
                                 <label htmlFor="txtPass" className="form-label mb-0">Password</label>
                                 <input onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" type="password" className="form-control" id="txtPass"/>
                             </div>
-                            <button to='/users' id='btnDelete' className="btn btn-danger w-75 mb-2">Delete Account</button>
+                            <button type='button' onClick={() => setIsDeleting(true)} to='/users' id='btnDelete' className="btn btn-danger w-75 mb-2">Delete Account</button>
                             <button type='submit' id='btnSave' className="btn btn-success w-75 mb-0">Save Changes</button>
                         </div>
                     </form>
