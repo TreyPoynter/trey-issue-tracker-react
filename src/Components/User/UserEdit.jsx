@@ -112,7 +112,7 @@ export default function EditUser({auth, showSuccess, showError}) {
                         <div>
                             <div className="mb-3 d-flex flex-column align-items-start">
                                 <label htmlFor="txtFullName" className="form-label mb-0">Full Name</label>
-                                <input placeholder="Enter Full Name" onChange={(e) => setFullName(e.target.value)}
+                                <input placeholder="John Doe" onChange={(e) => setFullName(e.target.value)}
                                 defaultValue={user.fullName} type="text" className="form-control" id="txtFullName"  />
                             </div>
                             <div className="mb-3 d-flex flex-column align-items-start">
