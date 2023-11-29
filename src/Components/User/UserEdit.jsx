@@ -20,6 +20,7 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         if (!user) {
+            setIsLoading(true);
             axios.get(`${import.meta.env.VITE_API_URL}/api/users/${userId}`, { withCredentials: true })
             .then(
                 res => {
@@ -32,7 +33,8 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
                     setRole(res.data.role);
                     setFullName(res.data.fullName);
                 }
-            ).catch(error => { console.log(error) });
+            ).catch(error => { console.log(error) })
+            .finally(() => {setIsLoading(false);});
         }
     });
     function editUser(evt) {
@@ -94,7 +96,13 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
 		})
         .finally(() => setIsLoading(false))
     }
-    
+    if (isLoading) {
+        return(
+            <div id="body-div">
+                    <div className="square-loading"></div>
+            </div>
+        )
+    }
     if (!user) {
         return(
             <>
