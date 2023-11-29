@@ -6,7 +6,7 @@ export default function User({ user }) {
     return (
         <div className="col-lg-3 col-md-6 mb-3">
             <div className="justify-content-center mb-4 text-decoration-none card p-1">
-                <Link onClick={(e) => {isDisabled && e.preventDefault();}} to={`/users/${user._id}`} 
+                <Link to={`/users/${user._id}`} 
                 className="text-black text-decoration-none">
                     <div className="text-decoration-none">
                         <h3 className="text-center fs-5">{user.fullName}</h3>

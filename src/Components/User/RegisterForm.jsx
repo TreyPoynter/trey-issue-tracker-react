@@ -132,7 +132,7 @@ export default function RegisterForm({showError, showSuccess, onLogin}) {
                                 <select onChange={(e) => setRole(e.target.value)} id='cboRoles' className="form-select" aria-label="Default select example">
                                     <option style={{ display: 'none' }} defaultValue="1">Open this select menu</option>
                                     <option value="developer">Developer</option>
-                                    <option value="quality assurance">Quality Assurance</option>
+                                    <option value="quality analyst">Quality Analyst</option>
                                     <option value="business analyst">Business Analyst</option>
                                     <option value="technical manager">Technical Manager</option>
                                     <option value="product manager">Product Manager</option>

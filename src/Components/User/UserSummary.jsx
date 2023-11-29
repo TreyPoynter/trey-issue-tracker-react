@@ -17,9 +17,11 @@ export default function UserSummary() {
     });
     if (!user) {
         return(
-            <>
-                <h1>User not found</h1>
-            </>
+            <div className="mt-5" id="body-div">
+                <div className="centered-form">
+                    <h3>User not Found</h3>
+                </div>
+            </div>
         );
     }
     const dateCreated = new Date(user.creationDate);

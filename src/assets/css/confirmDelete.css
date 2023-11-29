@@ -1,6 +1,7 @@
 
 
 .delete-container {
+    width: 50%;
     height: 100vh;
     position: absolute;
     display: flex;
@@ -57,4 +58,10 @@
 
 .warn_info p {
     color: #ab4926;
+}
+
+@media screen and (max-width: 580px) {
+    .btns>button {
+        font-size: 12px;
+    }
 }

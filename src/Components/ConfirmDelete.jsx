@@ -1,25 +1,40 @@
 /*eslint-disable */
 import axios from "axios"
 import '../assets/css/confirmDelete.css'
-
+import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 //? deleteWhat is what specifies of what we're deleting so Bug or User
 //? so we don't need to remake these
 export default function ConfirmDelete({ deleteWhat, handleCancel, obj, loggedUser }) {
-
+    const navigate = useNavigate();
+    function showError(message) {
+		toast(message, { type: 'error', position: 'top-right' });
+	}
+	function showSuccess(message) {
+		toast(message, { type: 'success', position: 'top-right' });
+	}
     function handleDelete(evt) {
         evt.preventDefault();
-        axios.delete(`${import.meta.env.VITE_API_URL}/api/${deleteWhat == 'User' ? 'users' : 'bugs'}/${obj._id}`,
-        {withCredentials:true})
-        .then(res => {
+        axios.delete(`${import.meta.env.VITE_API_URL}/api/${deleteWhat == 'User' ? 'users' : 'bugs'}/${
+            loggedUser._id == obj._id ? 'me' : obj._id}`,
+        {withCredentials:true}).then(res => {
+            showSuccess(`${deleteWhat == 'User' ? obj.fullName : obj.title} has been deleted`);
             if (loggedUser._id == obj._id) {
                 axios.post(`${import.meta.env.VITE_API_URL}/api/users/logout`,{},
                 {withCredentials: true}).then(res => {
-                    navigate('/');
                     localStorage.removeItem('user');
+                    navigate('/');
                     location.reload();
+                    return;
                 }).catch(err => {console.log(err)});
             }
+            navigate('/users/list');
+        }).catch(err => {
+            console.log(obj._id)
+            console.log(loggedUser._id)
+            console.log(err)
+            showError(err.response.data.error)
         });
     }
 
@@ -33,10 +48,10 @@ export default function ConfirmDelete({ deleteWhat, handleCancel, obj, loggedUse
                     <div className="warn_info">
                         <h4><i className="fa fa-warning"></i> Warning</h4>
                         <p>By deleting {deleteWhat=='User' ? obj.fullName :
-                            obj.title} media you can't undo this action.</p>
+                            obj.title} you can't undo this action.</p>
                     </div>
 
-                    <div className="clearfix d-flex justify-content-center w-100">
+                    <div className="clearfix btns d-flex justify-content-center w-100">
                         <button className="btn btn-secondary w-25 me-3" 
                         type="button" onClick={handleCancel}>Cancel</button>
                         <button className="btn btn-danger w-25" onClick={(evt) => handleDelete(evt)} type="button"

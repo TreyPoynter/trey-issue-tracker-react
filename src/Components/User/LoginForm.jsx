@@ -6,6 +6,7 @@ import axios from "axios";
 import dotenv from 'dotenv'
 
 export default function LoginForm({showError, showSuccess, onLogin}) {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false)
@@ -51,7 +52,7 @@ export default function LoginForm({showError, showSuccess, onLogin}) {
             console.log(res);
             onLogin(res.data.authToken, user);
             localStorage.setItem('user', JSON.stringify(user));
-            
+            navigate('/');
         }).catch(error => {
             const resError = error?.response?.data;
             console.log(resError);
