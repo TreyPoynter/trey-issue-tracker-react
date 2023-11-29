@@ -31,8 +31,6 @@ export default function ConfirmDelete({ deleteWhat, handleCancel, obj, loggedUse
             }
             navigate('/users/list');
         }).catch(err => {
-            console.log(obj._id)
-            console.log(loggedUser._id)
             console.log(err)
             showError(err.response.data.error)
         });

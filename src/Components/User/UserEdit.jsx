@@ -153,7 +153,8 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
                                 <label htmlFor="txtPass" className="form-label mb-0">Password</label>
                                 <input onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" type="password" className="form-control" id="txtPass"/>
                             </div>
-                            <button type='button' onClick={() => setIsDeleting(true)} to='/users' id='btnDelete' className="btn btn-danger w-75 mb-2">Delete Account</button>
+                            <button type='button' onClick={() => setIsDeleting(true)} to='/users' 
+                            id='btnDelete' className="btn btn-danger w-75 mb-2">Delete Account</button>
                             <button type='submit' id='btnSave' className="btn btn-success w-75 mb-0">Save Changes</button>
                         </div>
                     </form>

@@ -74,9 +74,7 @@ export default function Navbar({ auth, user, onLogout }) {
                                     <div className='text-center d-flex flex-column align-items-center justify-content-center'>
                                         <li className="nav-item">
                                             {user ? (
-                                                <>
-                                                    <Link to='users/list' className="nav-link active">Show all Users</Link>
-                                                </>
+                                                <Link to='users/list' className="nav-link active">Show all Users</Link>
                                             ) : (
                                                 <Link to='login' className="nav-link active">Login to Show all Users</Link>
                                             )}
@@ -88,9 +86,7 @@ export default function Navbar({ auth, user, onLogout }) {
                                     <div className='text-center d-flex flex-column align-items-center justify-content-center'>
                                         <li className="nav-item">
                                             {user ? (
-                                                <>
-                                                    <Link to='bugs/list' className="nav-link active">Show all Bugs</Link>
-                                                </>
+                                                <Link to='bugs/list' className="nav-link active">Show all Bugs</Link>
                                                 
                                             ) : (
                                                 <Link to='login' className="nav-link active">Login to Show all Bugs</Link>

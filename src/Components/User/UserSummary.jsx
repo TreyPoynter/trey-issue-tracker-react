@@ -40,7 +40,7 @@ export default function UserSummary() {
                     <div className=''>
                         <h2 className="mb-0 pb-2 display-5 text-center">{user.fullName}</h2>
                         <h3 className="pb-2 fs-5 text-center border-bottom">
-                            Role : {user ? user.role.map(r => r).join(', ') : 'Placeholder'}
+                            Role{user.role.length > 1 && 's'} : {user ? user.role.map(r => r).join(', ') : 'Placeholder'}
                         </h3>
                     </div>
                     <div id='info'>
