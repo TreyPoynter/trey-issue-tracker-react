@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function UserSummary() {
+    const loggedUser = JSON.parse(localStorage.getItem('user'));
     const userId = useParams().userId;
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -59,13 +60,19 @@ export default function UserSummary() {
                         <div className="d-flex flex-column">
                             <p className='border-bottom fs-3 mb-0'>Account Summary</p>
                             <ul className='fs-5'>
+                                <li>Email : {user.email}</li>
                                 <li>Member Since : {formattedDate}</li>
                             </ul>
                         </div>
                     </div>
-                    <div id='btns' className='mt-auto d-flex justify-content-lg-around'>
-                        <Link to={`/users/${user._id}/edit`} className='btn btn-warning w-100'>Edit</Link>
-                    </div>
+                    {loggedUser &&
+                        (loggedUser.role.includes('technical manager') ||
+                        user._id == loggedUser._id) &&
+                        <div id='btns' className='mt-auto d-flex justify-content-lg-around'>
+                            <Link to={`/users/${user._id}/edit`} className='btn btn-warning w-100'>Edit</Link>
+                        </div>
+                    }
+                    
                 </div>
             </div>
         </>

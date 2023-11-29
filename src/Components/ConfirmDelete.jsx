@@ -3,11 +3,13 @@ import axios from "axios"
 import '../assets/css/confirmDelete.css'
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { useState } from "react";
 
 //? deleteWhat is what specifies of what we're deleting so Bug or User
 //? so we don't need to remake these
 export default function ConfirmDelete({ deleteWhat, handleCancel, obj, loggedUser }) {
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
     function showError(message) {
 		toast(message, { type: 'error', position: 'top-right' });
 	}
@@ -15,10 +17,12 @@ export default function ConfirmDelete({ deleteWhat, handleCancel, obj, loggedUse
 		toast(message, { type: 'success', position: 'top-right' });
 	}
     function handleDelete(evt) {
+        setIsLoading(true);
         evt.preventDefault();
         axios.delete(`${import.meta.env.VITE_API_URL}/api/${deleteWhat == 'User' ? 'users' : 'bugs'}/${
             loggedUser._id == obj._id ? 'me' : obj._id}`,
         {withCredentials:true}).then(res => {
+            setIsLoading(false);
             showSuccess(`${deleteWhat == 'User' ? obj.fullName : obj.title} has been deleted`);
             if (loggedUser._id == obj._id) {
                 axios.post(`${import.meta.env.VITE_API_URL}/api/users/logout`,{},
@@ -51,9 +55,10 @@ export default function ConfirmDelete({ deleteWhat, handleCancel, obj, loggedUse
 
                     <div className="clearfix btns d-flex justify-content-center w-100">
                         <button className="btn btn-secondary w-25 me-3" 
-                        type="button" onClick={handleCancel}>Cancel</button>
+                        type="button" disabled={isLoading} onClick={handleCancel}>Cancel</button>
                         <button className="btn btn-danger w-25" onClick={(evt) => handleDelete(evt)} type="button"
-                        id="cancel" href="">Delete {deleteWhat} <i className="fa fa-trash"></i></button>
+                        id="cancel" disabled={isLoading} href="">{isLoading ? 'Deleting...' : 'Delete'}
+                        {deleteWhat} <i className="fa fa-trash"></i></button>
                     </div>
                 </div>
             </div>

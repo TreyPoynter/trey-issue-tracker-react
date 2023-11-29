@@ -51,6 +51,8 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
             {showError('Email must contain an @'); return;}
         else if(!role) 
             {showError('User must have a role'); return;}
+        else if(password && password.length < 8) 
+            {showError('Password must be 8 characters or longer'); return;}
         for (let i = 0; i < role.length; i++) {
             if (role[i].toLowerCase().trim() != 'developer' && role[i].toLowerCase().trim() != 'quality analyst' &&
                 role[i].toLowerCase().trim() != 'business analyst' && role[i].toLowerCase().trim() != 'product manager' &&
