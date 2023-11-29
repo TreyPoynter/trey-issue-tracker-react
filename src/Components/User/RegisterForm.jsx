@@ -12,6 +12,7 @@ export default function RegisterForm({showError, showSuccess, onLogin}) {
     const [role, setRole] = useState('');
     const [password, setPassword] = useState('');
     const [isValidEmail, setIsValidEmail] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleEmailChange = (e) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -38,7 +39,7 @@ export default function RegisterForm({showError, showSuccess, onLogin}) {
             {showError('Password is Required');return;}
         else if (password.length < 8) 
             {showError('Password must be more than 8 characters'); return;}
-        
+        setIsLoading(true);
         axios.post(`${import.meta.env.VITE_API_URL}/api/users/register`, {
             fullName, givenName, familyName, email, password, role
         }, {
@@ -65,9 +66,12 @@ export default function RegisterForm({showError, showSuccess, onLogin}) {
             localStorage.setItem('user', JSON.stringify(user));
             onLogin(res.data.authToken, user);
             showSuccess(`Welcome, ${fullName}`);
+            setIsLoading(false);
         }).catch(error => {
             // Handle errors
             console.error(error);
+            console.log(error.response.data.error.details[0].message)
+            showError(error?.response?.data?.error?.details[0]?.message)
         });
     }
 
@@ -149,7 +153,8 @@ export default function RegisterForm({showError, showSuccess, onLogin}) {
                                 handleBtnAnimation(e);
                                 handleRegister(e);
                             }}
-                                type="button" id='btnRegister' className="btn btn-primary w-75 mb-3">Click to Register</button>
+                                type="button" disabled={isLoading} id='btnRegister' 
+                                className="btn btn-primary w-75 mb-3">{isLoading ? 'Registering...' : 'Click to Register'}</button>
                         </div>
                     </form>
                     <p className="mb-0 register-now">Already have an account? <Link to='/login'>Login</Link></p>

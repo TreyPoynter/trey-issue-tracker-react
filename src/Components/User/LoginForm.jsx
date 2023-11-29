@@ -9,7 +9,7 @@ export default function LoginForm({showError, showSuccess, onLogin}) {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
 
     function handleBtnAnimation(evt) {
         var btn = document.getElementById(evt.target.id);
