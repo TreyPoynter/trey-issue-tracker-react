@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export default function BugList() {
 	const [bugs, setBugs] = useState([]);
-	const [loading, setLoading] = useState(true);
+	const [isLoading, setLoading] = useState(true);
 
 	useEffect(() => {
 		axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/list`, { withCredentials: true })
@@ -18,10 +18,17 @@ export default function BugList() {
 			});
 	}, []); // Empty dependency array to ensure the effect runs only once on component mount
 
+	if (isLoading) {
+        return(
+            <div id="body-div">
+                    <div className="square-loading"></div>
+            </div>
+        )
+    }
+
 	return (
 		<>
 			<div id="content">
-				{loading && <div className="lds-facebook"><div></div><div></div><div></div></div>}
 			</div>
 			<h3 className='text-center display-1 mb-4'>Bug List</h3>
 			<div className='container'>

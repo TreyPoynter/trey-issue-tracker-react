@@ -6,15 +6,27 @@ import axios from 'axios';
 export default function UserSummary() {
     const userId = useParams().userId;
     const [user, setUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/api/users/${userId}`, { withCredentials: true })
+        if (!user) {
+            setIsLoading(true);
+            axios.get(`${import.meta.env.VITE_API_URL}/api/users/${userId}`, { withCredentials: true })
             .then(
                 res => {
-                    console.log(res)
-                    setUser(res.data)
+                    setIsLoading(false);
+                    console.log(res);
+                    setUser(res.data);
                 }
             ).catch(error => { console.log(error) });
+        }
     });
+    if (isLoading) {
+        return(
+            <div id="body-div">
+                    <div className="square-loading"></div>
+            </div>
+        )
+    }
     if (!user) {
         return(
             <div className="mt-5" id="body-div">

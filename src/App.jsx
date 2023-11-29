@@ -15,6 +15,7 @@ import ReassignBug from './Components/Bug/ReassignBug.jsx';
 import './assets/css/animista.css'
 import './assets/css/styles.css'
 import './assets/css/nav.css'
+import './assets/css/loading.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";

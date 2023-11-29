@@ -17,6 +17,7 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
     const [role, setRole] = useState([]);
     const [password, setPassword] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         if (!user) {
             axios.get(`${import.meta.env.VITE_API_URL}/api/users/${userId}`, { withCredentials: true })
@@ -70,6 +71,7 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
         if(password){
             updatedUser.password = password;
         }
+        setIsLoading(true);
         axios.put(apiLink,{...updatedUser}, {withCredentials: true})
 		.then( res => {
             if (loggedUser._id == user._id) {
@@ -88,6 +90,7 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
 			showError(`Failed to Update ${userId}`);
 			console.log(err);
 		})
+        .finally(() => setIsLoading(false))
     }
     
     if (!user) {
@@ -109,7 +112,8 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
     return (
         <>
             <div id={'body-div'}>
-                {isDeleting && <ConfirmDelete loggedUser={loggedUser} deleteWhat={"User"} handleCancel={handleCancel} obj={user}/>}
+                {isDeleting && <ConfirmDelete loggedUser={loggedUser} deleteWhat={"User"} 
+                handleCancel={handleCancel} obj={user}/>}
                 <div className="centered-form" id='edit-form'>
                     <div className='d-flex justify-content-between'>
                         <Link to={`/users/list`}><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
@@ -151,11 +155,14 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
                             </div>
                             <div className="mb-3 d-flex flex-column align-items-start">
                                 <label htmlFor="txtPass" className="form-label mb-0">Password</label>
-                                <input onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" type="password" className="form-control" id="txtPass"/>
+                                <input onChange={(e) => setPassword(e.target.value)} placeholder="Enter password"
+                                 type="password" className="form-control" id="txtPass"/>
                             </div>
                             <button type='button' onClick={() => setIsDeleting(true)} to='/users' 
                             id='btnDelete' className="btn btn-danger w-75 mb-2">Delete Account</button>
-                            <button type='submit' id='btnSave' className="btn btn-success w-75 mb-0">Save Changes</button>
+                            <button type='submit' id='btnSave' className="btn btn-success w-75 mb-0">
+                                {isLoading ? 'Saving Changes' : 'Save Changes'}
+                            </button>
                         </div>
                     </form>
                 </div>

@@ -4,17 +4,26 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 export default function UserList() {
     const [users, setUsers] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/api/users/list`, { withCredentials: true })
             .then(
                 res => {
+                    setIsLoading(false);
                     setUsers(res.data)
                 }
             ).catch(error => {
                 console.log(error)
             });
     });
+    if (isLoading) {
+        return(
+            <div id="body-div">
+                    <div className="square-loading"></div>
+            </div>
+        )
+    }
     return (
         <>
             <div id="content">
