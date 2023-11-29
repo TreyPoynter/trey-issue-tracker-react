@@ -79,13 +79,7 @@ export default function LoginForm({showError, showSuccess, onLogin}) {
                                 <input onChange={(evt) => setEmail(evt.target.value)} placeholder="example@example.com" 
                                 type="email" className="form-control" id="txtEmail" aria-describedby="emailHelp"/>
                             </div>
-                            {isLoading && (
-                                <div className="lds-facebook">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                </div>
-                            )}
+                            
                             <div className="mb-3 d-flex flex-column align-items-start">
                                 <label htmlFor="txtPass" className="form-label">Password</label>
                                 <input onChange={(evt) => setPassword(evt.target.value)} placeholder="Please enter password" 
