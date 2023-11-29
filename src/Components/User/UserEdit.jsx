@@ -109,7 +109,7 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
     return (
         <>
             <div id={'body-div'}>
-                {isDeleting && <ConfirmDelete deleteWhat={"User"} handleCancel={handleCancel} obj={user}/>}
+                {isDeleting && <ConfirmDelete loggedUser={loggedUser} deleteWhat={"User"} handleCancel={handleCancel} obj={user}/>}
                 <div className="centered-form" id='edit-form'>
                     <div className='d-flex justify-content-between'>
                         <Link to={`/users/list`}><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>

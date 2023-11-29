@@ -5,17 +5,22 @@ import '../assets/css/confirmDelete.css'
 
 //? deleteWhat is what specifies of what we're deleting so Bug or User
 //? so we don't need to remake these
-export default function ConfirmDelete({ deleteWhat, handleCancel, obj }) {
+export default function ConfirmDelete({ deleteWhat, handleCancel, obj, loggedUser }) {
 
     function handleDelete(evt) {
         evt.preventDefault();
-        const apiLink = deleteWhat == 'User' ? `http://localhost:5000/api/users/6537f4b8417fed52e8832adc` :
-        `http://localhost:5000/api/bugs/6537f4b8417fed52e8832adc`
-        axios.delete(`${import.meta.env.VITE_API_URL}/api/${deleteWhat == 'User' ? 'users' : 'bugs'}/6537f4b8417fed52e8832adc`,
+        axios.delete(`${import.meta.env.VITE_API_URL}/api/${deleteWhat == 'User' ? 'users' : 'bugs'}/${obj._id}`,
         {withCredentials:true})
         .then(res => {
-            //TODO : Make shit work
-        })
+            if (loggedUser._id == obj._id) {
+                axios.post(`${import.meta.env.VITE_API_URL}/api/users/logout`,{},
+                {withCredentials: true}).then(res => {
+                    navigate('/');
+                    localStorage.removeItem('user');
+                    location.reload();
+                }).catch(err => {console.log(err)});
+            }
+        });
     }
 
     return (
