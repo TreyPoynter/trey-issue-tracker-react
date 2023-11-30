@@ -94,7 +94,7 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
 			showError(`Failed to Update ${userId}`);
 			console.log(err);
 		})
-        .finally(() => setIsLoading(false))
+        .finally(() => {setIsLoading(false);})
     }
     if (isLoading) {
         return(
@@ -109,7 +109,7 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
                 <div id='body-div'>
                 <div className='centered-form'>
                     <form action="">
-                        <h3>ERROR</h3>
+                        <h3>Must be Logged In</h3>
                     </form>
                 </div>
                 </div>

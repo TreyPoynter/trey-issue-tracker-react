@@ -1,4 +1,5 @@
 .square-loading {
+  position: absolute;
   width:85px;
   height:50px;
   --g1:conic-gradient(from  90deg at left   3px top   3px,#0000 90deg,#000000 0);

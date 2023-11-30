@@ -10,6 +10,7 @@ export default function BugList() {
 	useEffect(() => {
 		axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/list`, { withCredentials: true })
 			.then((res) => {
+				console.log(res)
 				setBugs(res.data);
 			})
 			.catch((error) => { })

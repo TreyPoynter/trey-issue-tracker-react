@@ -9,6 +9,7 @@ export default function AddNewBug({ auth, user, showError, showSuccess }) {
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
 	const [stepsToReproduce, setSteps] = useState('');
+	const [isLoading, setIsLoading] = useState(false);
 
 	function handleBugCreation(evt) {
 		evt.preventDefault();
@@ -17,6 +18,7 @@ export default function AddNewBug({ auth, user, showError, showSuccess }) {
 		if (!title) { showError('Title is required'); return; }
 		if (!description) { showError('Description is required'); return; }
 		if (!stepsToReproduce || stepsArray.length < 1) { showError('Atleast 1 step is required'); return; }
+		setIsLoading(true);
 		axios.put(`${import.meta.env.VITE_API_URL}/api/bugs/new`, {
 			title, description, stepsToReproduce
 		}, {
@@ -24,15 +26,32 @@ export default function AddNewBug({ auth, user, showError, showSuccess }) {
 		}).then(res => {
 			console.log(res);
 			showSuccess(`Bug ${title} Added Successfully`);
-			navigate('/bug/list');
+			navigate('/bugs/list');
 		}).catch(error => {
 
+		}).finally(() => {
+			setIsLoading(false);
 		});
+	}
+
+	if (!user) {
+		return (
+			<>
+				<div id='body-div'>
+					<div className='centered-form'>
+						<form action="">
+							<h3>Must be Logged In</h3>
+						</form>
+					</div>
+				</div>
+			</>
+		)
 	}
 
 	return (
 		<>
 			<div id="body-div">
+				{isLoading && <div className="square-loading"></div>}
 				<div className="centered-form">
 					<h2 className="mb-3">Register New Bug</h2>
 					<form action="">
@@ -51,7 +70,9 @@ export default function AddNewBug({ auth, user, showError, showSuccess }) {
 								<textarea onChange={(e) => setSteps(e.target.value)} name="txtSteps" id="txtSteps" rows="4"></textarea>
 							</div>
 							<button
-								type="button" onClick={(e) => handleBugCreation(e)} id='btnRegister' className="btn btn-primary w-75 mb-3">Click to Register</button>
+								type="button" disabled={isLoading} onClick={(e) => handleBugCreation(e)} id='btnRegister' 
+								className="btn btn-primary w-75 mb-3">{!isLoading ? 'Click to Register' : 'Registering...'}
+							</button>
 						</div>
 					</form>
 				</div>

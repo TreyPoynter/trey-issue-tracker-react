@@ -10,17 +10,16 @@ export default function UserList() {
         axios.get(`${import.meta.env.VITE_API_URL}/api/users/list`, { withCredentials: true })
             .then(
                 res => {
-                    setIsLoading(false);
                     setUsers(res.data)
                 }
             ).catch(error => {
                 console.log(error)
-            });
+            }).finally(() => setIsLoading(false));
     });
     if (isLoading) {
         return(
             <div id="body-div">
-                    <div className="square-loading"></div>
+                <div className="square-loading"></div>
             </div>
         )
     }

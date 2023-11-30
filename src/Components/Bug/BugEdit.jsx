@@ -16,6 +16,7 @@ export default function EditBug({auth, showSuccess, showError}) {
 
 	useEffect(() => {
 		if (!bug) {
+			setIsLoading(true);
 			axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/${bugId}`, { withCredentials: true })
 			.then(
 				res => {
@@ -25,11 +26,13 @@ export default function EditBug({auth, showSuccess, showError}) {
 					setClassification(res.data.classification.classifiedAs);
 					setSteps(res.data.stepsToReproduce);
 				}
-			).catch(error => { console.log(error) });
+			).catch(error => { console.log(error); })
+			.finally(() => {setIsLoading(false);});
 		}
 	});
 
 	function updateBug(evt) {  //TODO : DO SHIT
+
 		evt.preventDefault();
 		console.log('CLICKED')
 		const updatedBug = {
@@ -38,7 +41,7 @@ export default function EditBug({auth, showSuccess, showError}) {
 			classification : {
 				classifiedAs : classification
 			},
-			stepsToReproduce : stepsToReproduce
+			stepsToReproduce : stepsToReproduce.map(str => str.trim()).filter(Boolean)
 		}
 		delete updatedBug._id;
 		delete updatedBug.dateCreated;
@@ -46,6 +49,7 @@ export default function EditBug({auth, showSuccess, showError}) {
 		delete updatedBug.closedInfo;
 		delete updatedBug.assignedInfo;
 		console.log("Request Payload:", updatedBug);
+		setIsLoading(true);
 		axios.put(`${import.meta.env.VITE_API_URL}/api/bugs/${bugId}`,
 		{...updatedBug}, {withCredentials: true})
 		.then( res => {
@@ -57,13 +61,22 @@ export default function EditBug({auth, showSuccess, showError}) {
 			showError(`Failed to Update ${bugId}`);
 			console.log(err)
 		})
+		.finally(() => {
+			setIsLoading(false);
+		})
 	}  
 
 	if (!bug) {
 		return (
 			<>
-				<h3>...Loading</h3>
-			</>
+                <div id='body-div'>
+                <div className='centered-form'>
+                    <form action="">
+                        <h3>Must be Logged In</h3>
+                    </form>
+                </div>
+                </div>
+            </>
 		)
 	}
 	return (
@@ -104,7 +117,8 @@ export default function EditBug({auth, showSuccess, showError}) {
 								<textarea onChange={(e) => setSteps(e.target.value.split(','))} name="txtSteps" id="txtSteps"
 									rows="4" defaultValue={bug.stepsToReproduce.map(r => r).join(', ')}></textarea>
 							</div>
-							<button type='submit' id='btnSave' className="btn btn-success w-75 mb-3">Update</button>
+							<button disabled={isLoading} type='submit' id='btnSave' 
+							className="btn btn-success w-75 mb-3">{isLoading ? 'Saving' : 'Save'} Changes</button>
 						</div>
 					</form>
 				</div>
