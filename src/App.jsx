@@ -72,8 +72,8 @@ function App() {
 					showSuccess={showSuccess} onLogin={onLogin}/>} />
 				<Route path='register' element={<RegisterForm showError={showError} 
 					showSuccess={showSuccess} onLogin={onLogin}/>} />
-				<Route path='bugs/list' element={<BugList />} />
-				<Route path='users/list' element={<UserList />} />
+				<Route path='bugs/list' element={<BugList user={user}/>} />
+				<Route path='users/list' element={<UserList user={user}/>} />
 				<Route path='bug/:bugId' element={<BugSummary />} />
 				<Route path='bugs/:bugId/edit' element={<EditBug auth={auth} showError={showError} showSuccess={showSuccess}/>} />
 				<Route path='users/:userId/edit' element={<EditUser auth={auth} showError={showError} showSuccess={showSuccess} 

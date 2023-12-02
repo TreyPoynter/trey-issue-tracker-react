@@ -17,9 +17,13 @@ export default function BugSummary() {
 	
 	if (!bug) {
 		return (
-			<>
-				<h1>Bug not found</h1>
-			</>
+			<div id='body-div'>
+                <div className='centered-form'>
+                    <form action="">
+                        <h3>Bug not found</h3>
+                    </form>
+                </div>
+            </div>
 		);
 	}
 	function formatDate(dateCreated) {

@@ -1,9 +1,11 @@
+/*eslint-disable */
 import '../../assets/css/bugList.css';
 import Bug from './BugListItem';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import NotLoggedIn from '../NotLoggedIn';
 
-export default function BugList() {
+export default function BugList({user}) {
 	const [bugs, setBugs] = useState([]);
 	const [isLoading, setLoading] = useState(true);
 
@@ -26,6 +28,9 @@ export default function BugList() {
             </div>
         )
     }
+	if(!user) {
+		return(<NotLoggedIn/>)
+	}
 
 	return (
 		<>

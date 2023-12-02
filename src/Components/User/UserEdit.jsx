@@ -4,6 +4,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import ConfirmDelete from '../ConfirmDelete';
+import NotLoggedIn from '../NotLoggedIn';
 
 export default function EditUser({auth, showSuccess, showError, onLogin}) {
     const loggedUser = JSON.parse(localStorage.getItem("user"));
@@ -104,17 +105,7 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
         )
     }
     if (!user) {
-        return(
-            <>
-                <div id='body-div'>
-                <div className='centered-form'>
-                    <form action="">
-                        <h3>Must be Logged In</h3>
-                    </form>
-                </div>
-                </div>
-            </>
-        )
+        return(<NotLoggedIn/>)
     }
     function handleCancel() {
         setIsDeleting(false);
