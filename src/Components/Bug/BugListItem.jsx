@@ -6,7 +6,7 @@ export default function Bug({ bug }) {
 	return (
 		<div className="col-lg-3 col-md-6 mb-3">
 			<div className="justify-content-center mb-4 text-decoration-none card p-1">
-				<Link to={`/bug/${bug._id}`} className="text-black text-decoration-none">
+				<Link to={`/bugs/${bug._id}`} className="text-black text-decoration-none">
 					<div className="">
 						<div className="d-flex justify-content-between">
 						<span className={`badge bg-${bug.classification.classifiedAs == 'approved' ? 'success' :
