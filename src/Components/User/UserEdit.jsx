@@ -4,7 +4,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import ConfirmDelete from '../ConfirmDelete';
-import NotLoggedIn from '../NotLoggedIn';
+import Error from '../Error';
 
 export default function EditUser({auth, showSuccess, showError, onLogin}) {
     const loggedUser = JSON.parse(localStorage.getItem("user"));
@@ -70,7 +70,6 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
             email
         }
         if (loggedUser.role.includes('technical manager') && loggedUser._id != user._id) {
-            console.log('hit');
             updatedUser.role = role;
         }
         if(password){
@@ -105,7 +104,7 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
         )
     }
     if (!user) {
-        return(<NotLoggedIn message="Must be Logged in"/>)
+        return(<Error message="Must be Logged in"/>)
     }
     function handleCancel() {
         setIsDeleting(false);

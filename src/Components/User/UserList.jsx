@@ -3,7 +3,7 @@ import '../../assets/css/bugList.css'
 import User from './UserListItem'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import NotLoggedIn from '../NotLoggedIn';
+import Error from '../Error';
 
 export default function UserList({user}) {
     const [users, setUsers] = useState([]);
@@ -27,7 +27,7 @@ export default function UserList({user}) {
         )
     }
     if (!user) {
-        return(<NotLoggedIn/>)
+        return(<Error message="Must be Logged In to view"/>)
     }
     return (
         <>
