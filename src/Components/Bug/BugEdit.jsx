@@ -3,6 +3,7 @@ import '../../assets/css/loginForm.css'
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import ToggleSlider from './ToggleSlider'
 
 export default function EditBug({auth, showSuccess, showError}) {
 	const nav = useNavigate();
@@ -13,6 +14,7 @@ export default function EditBug({auth, showSuccess, showError}) {
 	const [classification, setClassification] = useState(bug && bug.classification.classifiedAs);
 	const [stepsToReproduce, setSteps] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
+	const [isClosed, setIsClosed] = useState(bug && bug.closedInfo.closed);
 
 	useEffect(() => {
 		if (!bug) {
@@ -25,6 +27,7 @@ export default function EditBug({auth, showSuccess, showError}) {
 					setDescription(res.data.description);
 					setClassification(res.data.classification.classifiedAs);
 					setSteps(res.data.stepsToReproduce);
+					setIsClosed(res.data.closedInfo.closed);
 				}
 			).catch(error => { console.log(error); })
 			.finally(() => {setIsLoading(false);});
@@ -41,12 +44,15 @@ export default function EditBug({auth, showSuccess, showError}) {
 			classification : {
 				classifiedAs : classification
 			},
+			closedInfo : {
+				closed : isClosed
+			},
+
 			stepsToReproduce : stepsToReproduce.map(str => str.trim()).filter(Boolean)
 		}
 		delete updatedBug._id;
 		delete updatedBug.dateCreated;
 		delete updatedBug.createdBy;
-		delete updatedBug.closedInfo;
 		delete updatedBug.assignedInfo;
 		console.log("Request Payload:", updatedBug);
 		setIsLoading(true);
@@ -64,8 +70,18 @@ export default function EditBug({auth, showSuccess, showError}) {
 		.finally(() => {
 			setIsLoading(false);
 		})
-	}  
-
+	}
+	const changeClosedState = () => {
+		setIsClosed(!isClosed);
+		console.log(isClosed)
+	};
+	if (isLoading) {
+        return(
+            <div id="body-div">
+                    <div className="square-loading"></div>
+            </div>
+        )
+    }
 	if (!bug) {
 		return (
 			<>
@@ -85,8 +101,10 @@ export default function EditBug({auth, showSuccess, showError}) {
 				<div className="centered-form">
 					<div className='d-flex justify-content-between'>
 						<Link to='/bugs/list'><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
+						<ToggleSlider bool={isClosed} toggleBool={changeClosedState}/>
 					</div>
 					<h2 className="mb-3">Edit Bug</h2>
+					
 					<form onSubmit={(evt) => updateBug(evt)}>
 						<div>
 							<div className="mb-3 d-flex flex-column align-items-start">
