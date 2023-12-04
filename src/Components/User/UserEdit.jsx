@@ -105,7 +105,7 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
         )
     }
     if (!user) {
-        return(<NotLoggedIn/>)
+        return(<NotLoggedIn message="Must be Logged in"/>)
     }
     function handleCancel() {
         setIsDeleting(false);

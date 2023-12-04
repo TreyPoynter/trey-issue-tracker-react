@@ -4,6 +4,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import ToggleSlider from './ToggleSlider'
+import Error from '../Error'
 
 export default function EditBug({auth, showSuccess, showError}) {
 	const nav = useNavigate();
@@ -84,15 +85,7 @@ export default function EditBug({auth, showSuccess, showError}) {
     }
 	if (!bug) {
 		return (
-			<>
-                <div id='body-div'>
-                <div className='centered-form'>
-                    <form action="">
-                        <h3>Must be Logged In</h3>
-                    </form>
-                </div>
-                </div>
-            </>
+			<Error message="Must be Logged in"/>
 		)
 	}
 	return (
