@@ -89,10 +89,10 @@ export default function EditBug({auth, showSuccess, showError}) {
 			<Error message="Must be Logged in"/>
 		)
 	}
-	if (!loggedUser.role.includes('business analyst') || loggedUser._id != bug?.assignedInfo?.assignedToUserId) {
+	if (!loggedUser.role.includes('business analyst') && loggedUser._id != bug?.assignedInfo?.assignedToUserId) {
 		return(
 			<Error message="Must be a Business Analyst or be Assigned to edit"/>
-		)
+		);
 	}
 	return (
 		<>
