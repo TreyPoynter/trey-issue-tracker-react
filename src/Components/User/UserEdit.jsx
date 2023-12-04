@@ -106,6 +106,11 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
     if (!user) {
         return(<Error message="Must be Logged in"/>)
     }
+    if (!loggedUser.role.includes('technical manager') && loggedUser._id != user?._id) {
+		return(
+			<Error message="Must be a Technical Manager to Edit Another User"/>
+		)
+	}
     function handleCancel() {
         setIsDeleting(false);
     }

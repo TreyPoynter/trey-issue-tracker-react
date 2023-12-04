@@ -8,6 +8,7 @@ import Error from '../Error'
 
 export default function EditBug({auth, showSuccess, showError}) {
 	const nav = useNavigate();
+	const loggedUser = JSON.parse(localStorage.getItem('user'));
 	const bugId = useParams().bugId;
 	const [bug, setBug] = useState(null);
 	const [title, setTitle] = useState(bug && bug.title);
@@ -86,6 +87,11 @@ export default function EditBug({auth, showSuccess, showError}) {
 	if (!bug) {
 		return (
 			<Error message="Must be Logged in"/>
+		)
+	}
+	if (!loggedUser.role.includes('business analyst') || loggedUser._id != bug?.assignedInfo?.assignedToUserId) {
+		return(
+			<Error message="Must be a Business Analyst or be Assigned to edit"/>
 		)
 	}
 	return (
