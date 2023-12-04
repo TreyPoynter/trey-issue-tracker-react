@@ -35,7 +35,16 @@ export default function EditBug({auth, showSuccess, showError}) {
 			.finally(() => {setIsLoading(false);});
 		}
 	});
-
+	function handleClosedState() {
+		console.log("CLOSE")
+		axios.put(`${import.meta.env.VITE_API_URL}/api/bugs/${bugId}/close`, 
+		{closed:isClosed},{ withCredentials: true })
+			.then(
+				res => {
+					console.log(res)
+				}
+			).catch(error => { console.log(error); });
+	}
 	function updateBug(evt) {  //TODO : DO SHIT
 
 		evt.preventDefault();
@@ -46,9 +55,6 @@ export default function EditBug({auth, showSuccess, showError}) {
 			classification : {
 				classifiedAs : classification
 			},
-			closedInfo : {
-				closed : isClosed
-			},
 
 			stepsToReproduce : stepsToReproduce.map(str => str.trim()).filter(Boolean)
 		}
@@ -58,9 +64,13 @@ export default function EditBug({auth, showSuccess, showError}) {
 		delete updatedBug.assignedInfo;
 		console.log("Request Payload:", updatedBug);
 		setIsLoading(true);
+		if (bug.closedInfo.closed != isClosed) {
+			handleClosedState();
+		}
 		axios.put(`${import.meta.env.VITE_API_URL}/api/bugs/${bugId}`,
 		{...updatedBug}, {withCredentials: true})
 		.then( res => {
+			
 			nav('/bugs/list');
 			showSuccess(`Successfully Updated ${bugId}`);
 			console.log(res)
