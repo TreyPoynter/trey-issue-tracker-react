@@ -9,9 +9,8 @@ export default function UserSummary() {
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
-        if (!user) {
-            setIsLoading(true);
-            axios.get(`${import.meta.env.VITE_API_URL}/api/users/${userId}`, { withCredentials: true })
+        setIsLoading(true);
+        axios.get(`${import.meta.env.VITE_API_URL}/api/users/${userId}`, { withCredentials: true })
             .then(
                 res => {
                     setIsLoading(false);
@@ -19,17 +18,16 @@ export default function UserSummary() {
                     setUser(res.data);
                 }
             ).catch(error => { console.log(error) });
-        }
-    });
+    }, []);
     if (isLoading) {
-        return(
+        return (
             <div id="body-div">
-                    <div className="square-loading"></div>
+                <div className="square-loading"></div>
             </div>
         )
     }
     if (!user) {
-        return(
+        return (
             <div className="mt-5" id="body-div">
                 <div className="centered-form">
                     <h3>User not Found</h3>
@@ -67,12 +65,12 @@ export default function UserSummary() {
                     </div>
                     {loggedUser &&
                         (loggedUser.role.includes('technical manager') ||
-                        user._id == loggedUser._id) &&
+                            user._id == loggedUser._id) &&
                         <div id='btns' className='mt-auto d-flex justify-content-lg-around'>
                             <Link to={`/users/${user._id}/edit`} className='btn btn-warning w-100'>Edit</Link>
                         </div>
                     }
-                    
+
                 </div>
             </div>
         </>

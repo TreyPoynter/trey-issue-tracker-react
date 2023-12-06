@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import ConfirmDelete from '../ConfirmDelete';
 import Error from '../Error';
 
-export default function EditUser({auth, showSuccess, showError, onLogin}) {
+export default function EditUser({ auth, showSuccess, showError, onLogin }) {
     const loggedUser = JSON.parse(localStorage.getItem("user"));
     const nav = useNavigate();
     const userId = useParams().userId;
@@ -20,9 +20,8 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
     const [isDeleting, setIsDeleting] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
-        if (!user) {
-            setIsLoading(true);
-            axios.get(`${import.meta.env.VITE_API_URL}/api/users/${userId}`, { withCredentials: true })
+        setIsLoading(true);
+        axios.get(`${import.meta.env.VITE_API_URL}/api/users/${userId}`, { withCredentials: true })
             .then(
                 res => {
                     console.log(res)
@@ -35,27 +34,19 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
                     setFullName(res.data.fullName);
                 }
             ).catch(error => { console.log(error) })
-            .finally(() => {setIsLoading(false);});
-        }
-    });
+            .finally(() => { setIsLoading(false); });
+    }, []);
     function editUser(evt) {
         const apiLink = user._id != loggedUser._id ? `${import.meta.env.VITE_API_URL}/api/users/${userId}` :
-        `${import.meta.env.VITE_API_URL}/api/users/me`;
+            `${import.meta.env.VITE_API_URL}/api/users/me`;
         evt.preventDefault();
-        if(!fullName)
-            {showError('Full-Name is Required'); return}
-        else if(!givenName)
-            {showError('Given-Name is Required'); return}
-        if(!familyName)
-            {showError('Family-Name is Required'); return}
-        else if(!email)
-            {showError('Email is Required');return;}
-        else if (!email.includes('@')) 
-            {showError('Email must contain an @'); return;}
-        else if(!role) 
-            {showError('User must have a role'); return;}
-        else if(password && password.length < 8) 
-            {showError('Password must be 8 characters or longer'); return;}
+        if (!fullName) { showError('Full-Name is Required'); return }
+        else if (!givenName) { showError('Given-Name is Required'); return }
+        if (!familyName) { showError('Family-Name is Required'); return }
+        else if (!email) { showError('Email is Required'); return; }
+        else if (!email.includes('@')) { showError('Email must contain an @'); return; }
+        else if (!role) { showError('User must have a role'); return; }
+        else if (password && password.length < 8) { showError('Password must be 8 characters or longer'); return; }
         for (let i = 0; i < role.length; i++) {
             if (role[i].toLowerCase().trim() != 'developer' && role[i].toLowerCase().trim() != 'quality analyst' &&
                 role[i].toLowerCase().trim() != 'business analyst' && role[i].toLowerCase().trim() != 'product manager' &&
@@ -72,53 +63,53 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
         if (loggedUser.role.includes('technical manager') && loggedUser._id != user._id) {
             updatedUser.role = role;
         }
-        if(password){
+        if (password) {
             updatedUser.password = password;
         }
         setIsLoading(true);
-        axios.put(apiLink,{...updatedUser}, {withCredentials: true})
-		.then( res => {
-            if (loggedUser._id == user._id) {
-                console.log('SELF EDIT');
-                console.log(res)
-                user.role = loggedUser.role;
-                user._id = loggedUser._id;
-                console.log(user);
-                localStorage.setItem('user', JSON.stringify(user));
-                onLogin(res.data.authToken, user);
-            }
-			nav('/users/list');
-			showSuccess(`Successfully Updated ${userId}`);
-		})
-		.catch(err => {
-			showError(`Failed to Update ${userId}`);
-			console.log(err);
-		})
-        .finally(() => {setIsLoading(false);})
+        axios.put(apiLink, { ...updatedUser }, { withCredentials: true })
+            .then(res => {
+                if (loggedUser._id == user._id) {
+                    console.log('SELF EDIT');
+                    console.log(res)
+                    user.role = loggedUser.role;
+                    user._id = loggedUser._id;
+                    console.log(user);
+                    localStorage.setItem('user', JSON.stringify(user));
+                    onLogin(res.data.authToken, user);
+                }
+                nav('/users/list');
+                showSuccess(`Successfully Updated ${userId}`);
+            })
+            .catch(err => {
+                showError(`Failed to Update ${userId}`);
+                console.log(err);
+            })
+            .finally(() => { setIsLoading(false); })
     }
     if (isLoading) {
-        return(
+        return (
             <div id="body-div">
-                    <div className="square-loading"></div>
+                <div className="square-loading"></div>
             </div>
         )
     }
     if (!user) {
-        return(<Error message="Must be Logged in"/>)
+        return (<Error message="Must be Logged in" />)
     }
     if (!loggedUser.role.includes('technical manager') && loggedUser._id != user?._id) {
-		return(
-			<Error message="Must be a Technical Manager to Edit Another User"/>
-		)
-	}
+        return (
+            <Error message="Must be a Technical Manager to Edit Another User" />
+        )
+    }
     function handleCancel() {
         setIsDeleting(false);
     }
     return (
         <>
             <div id={'body-div'}>
-                {isDeleting && <ConfirmDelete loggedUser={loggedUser} deleteWhat={"User"} 
-                handleCancel={handleCancel} obj={user}/>}
+                {isDeleting && <ConfirmDelete loggedUser={loggedUser} deleteWhat={"User"}
+                    handleCancel={handleCancel} obj={user} />}
                 <div className="centered-form" id='edit-form'>
                     <div className='d-flex justify-content-between'>
                         <Link to={`/users/list`}><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
@@ -129,19 +120,19 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
                             <div className="mb-3 d-flex flex-column align-items-start">
                                 <label htmlFor="txtFullName" className="form-label mb-0">Full Name</label>
                                 <input placeholder="John Doe" onChange={(e) => setFullName(e.target.value)}
-                                defaultValue={user.fullName} type="text" className="form-control" id="txtFullName"  />
+                                    defaultValue={user.fullName} type="text" className="form-control" id="txtFullName" />
                             </div>
                             <div className="mb-3 d-flex flex-column align-items-start">
                                 <label htmlFor="txtEmail" className="form-label mb-0">Email</label>
                                 <input placeholder="Enter Email" onChange={(e) => setEmail(e.target.value)}
-                                defaultValue={user.email} type="text" className="form-control" id="txtEmail"/>
+                                    defaultValue={user.email} type="text" className="form-control" id="txtEmail" />
                             </div>
-                            {loggedUser.role.includes('technical manager') && loggedUser._id != user._id && 
+                            {loggedUser.role.includes('technical manager') && loggedUser._id != user._id &&
                                 <div className="mb-3 d-flex flex-column align-items-start">
                                     <label htmlFor="txtRole" className="form-label mb-0">Role (comma delimited)</label>
                                     <input placeholder="Enter role" onChange={(e) => setRole(e.target.value.split(','))}
-                                    type="text" className="form-control" id="txtRole"
-                                    defaultValue={user.role.map(r => r).join(', ')}/>
+                                        type="text" className="form-control" id="txtRole"
+                                        defaultValue={user.role.map(r => r).join(', ')} />
                                 </div>
                             }
                             <div className=' mb-3 d-flex justify-content-between'>
@@ -155,16 +146,16 @@ export default function EditUser({auth, showSuccess, showError, onLogin}) {
                                     <label htmlFor="txtFamilyName" className="form-label">Family Name</label>
                                     <input placeholder="Doe" type="text"
                                         className={`form-control`} defaultValue={user.familyName}
-                                        id="txtFamilyName" onChange={(e) => setFamilyNaame(e.target.value)}/>
+                                        id="txtFamilyName" onChange={(e) => setFamilyNaame(e.target.value)} />
                                 </div>
                             </div>
                             <div className="mb-3 d-flex flex-column align-items-start">
                                 <label htmlFor="txtPass" className="form-label mb-0">Password</label>
                                 <input onChange={(e) => setPassword(e.target.value)} placeholder="Enter password"
-                                 type="password" className="form-control" id="txtPass"/>
+                                    type="password" className="form-control" id="txtPass" />
                             </div>
-                            <button type='button' onClick={() => setIsDeleting(true)} to='/users' 
-                            id='btnDelete' className="btn btn-danger w-75 mb-2">Delete Account</button>
+                            <button type='button' onClick={() => setIsDeleting(true)} to='/users'
+                                id='btnDelete' className="btn btn-danger w-75 mb-2">Delete Account</button>
                             <button type='submit' id='btnSave' className="btn btn-success w-75 mb-0">
                                 {isLoading ? 'Saving Changes' : 'Save Changes'}
                             </button>
