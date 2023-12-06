@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { Link } from "react-router-dom";
 
 export default function CommentItem({ comment, user }) {
     function formatDate(dateCreated) {
@@ -19,7 +20,9 @@ export default function CommentItem({ comment, user }) {
                         <i className="fas fa-user user-icon"></i>
                     </div>
                     <div className="d-flex flex-column justify-content-start ml-2">
-                        <span className="d-block font-weight-bold name">{comment.author}</span>
+                        <Link to={`/users/${comment.author_id}`} className="d-block font-weight-bold name text-decoration-none">
+                            {comment.author}
+                        </Link>
                         <span className="date text-black-50">Posted on - {formatDate(comment.date)}</span>
                     </div>
                 </div>
