@@ -18,7 +18,7 @@ Highlight the key features of your project.
 1. **Create a bug:** [As long you have an account with us you can create a bug and save it in our MongoDB servers]
 2. **Collaborate:** [You can comment on bugs that you or other users have created]
 3. **Modify Bug:** [If you have the specified permissions you may edit a bug]
-   - Sub-feature details if necessary.
+   - Closing or Opening a Bug - While editing you can Open or Close bug to know if the bug is still in the software.
 
 ## Getting Started
 Provide instructions on how to get the project up and running.
@@ -50,6 +50,7 @@ Step-by-step guide on how to install the project on your own device.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/TreyPoynter/RetroAmazonFrontend.git
+   https://github.com/TreyPoynter/trey-issue-tracker-react.git
 2. Install dependencies
+    ```bash
     npm i
