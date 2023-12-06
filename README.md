@@ -8,9 +8,6 @@ Create, Edit, Collaborate, and Manage software bugs throughout your projects to 
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
-- [Configuration](#configuration)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 Highlight the key features of your project.
@@ -52,3 +49,6 @@ Step-by-step guide on how to install the project on your own device.
 2. Install dependencies
     ```bash
     npm i
+3. Startup Localhost
+    ```bash
+    npm run start dev
