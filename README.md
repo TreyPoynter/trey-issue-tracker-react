@@ -37,7 +37,7 @@ Highlight the key features of your project.
 To report a bug, follow these steps:
 1. Login or Register an account with us
 2. Give the bug a title, description, and classification
-### 1. Editing an Existing Bug
+### 2. Editing an Existing Bug
 To edit an existing bug, follow the steps below:
 1. Login or Register an account with us
 2. Only Business Analysts can edit ANY bug.
