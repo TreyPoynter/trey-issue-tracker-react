@@ -40,8 +40,6 @@ export default function CommentsList() {
         )
     }
 
-    
-
     return (
         <>
             <div id="body-div">
@@ -56,7 +54,7 @@ export default function CommentsList() {
                         {
                             comments.length < 1 ? 
                             <div className="text-center">
-                                <i className="fa-regular fa-face-sad-tear fs-1"></i>
+                                <i className="fa-solid fa-comment-slash fs-1"></i>
                                 <h4>This bug doesn't have any comments</h4>
                             </div> :
                             comments.map((comment, i) => {

@@ -19,7 +19,7 @@ export default function BugListItem({ bug }) {
 						<h3 className="text-center fs-5">{bug.title}</h3>
 					</div>
 					<div className="card-body text-center">
-						<i className={`fas mb-2 fa-solid fa-5x fa-bug`}></i>
+						<i className="fas mb-2 fa-solid fa-5x fa-spider"></i>
 						<h5>Assigned to : {bug?.assignedInfo?.assignedToName ? bug.assignedInfo.assignedToName : 'No One'}</h5>
 					</div>
 				</Link>
