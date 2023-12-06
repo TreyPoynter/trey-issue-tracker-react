@@ -4,26 +4,36 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 export default function BugSummary() {
+	const user = JSON.parse(localStorage.getItem('user'));
 	const bugId = useParams().bugId;
 	const [bug, setBug] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
 	useEffect(() => {
+		setIsLoading(true)
 		axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/${bugId}`, { withCredentials: true })
 			.then(
 				res => {
 					setBug(res.data)
 				}
-			).catch(error => { console.log(error) });
-	});
-	
+			).catch(error => { console.log(error) })
+			.finally(() => setIsLoading(false));
+	}, []);
+	if (isLoading) {
+        return(
+            <div id="body-div">
+                    <div className="square-loading"></div>
+            </div>
+        )
+    }
 	if (!bug) {
 		return (
 			<div id='body-div'>
-                <div className='centered-form'>
-                    <form action="">
-                        <h3>Bug not found</h3>
-                    </form>
-                </div>
-            </div>
+				<div className='centered-form'>
+					<form action="">
+						<h3>Bug not found</h3>
+					</form>
+				</div>
+			</div>
 		);
 	}
 	function formatDate(dateCreated) {
@@ -34,7 +44,7 @@ export default function BugSummary() {
 		const year = date.getFullYear();
 		return month + ' ' + day + ', ' + year;
 	}
-	
+
 	return (
 		<>
 			<div id="body-div">
@@ -62,9 +72,18 @@ export default function BugSummary() {
 									<li>Assigned To - {bug.assignedInfo.assignedToName}</li>
 									<li>Assigned On - {formatDate(bug.assignedInfo.assignedOn)}</li>
 								</ul> :
-								<h5>Not Assigned to Anyone</h5>}
-
+								<p>Not Assigned to Anyone</p>}
 						</div>
+					</div>
+					<div id='btns' className='mt-auto d-flex justify-content-lg-around'>
+					{user &&
+                        (user.role.includes('business analyst') ||
+                        user._id == user._id) &&
+                        
+                            <Link to={`/bugs/${bugId}/edit`} className='btn btn-warning w-25'>Edit</Link>
+                        
+                    }
+					<Link to={`/bugs/${bugId}/edit`} className='btn btn-warning w-25'>Edit</Link>
 					</div>
 				</div>
 			</div>

@@ -160,26 +160,23 @@
 
 @media screen and (max-width: 630px) {
     .form {
-        margin-top: 200px;
         width: 90%;
         /* Adjust the width as needed */
-        height: 100%;
-    }
-
-    #btns {
-        flex-direction: column;
-
+        height: 80%;
     }
 
     #btns>button {
+        flex-direction: column;
         width: 100%;
         margin-bottom: 5px;
     }
 }
+@media screen and (max-width: 450px) {
+}
 
 @media screen and (max-height: 780px) {
     .form {
-        width: 90%;
+        width: 100%;
     }
 
     #created-info {

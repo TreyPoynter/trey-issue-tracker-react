@@ -1,6 +1,6 @@
 /*eslint-disable */
 import '../../assets/css/bugList.css';
-import Bug from './BugListItem';
+import BugListItem from './BugListItem';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Error from '../Error';
@@ -41,7 +41,7 @@ export default function BugList({user}) {
 				<div className='row d-flex justify-content-start'>
 					{bugs.length < 1 ? <h3>No results...</h3> :
 						bugs.map(bug => (
-							<Bug key={bug._id} bug={bug} />
+							<BugListItem key={bug._id} bug={bug} />
 						))}
 				</div>
 			</div>
