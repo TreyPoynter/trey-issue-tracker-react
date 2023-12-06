@@ -34,7 +34,7 @@ export default function CommentsList() {
                     <div id='commentList-load'>
                         <div className="square-loading"></div>
                     </div>
-                    <AddCommment user={user}/>
+                    <AddCommment comments={comments}/>
                 </div>
             </div>
         )
@@ -56,11 +56,11 @@ export default function CommentsList() {
                         {
                             comments.length < 1 ? 
                             <div className="text-center">
-                                <i class="fa-regular fa-face-sad-tear fs-1"></i>
+                                <i className="fa-regular fa-face-sad-tear fs-1"></i>
                                 <h4>This bug doesn't have any comments</h4>
                             </div> :
                             comments.map((comment, i) => {
-                                return(<CommentItem comment={comment}/>)
+                                return(<CommentItem key={i} comment={comment}/>)
                             })
                         }
                         

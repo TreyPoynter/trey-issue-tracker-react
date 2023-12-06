@@ -14,8 +14,8 @@ export default function CommentItem({ comment }) {
         <div className="d-flex flex-column comment-section border border-bottom">
             <div className="bg-white p-2">
                 <div className="d-flex flex-row user-info">
-                    <div class="user-icon-container me-2">
-                        <i class="fas fa-user user-icon"></i>
+                    <div className="user-icon-container me-2">
+                        <i className="fas fa-user user-icon"></i>
                     </div>
                     <div className="d-flex flex-column justify-content-start ml-2">
                         <span className="d-block font-weight-bold name">{comment.author}</span>
