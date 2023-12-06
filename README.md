@@ -1,6 +1,6 @@
 # Issue Tracker
 
-[Create, Edit, Collaborate, and Manage software bugs throughout your projects to keep you and your team on track]
+Create, Edit, Collaborate, and Manage software bugs throughout your projects to keep you and your team on track
 
 ## Table of Contents
 - [Features](#features)
@@ -15,9 +15,9 @@
 ## Features
 Highlight the key features of your project.
 
-1. **Create a bug:** [As long you have an account with us you can create a bug and save it in our MongoDB servers]
-2. **Collaborate:** [You can comment on bugs that you or other users have created]
-3. **Modify Bug:** [If you have the specified permissions you may edit a bug]
+1. **Create a bug:** As long you have an account with us you can create a bug and save it in our MongoDB servers
+2. **Collaborate:** You can comment on bugs that you or other users have created
+3. **Modify Bug:** If you have the specified permissions you may edit a bug
    - Closing or Opening a Bug - While editing you can Open or Close bug to know if the bug is still in the software.
 
 ## Getting Started
