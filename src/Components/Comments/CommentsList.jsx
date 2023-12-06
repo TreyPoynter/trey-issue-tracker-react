@@ -64,7 +64,7 @@ export default function CommentsList() {
                                     <h4>This bug doesn't have any comments</h4>
                                 </div> :
                                 comments.map((comment, i) => {
-                                    return (<CommentItem key={i} comment={comment} />)
+                                    return (<CommentItem key={i} comment={comment} user={user}/>)
                                 })
                         }
 

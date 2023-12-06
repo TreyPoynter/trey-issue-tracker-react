@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-export default function CommentItem({ comment }) {
+export default function CommentItem({ comment, user }) {
     function formatDate(dateCreated) {
         const date = new Date(dateCreated);
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
@@ -11,10 +11,11 @@ export default function CommentItem({ comment }) {
         return month + ' ' + day + ', ' + year;
     }
     return (
-        <div className="d-flex flex-column comment-section border border-bottom">
+        <div className={`bg-white d-flex flex-column comment-section border border-bottom 
+        ${user._id == comment.author_id && 'flex-row-reverse text-align-end'}`}>
             <div className="bg-white p-2">
-                <div className="d-flex flex-row user-info">
-                    <div className="user-icon-container me-2">
+                <div className={`d-flex flex-row user-info ${user._id == comment.author_id && 'flex-row-reverse text-end'}`}>
+                    <div className={`user-icon-container ${user._id == comment.author_id ? 'ms-3' : 'me-3'}`}>
                         <i className="fas fa-user user-icon"></i>
                     </div>
                     <div className="d-flex flex-column justify-content-start ml-2">
@@ -27,5 +28,6 @@ export default function CommentItem({ comment }) {
                 </div>
             </div>
         </div>
+
     )
 }
