@@ -26,7 +26,6 @@ export default function CommentItem({ comment }) {
                     <p className="comment-text">{comment.text}</p>
                 </div>
             </div>
-            
         </div>
     )
 }

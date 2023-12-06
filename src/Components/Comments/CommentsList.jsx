@@ -11,7 +11,9 @@ export default function CommentsList() {
     const bugId = useParams().bugId;
     const [comments, setComments] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    useEffect(() => {
+
+    function fetchComments()  {
+        console.log('FETCHING')
         setIsLoading(true)
         axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/${bugId}/comment/list`, { withCredentials: true })
             .then(
@@ -20,6 +22,10 @@ export default function CommentsList() {
                 }
             ).catch(error => { console.log(error) })
             .finally(() => setIsLoading(false));
+    };
+
+    useEffect(() => {
+        fetchComments();
     }, []);
     if (isLoading) {
         return (
@@ -34,7 +40,7 @@ export default function CommentsList() {
                     <div id='commentList-load'>
                         <div className="square-loading"></div>
                     </div>
-                    <AddCommment comments={comments}/>
+                    <AddCommment fetchComments={fetchComments} />
                 </div>
             </div>
         )
@@ -52,18 +58,18 @@ export default function CommentsList() {
                     </div>
                     <div id={comments.length > 0 ? `commentList` : 'commentList-load'}>
                         {
-                            comments.length < 1 ? 
-                            <div className="text-center">
-                                <i className="fa-solid fa-comment-slash fs-1"></i>
-                                <h4>This bug doesn't have any comments</h4>
-                            </div> :
-                            comments.map((comment, i) => {
-                                return(<CommentItem key={i} comment={comment}/>)
-                            })
+                            comments.length < 1 ?
+                                <div className="text-center">
+                                    <i className="fa-solid fa-comment-slash fs-1"></i>
+                                    <h4>This bug doesn't have any comments</h4>
+                                </div> :
+                                comments.map((comment, i) => {
+                                    return (<CommentItem key={i} comment={comment} />)
+                                })
                         }
-                        
+
                     </div>
-                    <AddCommment user={user}/>
+                    <AddCommment user={user} />
                 </div>
             </div>
         </>
