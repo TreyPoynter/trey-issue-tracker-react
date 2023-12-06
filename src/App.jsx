@@ -20,6 +20,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import CommentsList from './Components/Comments/CommentsList.jsx';
 /*
 <div id="content">
 			</div>
@@ -83,6 +84,7 @@ function App() {
 					showSuccess={showSuccess}/>} />
 				<Route path='*' element={<NotFound/>}/>
 				<Route path='bugs/:bugId/reassign' element={<ReassignBug showSuccess={showSuccess}/>}/>
+				<Route path='bugs/:bugId/comments' element={<CommentsList/>}/>
 			</Routes>
 			<Footer />
 		</BrowserRouter>

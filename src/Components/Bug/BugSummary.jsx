@@ -83,7 +83,7 @@ export default function BugSummary() {
                             <Link to={`/bugs/${bugId}/edit`} className='btn btn-warning w-25'>Edit</Link>
                         
                     }
-					<Link to={`/bugs/${bugId}/edit`} className='btn btn-warning w-25'>Edit</Link>
+					<Link to={`/bugs/${bugId}/comments`} className='btn btn-secondary w-25'>Show Comments</Link>
 					</div>
 				</div>
 			</div>
