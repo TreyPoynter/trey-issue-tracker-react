@@ -21,10 +21,8 @@ Highlight the key features of your project.
    - Closing or Opening a Bug - While editing you can Open or Close bug to know if the bug is still in the software.
 
 ## Getting Started
-Provide instructions on how to get the project up and running.
 
-### Prerequisites
-Installed Dependencies
+### Installed Dependencies
 1. axios
 2. bootstrap
 3. jsonwebtoken
