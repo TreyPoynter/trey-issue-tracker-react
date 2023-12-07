@@ -66,7 +66,7 @@ export default function UserSummary() {
                     {loggedUser &&
                         (loggedUser.role.includes('technical manager') ||
                             user._id == loggedUser._id) &&
-                        <div id='btns' className='mt-auto d-flex justify-content-lg-around'>
+                        <div id='btns' className='mt-auto d-flex justify-content-lg-around mb-4'>
                             <Link to={`/users/${user._id}/edit`} className='btn btn-warning w-100'>Edit</Link>
                         </div>
                     }

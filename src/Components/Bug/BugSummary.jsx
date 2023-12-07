@@ -75,7 +75,7 @@ export default function BugSummary() {
 								<p>Not Assigned to Anyone</p>}
 						</div>
 					</div>
-					<div id='btns' className='mt-auto d-flex justify-content-lg-around'>
+					<div id='btns' className='mt-auto d-flex justify-content-lg-around mb-4'>
 					{user &&
                         (user.role.includes('business analyst') ||
                         user._id == user._id) &&
