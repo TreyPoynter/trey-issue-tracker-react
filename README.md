@@ -32,6 +32,19 @@ Make sure you have the following dependencies installed:
 6. react-router-dom
 7. react-toastify
 
+### Installation
+Install the project on your local device with the following steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/TreyPoynter/trey-issue-tracker-react.git
+2. Install dependencies
+    ```bash
+    npm i
+3. Startup Localhost
+    ```bash
+    npm run dev
+
 ## Usage
 
 ### 1. Creating a New Bug
@@ -50,23 +63,11 @@ To edit an existing bug, adhere to the following steps:
 ### 3. Assigning Bugs
 Assigning bugs helps in distributing responsibilities. Here's how you can assign a bug:
 
-1. Open the bug you want to assign.
-2. Look for the "Assignee" or "Assigned To" field.
-3. Select the user you want to assign the bug to from the dropdown menu.
-4. Save the changes.
+1. Open the bug list and select the "Assign Bug" button
+2. Select the user you want to assign the bug to from the dropdown menu.
+3. Save the changes.
 
-### Installation
-Install the project on your local device with the following steps:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/TreyPoynter/trey-issue-tracker-react.git
-2. Install dependencies
-    ```bash
-    npm i
-3. Startup Localhost
-    ```bash
-    npm run dev
 
 ## License
 This project is licensed under the MIT License
