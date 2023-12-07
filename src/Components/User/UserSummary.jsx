@@ -1,13 +1,15 @@
 import '../../assets/css/summaryCard.css'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function UserSummary() {
+    const navigate = useNavigate();
     const loggedUser = JSON.parse(localStorage.getItem('user'));
     const userId = useParams().userId;
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    console.log(history)
     useEffect(() => {
         setIsLoading(true);
         axios.get(`${import.meta.env.VITE_API_URL}/api/users/${userId}`, { withCredentials: true })
@@ -41,12 +43,15 @@ export default function UserSummary() {
     const day = dateCreated.getDate();
     const year = dateCreated.getFullYear();
     const formattedDate = month + ' ' + day + ', ' + year;
+    const goBack = () => {
+        navigate(-1); // This function takes you back to the previous page.
+      };
     return (
         <>
             <div id="body-div">
                 <div className="form d-flex flex-column" id='bug-card'>
                     <div className='d-flex justify-content-between'>
-                        <Link to='/users/list'><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
+                        <Link onClick={() => goBack()}><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
                     </div>
                     <div className=''>
                         <h2 className="mb-0 pb-2 display-5 text-center">{user.fullName}</h2>
