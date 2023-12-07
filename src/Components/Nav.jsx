@@ -59,11 +59,11 @@ export default function Navbar({ auth, user, onLogout }) {
                         user ?
                             <div id='nav-user' className="w-10 justify-content-around d-flex align-items-center">
                                 <Link className="fa-solid fa-user fa-xl text-black" to={`users/${user._id}`}></Link>
-                                <Link type='button' onClick={(evt) => {handleLogout(evt);}} to='login'>Logout</Link>
+                                <Link type='button' className='nav-link' onClick={(evt) => {handleLogout(evt);}} to='login'>Logout</Link>
                             </div> :
                             <div id='nav-user' className="w-10 justify-content-around d-flex">
-                                <Link to='register'>Register</Link>
-                                <Link to='login'>Login</Link>
+                                <Link className='nav-link' to='register'>Register</Link>
+                                <Link className='nav-link' to='login'>Login</Link>
                             </div>
                     }
                     <div className="collapse navbar-collapse" id="navbarNav">
