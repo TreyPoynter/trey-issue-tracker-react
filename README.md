@@ -65,6 +65,9 @@ Install the project on your local device with the following steps:
 3. Startup Localhost
     ```bash
     npm run dev
+4. Environment Variables
+  - VITE_API_URL
 
 ## License
 This project is licensed under the MIT License
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
