@@ -6,9 +6,11 @@ team stay organized and on track with bug tracking and resolution.
 
 ## Table of Contents
 - [Features](#features)
-- [Getting Started](#getting-started)
-  - [Installation](#installation)
 - [Usage](#usage)
+- [Getting Started](#getting-started)
+  - [Installed Dependencies](#installed-dependencies)
+  - [Installation](#installation)
+
 
 ## Features
 Explore the key features that make my Issue Tracker stand out:
