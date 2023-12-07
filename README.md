@@ -17,6 +17,7 @@ Explore the key features that make my Issue Tracker stand out:
 2. **Collaborate:** Foster communication by commenting on bugs created by you or other users.
 3. **Modify Bug:** Enjoy the flexibility to edit bugs with the appropriate account permissions.
    - Open or Close a Bug: Change the status of a bug to reflect its current state.
+4. **Assign Bugs:** Enjoy the flexibility to edit bugs with the appropriate account permissions.
 
 ## Getting Started
 
@@ -46,6 +47,14 @@ To edit an existing bug, adhere to the following steps:
 2. Only Business Analysts can edit any bug.
 3. Modify the required fields accordingly.
 
+### 3. Assigning Bugs
+Assigning bugs helps in distributing responsibilities. Here's how you can assign a bug:
+
+1. Open the bug you want to assign.
+2. Look for the "Assignee" or "Assigned To" field.
+3. Select the user you want to assign the bug to from the dropdown menu.
+4. Save the changes.
+
 ### Installation
 Install the project on your local device with the following steps:
 
@@ -57,7 +66,7 @@ Install the project on your local device with the following steps:
     npm i
 3. Startup Localhost
     ```bash
-    npm run start dev
+    npm run dev
 
 ## License
 This project is licensed under the MIT License
