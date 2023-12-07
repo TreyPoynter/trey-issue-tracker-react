@@ -1,9 +1,18 @@
 /* eslint-disable */
 import '../assets/css/home.css'
-import LootBug from '../assets/images/Golden_LootBug.png'
 import { Link } from 'react-router-dom'
 
 export default function Home({ user }) {
+    function displayGreeting() {
+        const hour = new Date().getHours();
+        if (hour >= 0 && hour < 12) {
+            return `Good Morning, ${user.givenName}`;
+        } else if (hour >= 12 && hour < 18) {
+            return `Good Afternoon, ${user.givenName}`;
+        } else {
+            return `Good Evening, ${user.givenName}`;
+        }
+    }
     return (
         <>
             <div className=''>
@@ -18,7 +27,7 @@ export default function Home({ user }) {
                                 {
                                     user ? (
                                         <p className='display-1 fw-bold'>
-                                            Hello, {user.givenName}
+                                            {displayGreeting()}
                                         </p>) :
                                         <p className='display-2 fw-bold'>
                                             <Link to='/login' className='link-light'>Login</Link> or <Link to='/register'
@@ -26,11 +35,7 @@ export default function Home({ user }) {
                                         </p>
                                 }
                             </div>
-                            <div className='col-4 d-flex justify-content-center '>
-                                <img id='bug-img' src={LootBug} alt="" height={250} />
-                            </div>
                         </div>
-
                     </div>
                 </section>
             </div>
