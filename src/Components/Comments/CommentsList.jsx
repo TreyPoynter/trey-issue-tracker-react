@@ -1,24 +1,32 @@
 /*eslint-disable */
 import { useParams, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import '../../assets/css/comment.css'
 import CommentItem from "./CommentItem";
 import AddCommment from "./AddComment";
 
 export default function CommentsList() {
+    const scrollContainerRef = useRef(null);
     const user = JSON.parse(localStorage.getItem('user'));
     const bugId = useParams().bugId;
     const [comments, setComments] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
+    const scrollToBottom = () => {
+        if (scrollContainerRef.current) {
+          //? Scroll to the bottom of the comments list
+          scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
+        }
+    };
     function fetchComments()  {
         console.log('FETCHING')
         setIsLoading(true)
         axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/${bugId}/comment/list`, { withCredentials: true })
             .then(
                 res => {
-                    setComments(res.data)
+                    setComments(res.data);
+                    scrollToBottom();
                 }
             ).catch(error => { console.log(error) })
             .finally(() => setIsLoading(false));
@@ -40,7 +48,7 @@ export default function CommentsList() {
                     <div id='commentList-load'>
                         <div className="square-loading"></div>
                     </div>
-                    <AddCommment fetchComments={fetchComments} />
+                    <AddCommment fetchComments={fetchComments}/>
                 </div>
             </div>
         )
@@ -56,7 +64,7 @@ export default function CommentsList() {
                     <div className=''>
                         <h2 className="mb-3 pb-2 display-5 text-center border-bottom pb-2">Comments</h2>
                     </div>
-                    <div id={comments.length > 0 ? `commentList` : 'commentList-load'}>
+                    <div ref={scrollContainerRef} id={comments.length > 0 ? `commentList` : 'commentList-load'}>
                         {
                             comments.length < 1 ?
                                 <div className="text-center">
