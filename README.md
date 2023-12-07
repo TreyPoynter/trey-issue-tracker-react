@@ -19,6 +19,28 @@ Explore the key features that make my Issue Tracker stand out:
    - Open or Close a Bug: Change the status of a bug to reflect its current state.
 4. **Assign Bugs:** Enjoy the flexibility to edit bugs with the appropriate account permissions.
 
+## Usage
+
+### 1. Creating a New Bug
+Follow these steps to report a bug:
+
+1. Login or Register an account.
+2. Provide a title, description, and classification for the bug.
+
+### 2. Editing an Existing Bug
+To edit an existing bug, adhere to the following steps:
+
+1. Login or Register an account.
+2. Only Business Analysts can edit any bug.
+3. Modify the required fields accordingly.
+
+### 3. Assigning Bugs
+Assigning bugs helps in distributing responsibilities. Here's how you can assign a bug:
+
+1. Open the bug list and select the "Assign Bug" button
+2. Select the user you want to assign the bug to from the dropdown menu.
+3. Save the changes.
+
 ## Getting Started
 
 ### Installed Dependencies
@@ -44,28 +66,6 @@ Install the project on your local device with the following steps:
 3. Startup Localhost
     ```bash
     npm run dev
-
-## Usage
-
-### 1. Creating a New Bug
-Follow these steps to report a bug:
-
-1. Login or Register an account.
-2. Provide a title, description, and classification for the bug.
-
-### 2. Editing an Existing Bug
-To edit an existing bug, adhere to the following steps:
-
-1. Login or Register an account.
-2. Only Business Analysts can edit any bug.
-3. Modify the required fields accordingly.
-
-### 3. Assigning Bugs
-Assigning bugs helps in distributing responsibilities. Here's how you can assign a bug:
-
-1. Open the bug list and select the "Assign Bug" button
-2. Select the user you want to assign the bug to from the dropdown menu.
-3. Save the changes.
 
 
 
