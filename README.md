@@ -1,25 +1,28 @@
 # Issue Tracker
 
-Create, Edit, Collaborate, and Manage software bugs throughout your projects to keep you and your team on track
+Welcome to the Issue Tracker, a powerful tool I designed to help developers create, edit, collaborate, 
+and manage software bugs seamlessly throughout your projects. This platform ensures that you and your 
+team stay organized and on track with bug tracking and resolution.
 
 ## Table of Contents
 - [Features](#features)
 - [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
 
 ## Features
-Highlight the key features of your project.
+Explore the key features that make my Issue Tracker stand out:
 
-1. **Create a bug:** As long you have an account with us you can create a bug and save it in our MongoDB servers
-2. **Collaborate:** You can comment on bugs that you or other users have created
-3. **Modify Bug:** If you have the specified permissions you may edit a bug
-   - Closing or Opening a Bug - While editing you can Open or Close bug to know if the bug is still in the software.
+1. **Create a Bug:** With a registered account, effortlessly create and store bugs in our secure MongoDB servers.
+2. **Collaborate:** Foster communication by commenting on bugs created by you or other users.
+3. **Modify Bug:** Enjoy the flexibility to edit bugs with the appropriate account permissions.
+   - Open or Close a Bug: Change the status of a bug to reflect its current state.
 
 ## Getting Started
 
 ### Installed Dependencies
+Make sure you have the following dependencies installed:
+
 1. axios
 2. bootstrap
 3. jsonwebtoken
@@ -31,24 +34,30 @@ Highlight the key features of your project.
 ## Usage
 
 ### 1. Creating a New Bug
-To report a bug, follow these steps:
-1. Login or Register an account with us
-2. Give the bug a title, description, and classification
+Follow these steps to report a bug:
+
+1. Login or Register an account.
+2. Provide a title, description, and classification for the bug.
+
 ### 2. Editing an Existing Bug
-To edit an existing bug, follow the steps below:
-1. Login or Register an account with us
-2. Only Business Analysts can edit ANY bug.
-3. Edit the fields displayed
+To edit an existing bug, adhere to the following steps:
+
+1. Login or Register an account.
+2. Only Business Analysts can edit any bug.
+3. Modify the required fields accordingly.
 
 ### Installation
-Step-by-step guide on how to install the project on your own device.
+Install the project on your local device with the following steps:
 
 1. Clone the repository:
    ```bash
-   https://github.com/TreyPoynter/trey-issue-tracker-react.git
+   git clone https://github.com/TreyPoynter/trey-issue-tracker-react.git
 2. Install dependencies
     ```bash
     npm i
 3. Startup Localhost
     ```bash
     npm run start dev
+
+## License
+This project is licensed under the MIT License
