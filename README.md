@@ -10,6 +10,8 @@ team stay organized and on track with bug tracking and resolution.
 - [Getting Started](#getting-started)
   - [Installed Dependencies](#installed-dependencies)
   - [Installation](#installation)
+- [Support](#support)
+- [License](#license)
 
 
 ## Features
@@ -68,6 +70,9 @@ Install the project on your local device with the following steps:
 4. Environment Variables
   - VITE_API_URL
 
+## Support
+For support, email treypoynter@gmail.com for more information.
+
 ## License
-This project is licensed under the MIT License
+This project is licensed under the MIT License --
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
