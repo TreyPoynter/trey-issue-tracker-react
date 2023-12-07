@@ -67,9 +67,6 @@ Install the project on your local device with the following steps:
 3. Startup Localhost
     ```bash
     npm run dev
-4. Environment Variables
-  ```bash
-  VITE_API_URL
 
 ## Support
 For support, email treypoynter@gmail.com for more information.
