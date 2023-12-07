@@ -36,6 +36,9 @@ export default function EditUser({ auth, showSuccess, showError, onLogin }) {
             ).catch(error => { console.log(error) })
             .finally(() => { setIsLoading(false); });
     }, []);
+    const goBack = () => {
+        nav(-1);
+    }
     function editUser(evt) {
         const apiLink = user._id != loggedUser._id ? `${import.meta.env.VITE_API_URL}/api/users/${userId}` :
             `${import.meta.env.VITE_API_URL}/api/users/me`;
@@ -78,7 +81,7 @@ export default function EditUser({ auth, showSuccess, showError, onLogin }) {
                     localStorage.setItem('user', JSON.stringify(user));
                     onLogin(res.data.authToken, user);
                 }
-                nav('/users/list');
+                goBack();
                 showSuccess(`Successfully Updated ${userId}`);
             })
             .catch(err => {
@@ -112,7 +115,7 @@ export default function EditUser({ auth, showSuccess, showError, onLogin }) {
                     handleCancel={handleCancel} obj={user} />}
                 <div className="centered-form" id='edit-form'>
                     <div className='d-flex justify-content-between'>
-                        <Link to={`/users/list`}><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
+                        <Link onClick={() => goBack()}><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
                     </div>
                     <h2 className="mb-3">Edit User</h2>
                     <form onSubmit={(evt) => editUser(evt)}>

@@ -33,6 +33,9 @@ export default function EditBug({ auth, showSuccess, showError }) {
 			).catch(error => { console.log(error); })
 			.finally(() => { setIsLoading(false); });
 	}, []);
+	const goBack = () => {
+        nav(-1);
+    }
 	function handleClosedState() {
 		console.log("CLOSE")
 		axios.put(`${import.meta.env.VITE_API_URL}/api/bugs/${bugId}/close`,
@@ -69,7 +72,7 @@ export default function EditBug({ auth, showSuccess, showError }) {
 			{ ...updatedBug }, { withCredentials: true })
 			.then(res => {
 
-				nav('/bugs/list');
+				goBack();
 				showSuccess(`Successfully Updated ${bugId}`);
 				console.log(res)
 			})
@@ -107,7 +110,7 @@ export default function EditBug({ auth, showSuccess, showError }) {
 			<div id="body-div">
 				<div className="centered-form">
 					<div className='d-flex justify-content-between'>
-						<Link to='/bugs/list'><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
+						<Link onClick={() => goBack()}><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
 						<ToggleSlider bool={isClosed} toggleBool={changeClosedState} />
 					</div>
 					<h2 className="mb-3">Edit Bug</h2>

@@ -44,8 +44,8 @@ export default function UserSummary() {
     const year = dateCreated.getFullYear();
     const formattedDate = month + ' ' + day + ', ' + year;
     const goBack = () => {
-        navigate(-1); // This function takes you back to the previous page.
-      };
+        navigate(-1);
+    };
     return (
         <>
             <div id="body-div">
