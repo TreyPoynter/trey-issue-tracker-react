@@ -7,6 +7,7 @@ team stay organized and on track with bug tracking and resolution.
 ## Table of Contents
 - [Features](#features)
 - [Usage](#usage)
+- [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
   - [Installed Dependencies](#installed-dependencies)
   - [Installation](#installation)
@@ -41,6 +42,12 @@ Assigning bugs helps in distributing responsibilities. Here's how you can assign
 1. Open the bug list and select the "Assign Bug" button
 2. Select the user you want to assign the bug to from the dropdown menu.
 3. Save the changes.
+
+## Tech Stack
+
+**Client:** React
+
+**Server:** Node, Express, MongoDB
 
 ## Getting Started
 
