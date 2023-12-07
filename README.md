@@ -19,7 +19,7 @@ Explore the key features that make my Issue Tracker stand out:
 2. **Collaborate:** Foster communication by commenting on bugs created by you or other users.
 3. **Modify Bug:** Enjoy the flexibility to edit bugs with the appropriate account permissions.
    - Open or Close a Bug: Change the status of a bug to reflect its current state.
-4. **Assign Bugs:** Enjoy the flexibility to edit bugs with the appropriate account permissions.
+   - Assign Bugs: Enjoy the flexibility to edit bugs with the appropriate account permissions.
 
 ## Usage
 
