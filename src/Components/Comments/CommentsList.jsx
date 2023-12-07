@@ -69,7 +69,7 @@ export default function CommentsList() {
                         }
 
                     </div>
-                    <AddCommment user={user} />
+                    <AddCommment fetchComments={fetchComments}/>
                 </div>
             </div>
         </>

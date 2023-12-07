@@ -27,7 +27,7 @@ export default function CommentItem({ comment, user }) {
                     </div>
                 </div>
                 <div className="mt-2">
-                    <p className="comment-text">{comment.text}</p>
+                    <p className={`comment-text ${user._id == comment.author_id && 'text-end'}`}>{comment.text}</p>
                 </div>
             </div>
         </div>
