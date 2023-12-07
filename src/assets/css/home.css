@@ -1,7 +1,8 @@
 .jumbotron {
+    border-top: 65px solid rgb(215, 218, 223);
     background-image: linear-gradient(rgba(0, 0, 0, 0.532), rgba(0, 0, 0, 0.586)), url('../images/code.jpg');
     color: #fff;
-    padding: 60px 0;
+    padding-bottom: 60px;
 }
 
 h1 span {
@@ -52,6 +53,11 @@ h1 span {
 @media screen and (max-width:1200px) {
     .jumbotron {
         background-position: center;
+    }
+}
+@media screen and (max-width:310px) {
+    .jumbotron {
+        border-top: 80px solid rgb(215, 218, 223);
     }
 }
 
