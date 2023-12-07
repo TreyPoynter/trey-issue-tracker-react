@@ -68,11 +68,12 @@ Install the project on your local device with the following steps:
     ```bash
     npm run dev
 4. Environment Variables
-  - VITE_API_URL
+  ```bash
+  VITE_API_URL
 
 ## Support
 For support, email treypoynter@gmail.com for more information.
 
 ## License
-This project is licensed under the MIT License --
+This project is licensed under the MIT License--
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
