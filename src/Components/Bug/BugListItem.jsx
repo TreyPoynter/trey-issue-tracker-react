@@ -34,7 +34,7 @@ export default function BugListItem({ bug }) {
 					<div className="flex-grow-1"></div> {/* This div will push the info-footers to the bottom */}
 					<div className="d-flex flex-column justify-content-end align-items-end">
 						<p className="info-footer"><i class="fa-solid fa-user-tag"></i> Assigned to <span className="by-name">
-							John Doe</span>
+							{bug.assignedInfo ? bug.assignedInfo.assignedToName : 'No one'}</span>
 						</p>
 						<p className="info-footer"><i class="fa-regular fa-clock"></i> Created by <span className="by-name">
 							{bug.createdBy.name}</span> on <span className="by-name">{formatDate(bug.dateCreated)}</span>
