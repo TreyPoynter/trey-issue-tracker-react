@@ -11,6 +11,19 @@
     height: 75%;
 }
 
+.btn-edit {
+    background-color: #183fc1 !important;
+    color : #fff !important;
+}
+#btn-reassign {
+    background-color: #0d44da !important;
+    color : #fff !important;
+}
+.btn-comments {
+    background-color: #616b8d !important;
+    color : #fff !important;
+}
+
 #btns {
     justify-content: space-around;
 }

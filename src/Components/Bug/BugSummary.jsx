@@ -48,7 +48,7 @@ export default function BugSummary() {
 	return (
 		<>
 			<div id="body-div">
-				<div className="form d-flex flex-column" id='bug-card'>
+				<div className="form d-flex flex-column info-card-form" id='bug-card'>
 					<div className='d-flex justify-content-between'>
 						<Link to='/bugs/list'><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
 					</div>
@@ -79,11 +79,14 @@ export default function BugSummary() {
 					{user &&
                         (user.role.includes('business analyst') ||
                         user._id == user._id) &&
-                        
-                            <Link to={`/bugs/${bugId}/edit`} className='btn btn-warning w-25'>Edit</Link>
-                        
+                        <Link to={`/bugs/${bugId}/edit`} className='btn btn-edit w-25'>Edit</Link>
                     }
-					<Link to={`/bugs/${bugId}/comments`} className='btn btn-secondary w-25'>Show Comments</Link>
+					{user &&
+                        (user.role.includes('technical manager') ||
+                        user._id == user._id) &&
+                        <Link to={`/bugs/${bugId}/reassign`} id='btn-reassign' className='btn w-25'>Reassign</Link>
+                    }
+					<Link to={`/bugs/${bugId}/comments`} className='btn btn-comments w-25'>Show Comments</Link>
 					</div>
 				</div>
 			</div>
