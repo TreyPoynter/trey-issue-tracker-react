@@ -1,6 +1,7 @@
 /* eslint-disable */
 import { Link, NavLink } from "react-router-dom"
 import '../../assets/css/infoCard.css'
+import { useState } from "react";
 
 export default function BugListItem({ bug }) {
 	const user = JSON.parse(localStorage.getItem('user'));

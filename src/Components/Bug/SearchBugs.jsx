@@ -2,14 +2,14 @@
 import axios from "axios";
 import { useState } from "react";
 
-export default function SearchBugs({ setBugs }) {
+export default function SearchBugs({ setBugs, page }) {
 
     const [sort, setSort] = useState('');
     const [search, setSearch] = useState('');
-    const [pageNum, setPageNum] = useState(1);
 
     const onFormSubmit = (search, sortBy) => {
-        axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/list/`, {withCredentials:true, params:{keywords:search, sortBy}})
+        axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/list/`, {withCredentials:true, 
+            params:{keywords:search}})
         .then(res => {
             console.log(res)
             if (res.data.length < 1) {
