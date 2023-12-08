@@ -79,14 +79,20 @@ export default function BugSummary() {
 					{user &&
                         (user.role.includes('business analyst') ||
                         user._id == user._id) &&
-                        <Link to={`/bugs/${bugId}/edit`} className='btn btn-edit w-25'>Edit</Link>
+                        <Link to={`/bugs/${bugId}/edit`} className='btn btn-edit w-25 col-md-4'>
+							<i className="fa-solid fa-pencil me-2"></i> Edit
+						</Link>
                     }
 					{user &&
                         (user.role.includes('technical manager') ||
                         user._id == user._id) &&
-                        <Link to={`/bugs/${bugId}/reassign`} id='btn-reassign' className='btn w-25'>Reassign</Link>
+							<Link to={`/bugs/${bugId}/reassign`} id='btn-reassign' className='btn w-25'>
+								<i className="fa-solid fa-user-tag me-2"></i> Reassign
+							</Link>
                     }
-					<Link to={`/bugs/${bugId}/comments`} className='btn btn-comments w-25'>Show Comments</Link>
+					<Link to={`/bugs/${bugId}/comments`} className='btn btn-comments w-25 col-md-4'>
+					<i className="fa-regular fa-comment-dots me-2"></i> Show Comments
+					</Link>
 					</div>
 				</div>
 			</div>

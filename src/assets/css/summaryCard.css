@@ -178,13 +178,19 @@
         height: 80%;
     }
 
-    #btns>button {
+    #btns>.btn {
         flex-direction: column;
         width: 100%;
-        margin-bottom: 5px;
+        margin-bottom: 3px;
     }
 }
 @media screen and (max-width: 450px) {
+    #btns {
+        flex-direction: column;
+    }
+    #btns>.btn {
+        width: 100% !important;
+    }
 }
 
 @media screen and (max-height: 780px) {
