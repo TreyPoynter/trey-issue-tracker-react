@@ -47,6 +47,8 @@ export default function BugList({user}) {
 						))}
 				</div>
 			</div>
+			<div id="content">
+			</div>
 		</>
 	);
 }
