@@ -93,7 +93,7 @@ export default function Navbar({ auth, user, onLogout }) {
                                             )}
                                             {user &&  //ku fucking b uch p retariuxxtduxi hate shut the fuc
 						                    user.role.includes('business analyst') &&
-						                        <Link to='bugs/add' className="nav-link active">Create Bug</Link>
+						                        <Link to='bugs/add' className="nav-link active">Report a Bug</Link>
 					                        }
                                         </li>
                                     </div>

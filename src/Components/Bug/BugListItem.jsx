@@ -15,7 +15,7 @@ export default function BugListItem({ bug }) {
 		return formattedDate;
 	}
 	return (
-		<div className="col-lg-4 col-md-6 mb-3">
+		<div className="col-lg-4 col-md-6 mb-3 d-flex justify-content-center">
 			<Link className="text-decoration-none" to={`/bugs/${bug._id}`}>
 				<div className="info-card d-flex flex-column pt-2">
 					<div className="d-flex justify-content-between mb-2">
