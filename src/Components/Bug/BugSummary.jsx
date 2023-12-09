@@ -56,16 +56,24 @@ export default function BugSummary() {
 					<h3 className="mb-0 pb-2 fs-5 text-center">Classification: {bug.classification.classifiedAs}</h3>
 					<h2 className="border-bottom pb-2 fs-5 text-center">{bug.description}</h2>
 				</div>
-				<div id='info'>
-					<div className="d-flex flex-column" id='created-info'>
-						<p className='border-bottom fs-3 mb-0'>Created Info</p>
+				<div id='info' className='info-section'>
+					<div className="d-flex flex-column ms-3" id='created-info'>
+						<p className=' fs-3 mb-0'><i className="fa-solid fa-helmet-safety me-3"></i>Created Info :</p>
 						<ul>
 							<li>Created By - {bug.createdBy.name}</li>
 							<li>Created On - {formatDate(bug.dateCreated)}</li>
 						</ul>
 					</div>
-					<div className="d-flex flex-column" id='assignment-info'>
-						<p className='border-bottom fs-3 mb-0'>Assigned Info</p>
+					<div className="d-flex flex-column ms-3" id='assignment-info'>
+						<p className='fs-3 mb-0'><i className="fa-solid fa-folder me-3"></i>Closed Info :</p>
+						<ul>
+							<li>Status : {bug.closedInfo.closed ? 'Closed' : 'Open'}</li>
+							{bug.closedInfo.closedBy && <li>Last Closed by - {bug.closedInfo.closedBy.fullName}</li>}
+							{bug.closedInfo.closedOn && <li>Last Closed - {formatDate(bug.closedInfo.closedOn)}</li>}
+						</ul>
+					</div>
+					<div className="d-flex flex-column ms-3" id='assignment-info'>
+						<p className='fs-3 mb-0'><i className="fa-solid fa-user-tag me-3"></i>Assigned Info :</p>
 						{bug.assignedInfo ?
 							<ul>
 								<li>Assigned To - {bug.assignedInfo.assignedToName}</li>
@@ -73,8 +81,19 @@ export default function BugSummary() {
 							</ul> :
 							<p>Not Assigned to Anyone</p>}
 					</div>
+					{
+						bug.update &&
+						<div className="d-flex flex-column ms-3" id='assignment-info'>
+							<p className='fs-3 mb-0'><i className="fa-solid fa-pencil me-3"></i>Updated Info :</p>
+							<ul>
+								<li>Updated by - {bug.update.lastUpdatedBy}</li>
+								<li>Last Updated - {formatDate(bug.update.lastUpdated)}</li>
+							</ul>
+						</div>
+					}
+
 				</div>
-				<div id='btns' className='mt-auto d-flex flex-column mb-4'>
+				<div id='btns' className='mt-auto d-flex flex-column'>
 					{user &&
 						(user.role.includes('business analyst') ||
 							user._id === user._id) &&

@@ -50,6 +50,17 @@
     /* Set a maximum height for the button container */
 }
 
+#info {
+    max-height: 350px; /* Set a maximum height for the scrollable area */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+
+.info-section {
+    background-color: #f4f4f4; /* Light Gray Background */
+    border-radius: 15px;
+    box-shadow: inset 5px 5px 3px #bdbdbd, inset -5px -5px 3px #ffffff; /* Light Gray and White Box Shadow */
+}
+
 #btns>.btn {
     width: 100%;
     margin-bottom: 3px;
