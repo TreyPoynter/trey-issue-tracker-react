@@ -34,8 +34,8 @@ export default function UserList({user}) {
             <div id="content">
             </div>
             <h3 className='text-center display-1 mb-4'>User List</h3>
-            <div className='container'>
-                <div className='row d-flex justify-content-start'>
+            <div className='container '>
+                <div className='row d-flex justify-content-center'>
                     {users.length < 1 ? <h3>No results...</h3> :
                         users.map(user => {
                             return (
