@@ -38,7 +38,7 @@ export default function CommentsList() {
     if (isLoading) {
         return (
             <div id="body-div">
-                <div className="form d-flex flex-column" id='bug-card'>
+                <div className="comment form d-flex flex-column" id='bug-card'>
                     <div className='d-flex justify-content-between'>
                         <Link to={`/bugs/${bugId}`}><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
                     </div>
