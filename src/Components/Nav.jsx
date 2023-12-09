@@ -7,7 +7,7 @@ import axios from 'axios';
 
 export default function Navbar({ auth, user, onLogout }) {
     const navigate = useNavigate();
-    const navLinks = document.getElementsByClassName('nav-link');
+    
     function collapseOnClick() {
         const navbarNav = document.getElementById('navbarNav');
         if (navbarNav.classList.contains('show')) {
