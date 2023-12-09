@@ -51,14 +51,17 @@
 }
 
 #info {
-    max-height: 350px; /* Set a maximum height for the scrollable area */
-    overflow-y: auto; /* Enable vertical scrolling */
-  }
+    max-height: 350px;
+    /* Set a maximum height for the scrollable area */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+}
 
 .info-section {
-    background-color: #f4f4f4; /* Light Gray Background */
-    border-radius: 15px;
-    box-shadow: inset 5px 5px 3px #bdbdbd, inset -5px -5px 3px #ffffff; /* Light Gray and White Box Shadow */
+    background-color: #f4f4f4;
+    /* Light Gray Background */
+    box-shadow: inset 5px 5px 3px #bdbdbd, inset -5px -5px 3px #bdbdbd;
+    /* Light Gray and White Box Shadow */
 }
 
 #btns>.btn {
@@ -74,7 +77,7 @@
         width: 100%;
     }
 
-    
+
 
     #info {
         display: flex;
@@ -89,7 +92,9 @@
         margin-top: 80px;
         margin-bottom: 80px;
     }
-    #email, #member-since {
+
+    #email,
+    #member-since {
         font-size: 15px;
     }
 
