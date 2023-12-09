@@ -52,7 +52,7 @@ export default function BugListItem({ bug }) {
 							{bug.assignedInfo ? bug.assignedInfo.assignedToName : 'No one'}</span>
 						</p>
 						<p className="info-footer"><i class="fa-regular fa-clock"></i> Created by <span className="by-name">
-							{bug.createdBy.name}</span> on <span className="by-name">{timeElapsedAgo(new Date(bug.dateCreated))}</span>
+							{bug.createdBy.name}</span> <span className="by-name">{timeElapsedAgo(new Date(bug.dateCreated))}</span>
 						</p>
 					</div>
 				</div>
