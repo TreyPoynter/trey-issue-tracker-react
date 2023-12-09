@@ -1,7 +1,6 @@
 /* eslint-disable */
 import '../assets/css/home.css'
 import { Link } from 'react-router-dom'
-import BugAnimation from './BugAnimation';
 
 export default function Home({ user }) {
     function displayGreeting() {
