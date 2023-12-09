@@ -1,6 +1,6 @@
 .comment {
-    width: 70%;
-    height: 80%;
+    width: 50%;
+    height: 75%;
 }
 #commentList {
     overflow-y: auto;
@@ -38,10 +38,8 @@
 .date{font-size: 11px}.comment-text{font-size: 12px}.fs-12{font-size: 12px}.shadow-none{box-shadow: none}.name{color: #007bff}.cursor:hover{color: blue}.cursor{cursor: pointer}.textarea{resize: none}
 
 @media screen and (max-height: 780px) {
-    .form {
+
+    .comment {
         width: 90%;
-        height: 100%;
-        margin-top: 80px;
-        margin-bottom: 80px;
     }
 }
