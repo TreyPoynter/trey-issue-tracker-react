@@ -38,7 +38,7 @@ export default function ReassignBug({ showSuccess }) {
         }).then(res => {
             showSuccess(`Successfully Assigned Bug`);
             console.log(res);
-            navigate('/bugs/list');
+            navigate(`/bugs/${bug._id}`);
         }).catch(error => {
             const resError = error?.response?.data;
             console.log(resError);
@@ -56,7 +56,7 @@ export default function ReassignBug({ showSuccess }) {
                         users.map((user) => {
                             return (
                                 <div className="col-lg-4 col-md-6 mb-3">
-                                    <Link className="text-decoration-none" to={`/users/${user._id}`}>
+                                    <Link onClick={(evt) => handleReassigning(user._id, evt)} className="text-decoration-none">
                                         <div className="info-card reassign d-flex flex-column pt-2">
                                             <div className="info-card-image d-flex justify-content-center align-items-center">
                                                 <i class="fa-solid fa-user"></i>
