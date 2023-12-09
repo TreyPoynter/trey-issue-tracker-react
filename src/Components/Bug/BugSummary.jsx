@@ -19,12 +19,12 @@ export default function BugSummary() {
 			.finally(() => setIsLoading(false));
 	}, []);
 	if (isLoading) {
-        return(
-            <div id="body-div">
-                    <div className="square-loading"></div>
-            </div>
-        )
-    }
+		return (
+			<div id="body-div">
+				<div className="square-loading"></div>
+			</div>
+		)
+	}
 	if (!bug) {
 		return (
 			<div id='body-div'>
@@ -46,56 +46,54 @@ export default function BugSummary() {
 	}
 
 	return (
-		<>
-			<div id="body-div">
-				<div className="form d-flex flex-column info-card-form" id='bug-card'>
-					<div className='d-flex justify-content-between'>
-						<Link to='/bugs/list'><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
+		<div id="body-div">
+			<div className="form d-flex flex-column info-card-form" id='bug-card'>
+				<div className='d-flex justify-content-between'>
+					<Link to='/bugs/list'><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
+				</div>
+				<div className=''>
+					<h2 className="mb-0 pb-2 display-5 text-center">{bug.title}</h2>
+					<h3 className="mb-0 pb-2 fs-5 text-center">Classification: {bug.classification.classifiedAs}</h3>
+					<h2 className="border-bottom pb-2 fs-5 text-center">{bug.description}</h2>
+				</div>
+				<div id='info'>
+					<div className="d-flex flex-column" id='created-info'>
+						<p className='border-bottom fs-3 mb-0'>Created Info</p>
+						<ul>
+							<li>Created By - {bug.createdBy.name}</li>
+							<li>Created On - {formatDate(bug.dateCreated)}</li>
+						</ul>
 					</div>
-					<div className=''>
-						<h2 className="mb-0 pb-2 display-5 text-center">{bug.title}</h2>
-						<h3 className="mb-0 pb-2 fs-5 text-center">Classification : {bug.classification.classifiedAs}</h3>
-						<h2 className="border-bottom pb-2 fs-5 text-center">{bug.description}</h2>
-					</div>
-					<div id='info'>
-						<div className="d-flex flex-column" id='created-info'>
-							<p className='border-bottom fs-3 mb-0'>Created Info</p>
+					<div className="d-flex flex-column" id='assignment-info'>
+						<p className='border-bottom fs-3 mb-0'>Assigned Info</p>
+						{bug.assignedInfo ?
 							<ul>
-								<li>Created By - {bug.createdBy.name}</li>
-								<li>Created On - {formatDate(bug.dateCreated)}</li>
-							</ul>
-						</div>
-						<div className="d-flex flex-column" id='assignment-info'>
-							<p className='border-bottom fs-3 mb-0'>Assigned Info</p>
-							{bug.assignedInfo ?
-								<ul>
-									<li>Assigned To - {bug.assignedInfo.assignedToName}</li>
-									<li>Assigned On - {formatDate(bug.assignedInfo.assignedOn)}</li>
-								</ul> :
-								<p>Not Assigned to Anyone</p>}
-						</div>
-					</div>
-					<div id='btns' className='mt-auto d-flex justify-content-lg-around mb-4'>
-					{user &&
-                        (user.role.includes('business analyst') ||
-                        user._id == user._id) &&
-                        <Link to={`/bugs/${bugId}/edit`} className='btn btn-edit w-25 col-md-4'>
-							<i className="fa-solid fa-pencil me-2"></i> Edit
-						</Link>
-                    }
-					{user &&
-                        (user.role.includes('technical manager') ||
-                        user._id == user._id) &&
-							<Link to={`/bugs/${bugId}/reassign`} id='btn-reassign' className='btn w-25'>
-								<i className="fa-solid fa-user-tag me-2"></i> Reassign
-							</Link>
-                    }
-					<Link to={`/bugs/${bugId}/comments`} className='btn btn-comments w-25 col-md-4'>
-					<i className="fa-regular fa-comment-dots me-2"></i> Show Comments
-					</Link>
+								<li>Assigned To - {bug.assignedInfo.assignedToName}</li>
+								<li>Assigned On - {formatDate(bug.assignedInfo.assignedOn)}</li>
+							</ul> :
+							<p>Not Assigned to Anyone</p>}
 					</div>
 				</div>
+				<div id='btns' className='mt-auto d-flex flex-column mb-4'>
+					{user &&
+						(user.role.includes('business analyst') ||
+							user._id === user._id) &&
+						<Link to={`/bugs/${bugId}/edit`} className='btn btn-edit w-100 col-md-4'>
+							<i className="fa-solid fa-pencil me-2"></i> Edit
+						</Link>
+					}
+					{user &&
+						(user.role.includes('technical manager') ||
+							user._id === user._id) &&
+						<Link to={`/bugs/${bugId}/reassign`} id='btn-reassign' className='btn w-100'>
+							<i className="fa-solid fa-user-tag me-2"></i> Reassign
+						</Link>
+					}
+					<Link to={`/bugs/${bugId}/comments`} className='btn btn-comments w-100 col-md-4'>
+						<i className="fa-regular fa-comment-dots me-2"></i> Show Comments
+					</Link>
+				</div>
 			</div>
-		</>
+		</div>
 	)
 }

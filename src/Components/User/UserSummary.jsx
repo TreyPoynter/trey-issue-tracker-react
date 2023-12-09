@@ -47,37 +47,35 @@ export default function UserSummary() {
         navigate(-1);
     };
     return (
-        <>
-            <div id="body-div">
-                <div className="form d-flex flex-column" id='bug-card'>
-                    <div className='d-flex justify-content-between'>
-                        <Link onClick={() => goBack()}><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
-                    </div>
-                    <div className=''>
-                        <h2 className="mb-0 pb-2 display-5 text-center">{user.fullName}</h2>
-                        <h3 className="pb-2 fs-5 text-center border-bottom">
-                            Role{user.role.length > 1 && 's'} : {user ? user.role.map(r => r).join(', ') : 'Placeholder'}
-                        </h3>
-                    </div>
-                    <div id='info'>
-                        <div className="d-flex flex-column">
-                            <p className='border-bottom fs-3 mb-0'>Account Summary</p>
-                            <ul className='fs-5'>
-                                <li>Email : {user.email}</li>
-                                <li>Member Since : {formattedDate}</li>
-                            </ul>
-                        </div>
-                    </div>
-                    {loggedUser &&
-                        (loggedUser.role.includes('technical manager') ||
-                            user._id == loggedUser._id) &&
-                        <div id='btns' className='mt-auto d-flex justify-content-lg-around mb-4'>
-                            <Link to={`/users/${user._id}/edit`} className='btn btn-edit w-50'>Edit</Link>
-                        </div>
-                    }
-
+        <div id="body-div">
+            <div className="form d-flex flex-column">
+                <div className='d-flex justify-content-between'>
+                    <Link onClick={() => goBack()}><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
                 </div>
+                <div className='text-center'>
+                    <h2 className="mb-0 pb-2 display-5">{user.fullName}</h2>
+                    <h3 className="pb-2 fs-5 border-bottom">
+                        Role{user.role.length > 1 && 's'}: {user ? user.role.map(r => r).join(', ') : 'Placeholder'}
+                    </h3>
+                </div>
+                <div id='info' className="mt-3">
+                    <div className="d-flex flex-column">
+                        <p className='border-bottom fs-4 mb-0'>Account Summary :</p>
+                        <ul className='fs-5 list-group'>
+                            <li id='email' className='list-group-item'>Email: {user.email}</li>
+                            <li id='member-since' className='list-group-item'>Member Since: {formattedDate}</li>
+                        </ul>
+                    </div>
+                </div>
+                {loggedUser &&
+                    (loggedUser.role.includes('technical manager') ||
+                        user._id === loggedUser._id) &&
+                    <div id='' className='mt-auto d-flex justify-content-center'>
+                        <Link to={`/users/${user._id}/edit`} className='btn btn-edit w-75'>Edit</Link>
+                    </div>
+                }
             </div>
-        </>
+        </div>
+
     )
 }

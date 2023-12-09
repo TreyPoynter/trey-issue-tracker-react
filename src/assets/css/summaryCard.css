@@ -1,81 +1,90 @@
 .form {
     text-align: left;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #f8f8f8;
     width: 50%;
-    height: 75%;
+    min-height: 75%;
+}
+
+.btn-edit,
+#btn-reassign,
+.btn-comments {
+    margin-bottom: 3px;
 }
 
 .btn-edit {
     background-color: #183fc1 !important;
-    color : #fff !important;
+    color: #fff !important;
 }
+
 .btn-edit:hover {
     background-color: #1345e8 !important;
-    color : #fff !important;
+    color: #fff !important;
 }
+
 #btn-reassign {
     background-color: #0d44da !important;
-    color : #fff !important;
+    color: #fff !important;
 }
+
 #btn-reassign:hover {
     background-color: #0044ff !important;
-    color : #fff !important;
+    color: #fff !important;
 }
+
 .btn-comments {
     background-color: #616b8d !important;
-    color : #fff !important;
+    color: #fff !important;
 }
+
 .btn-comments:hover {
     background-color: #7380ac !important;
-    color : #fff !important;
+    color: #fff !important;
 }
 
 #btns {
-    justify-content: space-around;
+    flex-direction: column;
+    max-height: 300px;
+    /* Set a maximum height for the button container */
+}
+
+#btns>.btn {
+    width: 100%;
+    margin-bottom: 3px;
+}
+
+@media screen and (max-height: 780px) {
+
+    .form,
+    #created-info,
+    #assignment-info {
+        width: 100%;
+    }
+
+    
+
+    #info {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 @media screen and (max-width: 630px) {
     .form {
         width: 90%;
-        /* Adjust the width as needed */
         height: 80%;
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+    #email, #member-since {
+        font-size: 15px;
     }
 
     #btns>.btn {
         flex-direction: column;
         width: 100%;
         margin-bottom: 3px;
-    }
-}
-@media screen and (max-width: 450px) {
-    #btns {
-        flex-direction: column;
-    }
-    #btns>.btn {
-        width: 100% !important;
-    }
-}
-
-@media screen and (max-height: 780px) {
-    .form {
-        width: 100%;
-    }
-
-    #created-info {
-        width: 50%;
-    }
-
-    #assignment-info {
-        width: 50%;
-    }
-
-    #info {
-        display: flex;
     }
 }
