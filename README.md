@@ -1,3 +1,4 @@
+![Logo](./public/readme-logo.png)
 # Issue Tracker
 
 Welcome to the Issue Tracker, a powerful tool I designed to help developers create, edit, collaborate, 
