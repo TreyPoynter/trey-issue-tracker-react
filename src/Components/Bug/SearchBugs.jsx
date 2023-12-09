@@ -4,12 +4,12 @@ import { useState } from "react";
 
 export default function SearchBugs({ setBugs, page }) {
 
-    const [sort, setSort] = useState('');
+    const [sort, setSort] = useState('newest');
     const [search, setSearch] = useState('');
 
     const onFormSubmit = (search, sortBy) => {
         axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/list/`, {withCredentials:true, 
-            params:{keywords:search}})
+            params:{keywords:search, sortBy:sort}})
         .then(res => {
             console.log(res)
             if (res.data.length < 1) {
