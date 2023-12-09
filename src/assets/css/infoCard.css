@@ -7,6 +7,16 @@
     box-shadow: 5px 5px 8px #cfd8dc, -5px -5px 8px #ecf0f1; /* Bluish-White Box Shadow */
     transition: 0.4s;
 }
+.reassign {
+    padding: 20px;
+    width: 340px;
+    min-height: 230px;
+    border-radius: 20px;
+    background: #f0f5f5; /* Bluish-White Background */
+    box-shadow: 5px 5px 8px #cfd8dc, -5px -5px 8px #ecf0f1; /* Bluish-White Box Shadow */
+    transition: 0.4s;
+    text-align: center;
+}
 
 .badge {
     font-style: normal;
