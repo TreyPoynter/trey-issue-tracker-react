@@ -5,15 +5,29 @@ import { useState } from "react";
 
 export default function BugListItem({ bug }) {
 	const user = JSON.parse(localStorage.getItem('user'));
-	function formatDate(dateCreated) {
-		const date = new Date(dateCreated);
-
-		const formattedDate = date.toLocaleDateString('en-US', {
-			year: 'numeric',
-			month: '2-digit',
-			day: '2-digit'
-		});
-		return formattedDate;
+	function timeElapsedAgo(dateObject) {
+		const currentTimestamp = Math.floor(Date.now() / 1000);
+		const timestamp = Math.floor(dateObject.getTime() / 1000);
+		const timeDifference = currentTimestamp - timestamp;
+	
+		if (timeDifference < 60) {
+			return `${timeDifference} seconds ago`;
+		} else if (timeDifference < 3600) {
+			const minutes = Math.floor(timeDifference / 60);
+			return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+		} else if (timeDifference < 86400) {
+			const hours = Math.floor(timeDifference / 3600);
+			return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+		} else if (timeDifference < 2592000) {
+			const days = Math.floor(timeDifference / 86400);
+			return `${days} day${days > 1 ? 's' : ''} ago`;
+		} else if (timeDifference < 31536000) {
+			const months = Math.floor(timeDifference / 2592000);
+			return `${months} month${months > 1 ? 's' : ''} ago`;
+		} else {
+			const years = Math.floor(timeDifference / 31536000);
+			return `${years} year${years > 1 ? 's' : ''} ago`;
+		}
 	}
 	return (
 		<div className="col-lg-4 col-md-6 mb-3 d-flex justify-content-center">
@@ -38,7 +52,7 @@ export default function BugListItem({ bug }) {
 							{bug.assignedInfo ? bug.assignedInfo.assignedToName : 'No one'}</span>
 						</p>
 						<p className="info-footer"><i class="fa-regular fa-clock"></i> Created by <span className="by-name">
-							{bug.createdBy.name}</span> on <span className="by-name">{formatDate(bug.dateCreated)}</span>
+							{bug.createdBy.name}</span> on <span className="by-name">{timeElapsedAgo(new Date(bug.dateCreated))}</span>
 						</p>
 					</div>
 				</div>
