@@ -8,6 +8,7 @@
     min-height: 75%;
 }
 
+
 .btn-edit,
 #btn-reassign,
 .btn-comments {
@@ -75,6 +76,12 @@
     #created-info,
     #assignment-info {
         width: 100%;
+    }
+    .form {
+        width: 90%;
+        height: 80%;
+        margin-top: 80px;
+        margin-bottom: 80px;
     }
 
 
