@@ -1,9 +1,12 @@
 export default function Footer() {
+    const openNewTab = (url) => {
+        window.open(url, '_blank');
+      };
     return (
         <>
             <footer className="bg-dark text-white p-2 fixed-bottom text-center">
-                &copy; <a target="_blank" className="text-white text-decoration-none" href="https://github.com/TreyPoynter">
-                    Trey Poynter</a> 2023
+                &copy; <span className="clickable" onClick={() => openNewTab('https://github.com/TreyPoynter')}>
+                    Trey Poynter</span> 2023
             </footer>
         </>
     )
