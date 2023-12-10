@@ -78,7 +78,7 @@ export default function SearchBugs({ setBugs, page }) {
                 <div className="col-md-4 mb-3">
                     <select onChange={(e) => handleSortChange(e)}
                         id="sortBy" className="form-select" aria-label="Default select example">
-                        <option selected defaultValue={true} hidden disabled value={''}>Filter by...</option>
+                        <option selected defaultValue={true} value={''}>Classification</option>
                         <option value="newest">Newest</option>
                         <option value="oldest">Oldest</option>
                         <option value="title">Title</option>
