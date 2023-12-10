@@ -53,7 +53,6 @@ export default function BugList({user}) {
 			<div className='d-flex justify-content-center'>
 				<BugsPaging setPaging={setPage} allBugs={bugs} pageSize={6} pageNum={currPage}/>
 			</div>
-			
 			<div id="content">
 			</div>
 		</>
