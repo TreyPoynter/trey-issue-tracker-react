@@ -62,8 +62,20 @@ h1 span {
     }
 }
 @media screen and (max-width:310px) {
+
     .jumbotron {
         border-top: 80px solid rgb(215, 218, 223);
+    }
+    #nav-brand {
+        visibility: hidden;
+        position: relative;
+    }
+    #nav-brand:after {
+        visibility: visible;
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "Issue Tracker";
     }
 }
 

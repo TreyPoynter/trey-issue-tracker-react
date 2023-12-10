@@ -96,14 +96,14 @@ export default function BugSummary() {
 				<div id='btns' className='mt-auto d-flex flex-column'>
 					{user &&
 						(user.role.includes('business analyst') ||
-							user._id === user._id) &&
+							user._id === bug?.assignedInfo?.assignedToUserId) &&
 						<Link to={`/bugs/${bugId}/edit`} className='btn btn-edit w-100 col-md-4'>
 							<i className="fa-solid fa-pencil me-2"></i> Edit
 						</Link>
 					}
 					{user &&
 						(user.role.includes('technical manager') ||
-							user._id === user._id) &&
+							user._id === bug?.assignedInfo?.assignedToUserId) &&
 						<Link to={`/bugs/${bugId}/reassign`} id='btn-reassign' className='btn w-100'>
 							<i className="fa-solid fa-user-tag me-2"></i> Reassign
 						</Link>

@@ -68,3 +68,8 @@
         text-align: end;
     }
 }
+@media screen and (max-width: 380px) {
+    .fa-user {
+        margin-right: 10px;
+    }
+}
