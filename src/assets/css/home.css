@@ -32,6 +32,12 @@ h1 span {
     font-size: 1.5em;
 }
 
+@media screen and (max-width:480px) {
+    .notLoggedIn {
+        border-top: 80px solid rgb(215, 218, 223);
+    }
+}
+
 
 @media screen and (max-width:640px) {
     #jumbotron-content {

@@ -50,6 +50,15 @@
 }
 
 @media screen and (max-width: 480px) {
+    .column-and-right-align {
+        flex-direction: column;
+        text-align: end;
+        align-items: end !important;
+        font-size: 18px;
+    }
+    #register {
+        margin-bottom: 3px;
+    }
     #nav-user {
         margin-right: 0px;
         display: flex;

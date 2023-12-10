@@ -16,7 +16,7 @@ export default function Home({ user }) {
     return (
         <>
             <div className=''>
-                <section className="jumbotron" id='home'>
+                <section className={`jumbotron ${!user && ' notLoggedIn'}`} id='home'>
                     <div className="pe=0 container">
                         <div id='jumbotron-content' className="row mt-5 d-flex align-items-center">
                             <div className='slide-in-left col-8 d-flex justify-content-center flex-column'>
