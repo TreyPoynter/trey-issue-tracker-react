@@ -29,10 +29,18 @@ import CommentsList from './Components/Comments/CommentsList.jsx';
 function App() {
 	const [user, setUser] = useState(null);
 	const [auth, setAuth] = useState(null);
+	const [now, setNow] = useState(new Date());
 
 	useEffect(() => {
 		const localUser = JSON.parse(localStorage.getItem('user'));
-		const now = new Date();
+		// Function to update the current time
+		const updateCurrentTime = () => setNow(new Date());
+
+		// Set up an interval to update the time every second
+		const intervalId = setInterval(updateCurrentTime, 1000);
+	
+		// Clean up the interval when the component unmounts
+		
 		if (!localUser) {
 			return;
 		}
@@ -44,6 +52,7 @@ function App() {
 		if (localUser && localUser !== user) {
 			setUser(localUser);
 		}
+		return () => clearInterval(intervalId);
 	}, []);
 
 	function showError(message) {
