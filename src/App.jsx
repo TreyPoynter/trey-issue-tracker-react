@@ -53,7 +53,7 @@ function App() {
 			setUser(localUser);
 		}
 		return () => clearInterval(intervalId);
-	}, []);
+	}, [now]);
 
 	function showError(message) {
 		toast(message, { type: 'error', position: 'top-right' });
