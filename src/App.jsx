@@ -71,7 +71,6 @@ function App() {
 		setUser(null);
 		showSuccess('Logged out!');
 	}
-	console.log(auth)
 	return (
 		<BrowserRouter>
 			<Navbar auth={auth} onLogout={onLogout} user={user}/>
