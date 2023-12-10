@@ -77,14 +77,12 @@ export default function SearchBugs({ setBugs, page }) {
                 </div>
                 <div className="col-md-4 mb-3">
                     <select onChange={(e) => handleSortChange(e)}
-                        id="sortBy" className="form-select" aria-label="Default select example">
-                        <option selected defaultValue={true} value={''}>Classification</option>
-                        <option value="newest">Newest</option>
-                        <option value="oldest">Oldest</option>
-                        <option value="title">Title</option>
-                        <option value="classification">Classification</option>
-                        <option value="assignedTo">Assigned To</option>
-                        <option value="createdBy">Created By</option>
+                        id="classifiedBy" className="form-select" aria-label="Default select example">
+                        <option selected defaultValue={true} value={''}>No Filter by Classification</option>
+                        <option value="newest">Approved</option>
+                        <option value="oldest">Unclassified</option>
+                        <option value="title">Duplicate</option>
+                        <option value="classification">Unapproved</option>
                     </select>
                 </div>
             </div>
