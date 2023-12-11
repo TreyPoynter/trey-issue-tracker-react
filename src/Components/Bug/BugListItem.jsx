@@ -9,7 +9,7 @@ export default function BugListItem({ bug }) {
 		const currentTimestamp = Math.floor(Date.now() / 1000);
 		const timestamp = Math.floor(dateObject.getTime() / 1000);
 		const timeDifference = currentTimestamp - timestamp;
-	
+
 		if (timeDifference < 60) {
 			return `${timeDifference} seconds ago`;
 		} else if (timeDifference < 3600) {
