@@ -72,7 +72,7 @@ export default function ConfirmDelete({ deleteWhat, handleCancel, obj, loggedUse
                                     id="cancel"
                                     disabled={isLoading}>
                                     {isLoading ? 'Deleting...' : `Delete ${deleteWhat}`}
-                                    <i className="fa fa-trash"></i>
+                                    <i className="fa fa-trash ms-3"></i>
                                 </button>
                             </div>
                         </div>
