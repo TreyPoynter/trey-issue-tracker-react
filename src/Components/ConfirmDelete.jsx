@@ -20,7 +20,7 @@ export default function ConfirmDelete({ deleteWhat, handleCancel, obj, loggedUse
         setIsLoading(true);
         evt.preventDefault();
         axios.delete(`${import.meta.env.VITE_API_URL}/api/${deleteWhat == 'User' ? 'users' : 'bugs'}/${
-            loggedUser._id == obj._id ? 'me' : obj._id}`,
+            loggedUser._id == obj._id && deleteWhat == 'User' ? 'me' : obj._id}`,
         {withCredentials:true}).then(res => {
             setIsLoading(false);
             showSuccess(`${deleteWhat == 'User' ? obj.fullName : obj.title} has been deleted`);
@@ -33,7 +33,7 @@ export default function ConfirmDelete({ deleteWhat, handleCancel, obj, loggedUse
                     return;
                 }).catch(err => {console.log(err)});
             }
-            navigate('/users/list');
+            navigate(`/${deleteWhat == 'User' ? 'users' : 'bugs'}/list`);
         }).catch(err => {
             console.log(err)
             showError(err.response.data.error)

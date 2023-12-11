@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import ToggleSlider from './ToggleSlider'
 import Error from '../Error'
+import ConfirmDelete from '../ConfirmDelete';
 
 export default function EditBug({ auth, showSuccess, showError }) {
 	const nav = useNavigate();
@@ -17,6 +18,7 @@ export default function EditBug({ auth, showSuccess, showError }) {
 	const [stepsToReproduce, setSteps] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isClosed, setIsClosed] = useState(bug && bug.closedInfo.closed);
+	const [isDeleting, setIsDeleting] = useState(false);
 
 	useEffect(() => {
 		setIsLoading(true);
@@ -105,9 +107,14 @@ export default function EditBug({ auth, showSuccess, showError }) {
 			<Error message="Must be a Business Analyst or be Assigned to edit" />
 		);
 	}
+	function handleCancel() {
+        setIsDeleting(false);
+    }
 	return (
 		<>
 			<div id="body-div">
+			{isDeleting && <ConfirmDelete loggedUser={loggedUser} deleteWhat={"Bug"}
+                    handleCancel={handleCancel} obj={bug} />}
 				<div className="centered-form">
 					<div className='d-flex justify-content-between'>
 						<Link onClick={() => goBack()}><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
@@ -145,6 +152,8 @@ export default function EditBug({ auth, showSuccess, showError }) {
 								<textarea onChange={(e) => setSteps(e.target.value.split(','))} name="txtSteps" id="txtSteps"
 									rows="4" defaultValue={bug.stepsToReproduce.map(r => r).join(', ')}></textarea>
 							</div>
+							<button type='button' onClick={() => setIsDeleting(true)}
+                                id='btnDelete' className="btn btn-danger w-75 mb-2">Delete Bug</button>
 							<button disabled={isLoading} type='submit' id='btnSave'
 								className="btn btn-success w-75 mb-3">{isLoading ? 'Saving' : 'Save'} Changes</button>
 						</div>
