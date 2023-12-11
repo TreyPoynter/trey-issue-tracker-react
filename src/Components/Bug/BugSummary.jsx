@@ -8,6 +8,7 @@ export default function BugSummary() {
 	const bugId = useParams().bugId;
 	const [bug, setBug] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
+	const [currStep, setCurrStep] = useState(0); //? index for stepsToReproduce array
 	useEffect(() => {
 		setIsLoading(true)
 		axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/${bugId}`, { withCredentials: true })
@@ -44,6 +45,12 @@ export default function BugSummary() {
 		const year = date.getFullYear();
 		return month + ' ' + day + ', ' + year;
 	}
+	function nextStep() {
+		setCurrStep(currStep + 1);
+	}
+	function prevStep() {
+		setCurrStep(currStep - 1);
+	}
 
 	return (
 		<div id="body-div">
@@ -56,6 +63,17 @@ export default function BugSummary() {
 					<h3 className="mb-0 pb-2 fs-5 text-center">Classification: {bug.classification.classifiedAs}</h3>
 					<h2 className="border-bottom pb-2 fs-5 text-center">{bug.description}</h2>
 				</div>
+				<div className='d-flex justify-content-between'>
+					<button disabled={currStep == 0} className='btn btn-primary mb-3 w-10' onClick={() => prevStep()}>
+						<i className="fa-solid fa-caret-left"></i>
+					</button>
+					<p className='form-control w-60 text-center'>{currStep+1}. {bug.stepsToReproduce[currStep]}</p>
+					<button disabled={currStep >= bug.stepsToReproduce.length-1} className='btn btn-primary mb-3 w-10' 
+						onClick={() => nextStep()}>
+						<i className="fa-solid fa-caret-right"></i>
+					</button>
+				</div>
+				
 				<div id='info' className='info-section'>
 					<div className="d-flex flex-column ms-3" id='created-info'>
 						<p className=' fs-3 mb-0'><i className="fa-solid fa-helmet-safety me-3"></i>Created Info :</p>
