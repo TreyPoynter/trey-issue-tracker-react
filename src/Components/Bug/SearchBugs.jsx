@@ -9,10 +9,11 @@ export default function SearchBugs({ setBugs, page }) {
     const [classifiedBy, setClassifiedBy] = useState('');
     const [search, setSearch] = useState('');
 
-    const onFormSubmit = (searchValue) => {
+    const  onFormSubmit = (searchValue) => {
         axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/list/`, {
             withCredentials: true,
-            params: { keywords: searchValue, sortBy: sort, classification:classifiedBy }
+            params: { keywords: searchValue, sortBy: sort, classification:classifiedBy },
+            validateStatus:false
         })
             .then(res => {
                 console.log(res)
@@ -52,7 +53,13 @@ export default function SearchBugs({ setBugs, page }) {
         <form
             onSubmit={(evt) => {
                 evt.preventDefault();
-                onFormSubmit(evt.target.search.value);
+                try {
+                    onFormSubmit(evt.target.search.value);
+                } catch (error) {
+                    console.log('ERROR')
+                    setBugs([]);
+                }
+                
             }}
             className="container mb-4">
             <div className="row">
