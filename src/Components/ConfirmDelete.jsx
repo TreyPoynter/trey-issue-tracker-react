@@ -4,6 +4,7 @@ import '../assets/css/confirmDelete.css'
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { useState } from "react";
+import Scared from '../assets/images/Scared-Emoticon-Running-Away-10241783857.jpg'
 
 //? deleteWhat is what specifies of what we're deleting so Bug or User
 //? so we don't need to remake these
@@ -50,6 +51,9 @@ export default function ConfirmDelete({ deleteWhat, handleCancel, obj, loggedUse
                         <h4><i className="fa fa-warning"></i> Warning</h4>
                         <p>By deleting {deleteWhat == 'User' ? obj.fullName :
                             obj.title} you can't undo this action.</p>
+                            <div className="d-flex justify-content-center">
+                                <img src={Scared} alt="" srcset="" width={110}/>
+                            </div>
                     </div>
 
                     <div className="container mt-auto">
