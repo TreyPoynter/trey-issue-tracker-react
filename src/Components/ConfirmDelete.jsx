@@ -24,7 +24,7 @@ export default function ConfirmDelete({ deleteWhat, handleCancel, obj, loggedUse
         {withCredentials:true}).then(res => {
             setIsLoading(false);
             showSuccess(`${deleteWhat == 'User' ? obj.fullName : obj.title} has been deleted`);
-            if (loggedUser._id == obj._id) {
+            if (loggedUser._id == obj._id && deleteWhat == 'User') {
                 axios.post(`${import.meta.env.VITE_API_URL}/api/users/logout`,{},
                 {withCredentials: true}).then(res => {
                     localStorage.removeItem('user');
@@ -58,7 +58,7 @@ export default function ConfirmDelete({ deleteWhat, handleCancel, obj, loggedUse
                         type="button" disabled={isLoading} onClick={handleCancel}>Cancel</button>
                         <button className="btn btn-danger w-25" onClick={(evt) => handleDelete(evt)} type="button"
                         id="cancel" disabled={isLoading} href="">{isLoading ? 'Deleting...' : 'Delete'}
-                        {deleteWhat} <i className="fa fa-trash"></i></button>
+                        {' ' + deleteWhat} <i className="fa fa-trash"></i></button>
                     </div>
                 </div>
             </div>
