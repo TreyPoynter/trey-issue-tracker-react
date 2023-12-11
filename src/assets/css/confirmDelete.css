@@ -6,10 +6,12 @@
     position: absolute;
     display: flex;
     justify-content: center;
+    overflow: hidden;
     align-items: center;
 }
 
 .box {
+    overflow: hidden;
     background-color: #fff;
     border: 1px solid #000000;
     width: 600px;
@@ -34,21 +36,11 @@
     font-size: 20px;
     height: 200px;
     width: 95%;
-    margin: 30px 0;
-    background-color: #ffe7d9;
+    margin: 20px 0;
+    background-color: rgb(255, 127, 52);
     padding-left: 15px;
     border-radius: 4px;
     position: relative;
-}
-
-.warn_info::before {
-    position: absolute;
-    content: "";
-    height: 200px;
-    width: 3px;
-    top: 0px;
-    left: 0px;
-    background-color: #f47142;
 }
 
 .warn_info h4 {
@@ -57,11 +49,22 @@
 }
 
 .warn_info p {
-    color: #ab4926;
+    color: #3a0b05;
 }
 
 @media screen and (max-width: 580px) {
     .btns>button {
         font-size: 12px;
+    }
+}
+@media screen and (max-width: 310px) {
+    .delete-container {
+        width: 95%;
+        height: 100vh;
+    }
+    
+    .box {
+        width: 600px;
+        height: 500px;
     }
 }
