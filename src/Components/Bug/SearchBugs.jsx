@@ -1,16 +1,18 @@
 /*eslint-disable */
 import axios from "axios";
-import { useState } from "react";
+import { sortBy } from "lodash";
+import { useEffect, useState } from "react";
 
 export default function SearchBugs({ setBugs, page }) {
 
     const [sort, setSort] = useState('newest');
+    const [classifiedBy, setClassifiedBy] = useState('');
     const [search, setSearch] = useState('');
 
-    const onFormSubmit = (search, sortBy) => {
+    const onFormSubmit = (searchValue) => {
         axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/list/`, {
             withCredentials: true,
-            params: { keywords: search, sortBy: sort }
+            params: { keywords: searchValue, sortBy: sort, classification:classifiedBy }
         })
             .then(res => {
                 console.log(res)
@@ -24,11 +26,19 @@ export default function SearchBugs({ setBugs, page }) {
                 console.log(err);
             })
     }
+
+    useEffect(() => {
+        onFormSubmit(search);
+    }, [classifiedBy, sort])
+
     const handleSortChange = (event) => {
         const newValue = event.target.value;
         setSort(newValue);
-
-        onFormSubmit(search, newValue);
+        onFormSubmit(search);
+    };
+    const handleClassifiedChange = (event) => {
+        const newValue = event.target.value;
+        setClassifiedBy(newValue);
     };
     function detectEnter(evt) {
         const isEnterPressed = evt.key == 'Enter' || evt.key == 13
@@ -42,10 +52,9 @@ export default function SearchBugs({ setBugs, page }) {
         <form
             onSubmit={(evt) => {
                 evt.preventDefault();
-                onFormSubmit(evt.target.search.value, evt.target.sortBy.value);
+                onFormSubmit(evt.target.search.value);
             }}
-            className="container mb-4"
-        >
+            className="container mb-4">
             <div className="row">
                 <div className="col-md-4 mb-3">
                     <div className="input-group">
@@ -76,13 +85,13 @@ export default function SearchBugs({ setBugs, page }) {
                     </select>
                 </div>
                 <div className="col-md-4 mb-3">
-                    <select onChange={(e) => handleSortChange(e)}
+                    <select onChange={(e) => handleClassifiedChange(e)}
                         id="classifiedBy" className="form-select" aria-label="Default select example">
                         <option selected defaultValue={true} value={''}>No Filter by Classification</option>
-                        <option value="newest">Approved</option>
-                        <option value="oldest">Unclassified</option>
-                        <option value="title">Duplicate</option>
-                        <option value="classification">Unapproved</option>
+                        <option value="approved">Approved</option>
+                        <option value="unclassified">Unclassified</option>
+                        <option value="duplicate">Duplicate</option>
+                        <option value="unapproved">Unapproved</option>
                     </select>
                 </div>
             </div>
