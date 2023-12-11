@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function SearchBugs({ setBugs, page }) {
 
-    const [sort, setSort] = useState('newest');
+    const [sort, setSort] = useState('');
     const [classifiedBy, setClassifiedBy] = useState('');
     const [search, setSearch] = useState('');
 
@@ -35,7 +35,6 @@ export default function SearchBugs({ setBugs, page }) {
     const handleSortChange = (event) => {
         const newValue = event.target.value;
         setSort(newValue);
-        onFormSubmit(search);
     };
     const handleClassifiedChange = (event) => {
         const newValue = event.target.value;
