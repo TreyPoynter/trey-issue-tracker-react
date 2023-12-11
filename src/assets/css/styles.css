@@ -22,6 +22,10 @@
     background-color: #a57bc5 !important;
 }
 
+i.bg-warning {
+    background-color: rgb(196, 185, 38) !important;
+}
+
 body {
     background: linear-gradient(to bottom right, rgb(215, 218, 223) 55%, rgb(68, 97, 143));
     background-attachment: fixed;
