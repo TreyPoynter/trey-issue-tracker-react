@@ -1,6 +1,7 @@
 /*eslint-disable */
 
 export default function BugsPaging({ setPaging, allBugs, pageSize, pageNum }) {
+    const totalPages = Math.ceil(allBugs.length / pageSize);
     return (
         <div>
             <button className="btn btn-primary"
@@ -12,7 +13,7 @@ export default function BugsPaging({ setPaging, allBugs, pageSize, pageNum }) {
             <span> {pageNum} </span>
             <button className="btn btn-primary"
                 onClick={() => setPaging(pageNum + 1)}
-                disabled={allBugs.length < pageSize}
+                disabled={pageNum > totalPages}
             >
                 <i className="fa-solid fa-chevron-right"></i>
             </button>
