@@ -81,7 +81,7 @@ Install the project on your local device with the following steps:
 
 ## Update Live Site
 Install the project on your local device with the following steps:
-2. Select project:
+1. Select project:
    ```bash
    gcloud config set project trey-bugtracker-frontend
 2. Run Build:
