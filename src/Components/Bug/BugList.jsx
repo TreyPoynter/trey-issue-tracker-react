@@ -45,11 +45,10 @@ export default function BugList({user}) {
 			<div className='container'>
 				<div className='row d-flex justify-content-center'>
 					{bugs.length < 1 ?
-						<div className='text-center mt-4 mb-4'>
+						(<div className='text-center mt-4 mb-4'>
 							<i class="fa-solid fa-magnifying-glass fs-1"></i>
 							<h3 className='display-3'>No Bugs Found</h3>
-						</div>
-						 :
+						</div>) :
 						bugs.map(bug => (
 							<BugListItem key={bug._id} bug={bug} page={currPage}/>
 						))}

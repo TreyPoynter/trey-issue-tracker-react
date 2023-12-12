@@ -12,6 +12,7 @@ team stay organized and on track with bug tracking and resolution.
 - [Getting Started](#getting-started)
   - [Installed Dependencies](#installed-dependencies)
   - [Installation](#installation)
+- [Live Site Update](#update-live-site)
 - [Support](#support)
 - [License](#license)
 
@@ -76,10 +77,7 @@ Install the project on your local device with the following steps:
     ```bash
     npm run dev
 
-## Support
-For support, email treypoynter@gmail.com for more information.
-
-### Update Live Site
+## Update Live Site
 Install the project on your local device with the following steps:
 1. Run Build:
    ```bash
@@ -87,6 +85,9 @@ Install the project on your local device with the following steps:
 2. Deploy to GCloud
     ```bash
     gcloud app deploy
+
+## Support
+For support, email treypoynter@gmail.com for more information.
 
 ## License
 This project is licensed under the MIT License\
