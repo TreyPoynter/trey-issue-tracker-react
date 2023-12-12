@@ -20,7 +20,7 @@ export default function AddNewBug({ auth, user, showError, showSuccess }) {
 		if (!stepsToReproduce || stepsArray.length < 1) { showError('Atleast 1 step is required'); return; }
 		setIsLoading(true);
 		axios.put(`${import.meta.env.VITE_API_URL}/api/bugs/new`, {
-			title, description, stepsToReproduce
+			title, description, stepsToReproduce : stepsArray
 		}, {
 			withCredentials: true
 		}).then(res => {

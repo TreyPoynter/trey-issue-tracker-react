@@ -15,7 +15,7 @@ export default function EditBug({ auth, showSuccess, showError }) {
 	const [title, setTitle] = useState(bug && bug.title);
 	const [description, setDescription] = useState(bug && bug.description);
 	const [classification, setClassification] = useState(bug && bug.classification.classifiedAs);
-	const [stepsToReproduce, setSteps] = useState([]);
+	const [stepsToReproduce, setSteps] = useState();
 	const [isLoading, setIsLoading] = useState(false);
 	const [isClosed, setIsClosed] = useState(bug && bug.closedInfo.closed);
 	const [isDeleting, setIsDeleting] = useState(false);
@@ -29,7 +29,7 @@ export default function EditBug({ auth, showSuccess, showError }) {
 					setTitle(res.data.title);
 					setDescription(res.data.description);
 					setClassification(res.data.classification.classifiedAs);
-					setSteps(res.data.stepsToReproduce);
+					setSteps(res.data.stepsToReproduce.join(', '));
 					setIsClosed(res.data.closedInfo.closed);
 				}
 			).catch(error => { console.log(error); })
@@ -49,7 +49,7 @@ export default function EditBug({ auth, showSuccess, showError }) {
 			).catch(error => { console.log(error); });
 	}
 	function updateBug(evt) {  //TODO : DO SHIT
-
+		console.log(stepsToReproduce)
 		evt.preventDefault();
 		console.log('CLICKED')
 		const updatedBug = {
@@ -59,7 +59,7 @@ export default function EditBug({ auth, showSuccess, showError }) {
 				classifiedAs: classification
 			},
 
-			stepsToReproduce: stepsToReproduce.map(str => str.trim()).filter(Boolean)
+			stepsToReproduce: stepsToReproduce.split(',').map(str => str.trim()).filter(Boolean)
 		}
 		delete updatedBug._id;
 		delete updatedBug.dateCreated;
@@ -149,8 +149,8 @@ export default function EditBug({ auth, showSuccess, showError }) {
 							{/* STEPS TO COMPLETE */}
 							<div className="mb-3 d-flex flex-column align-items-start">
 								<label htmlFor="txtSteps" className="form-label">Steps to Produce (comma delimited)</label>
-								<textarea onChange={(e) => setSteps(e.target.value.split(','))} name="txtSteps" id="txtSteps"
-									rows="4" defaultValue={bug.stepsToReproduce.map(r => r).join(', ')}></textarea>
+								<textarea onChange={(e) => setSteps(e.target.value)} name="txtSteps" id="txtSteps"
+									rows="4" defaultValue={stepsToReproduce}></textarea>
 							</div>
 							<button type='button' onClick={() => setIsDeleting(true)}
                                 id='btnDelete' className="btn btn-danger w-75 mb-2">Delete Bug</button>
