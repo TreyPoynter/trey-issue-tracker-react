@@ -79,6 +79,15 @@ Install the project on your local device with the following steps:
 ## Support
 For support, email treypoynter@gmail.com for more information.
 
+### Update Live Site
+Install the project on your local device with the following steps:
+1. Run Build:
+   ```bash
+   npm run build
+2. Deploy to GCloud
+    ```bash
+    gcloud app deploy
+
 ## License
 This project is licensed under the MIT License\
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
