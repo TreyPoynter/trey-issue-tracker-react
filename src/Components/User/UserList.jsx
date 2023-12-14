@@ -18,7 +18,7 @@ export default function UserList({user}) {
             ).catch(error => {
                 console.log(error)
             }).finally(() => setIsLoading(false));
-    });
+    }, []);
     if (isLoading) {
         return(
             <div id="body-div">

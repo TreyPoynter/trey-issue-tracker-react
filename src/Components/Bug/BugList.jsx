@@ -6,34 +6,27 @@ import axios from 'axios';
 import Error from '../Error';
 import SearchBugs from './SearchBugs'
 import BugsPaging from './BugsPaging';
-import Cookies from 'js-cookie';
 
 export default function BugList({ user, auth }) {
 	const [bugs, setBugs] = useState([]);
 	const [isLoading, setLoading] = useState(true);
 	const [currPage, setPage] = useState(1);
 	const pageSize = 6;
-	const authToken = Cookies.get('auth');
 	useEffect(() => {
 		axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/list?pageNum=${currPage}&pageSize=${pageSize}`,
 			{
 				withCredentials: true,
-				headers: { 
-					Authorization: `Bearer ${authToken}`,
-					'Content-Type': 'application/json' 
-				}
 			})
 			.then((res) => {
 				console.log(res)
 				setBugs(res.data);
 			})
 			.catch((error) => {
-				setBugs([])
+				console.log(error)
 			})
 			.finally(() => {
 				setLoading(false);
 			});
-		console.log(bugs)
 	}, [currPage]); // Empty dependency array to ensure the effect runs only once on component mount
 
 	if (isLoading) {

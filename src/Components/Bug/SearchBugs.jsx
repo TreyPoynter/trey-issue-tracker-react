@@ -11,7 +11,6 @@ export default function SearchBugs({ setBugs, page }) {
     const onFormSubmit = (searchValue) => {
         axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/list/`, {
             withCredentials:true,
-            headers:{'Content-Type':'application/json'},
             params: { keywords: searchValue, sortBy: sort, classification:classifiedBy },
             validateStatus:false
         })
