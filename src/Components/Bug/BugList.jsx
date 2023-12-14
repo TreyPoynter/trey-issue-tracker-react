@@ -6,6 +6,7 @@ import axios from 'axios';
 import Error from '../Error';
 import SearchBugs from './SearchBugs'
 import BugsPaging from './BugsPaging';
+import Cookies from 'js-cookie';
 
 export default function BugList({ user, auth }) {
 	const [bugs, setBugs] = useState([]);
@@ -15,8 +16,13 @@ export default function BugList({ user, auth }) {
 
 	useEffect(() => {
 		axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/list?pageNum=${currPage}&pageSize=${pageSize}`,
-			{ withCredentials: true,
-			headers:{'Content-Type': 'application/json'}})
+			{
+				withCredentials: true,
+				headers: { 
+					'Authorization': `Bearer ${Cookies.get('auth')}`,
+					'Content-Type': 'application/json' 
+				}
+			})
 			.then((res) => {
 				console.log(res)
 				setBugs(res.data);
@@ -48,7 +54,7 @@ export default function BugList({ user, auth }) {
 			<SearchBugs setBugs={setBugs} />
 			<div className='container'>
 				<div className='row d-flex justify-content-center'>
-					{bugs && bugs.length > 0 ? (
+					{bugs && Array.isArray(bugs) && bugs.length > 0 ? (
 						bugs.map(bug => (
 							<BugListItem key={bug._id} bug={bug} page={currPage} />
 						))
