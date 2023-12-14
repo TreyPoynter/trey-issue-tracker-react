@@ -13,13 +13,13 @@ export default function BugList({ user, auth }) {
 	const [isLoading, setLoading] = useState(true);
 	const [currPage, setPage] = useState(1);
 	const pageSize = 6;
-
+	const authToken = Cookies.get('auth');
 	useEffect(() => {
 		axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/list?pageNum=${currPage}&pageSize=${pageSize}`,
 			{
 				withCredentials: true,
 				headers: { 
-					'Authorization': `Bearer ${Cookies.get('auth')}`,
+					Authorization: `Bearer ${authToken}`,
 					'Content-Type': 'application/json' 
 				}
 			})

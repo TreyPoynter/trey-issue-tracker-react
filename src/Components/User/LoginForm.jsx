@@ -4,6 +4,7 @@ import '../../assets/css/loginForm.css'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import dotenv from 'dotenv'
+import { jwtDecode } from "jwt-decode";
 
 export default function LoginForm({showError, showSuccess, onLogin}) {
     const navigate = useNavigate();
@@ -39,8 +40,7 @@ export default function LoginForm({showError, showSuccess, onLogin}) {
         },{
             withCredentials: true
         }).then(res => {
-            
-            console.log(res);
+            const authPayload = jwtDecode(res.data.authToken);
             const now = new Date();
             const numHours = 1;
             const expirationTime = now.getTime() + numHours * 60 * 60 * 1000;
@@ -50,7 +50,7 @@ export default function LoginForm({showError, showSuccess, onLogin}) {
             };
             showSuccess(`Logged in as ${user.fullName}`);
             console.log(res);
-            onLogin(res.data.authToken, user);
+            onLogin(authPayload, user);
             localStorage.setItem('user', JSON.stringify(user));
             navigate('/');
         }).catch(error => {
