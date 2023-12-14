@@ -43,15 +43,15 @@ export default function BugListItem({ bug }) {
 						</i>
 					</div>
 					<div className="info-card-image d-flex justify-content-center align-items-center">
-						<i class="fa-solid fa-spider"></i>
+						<i className="fa-solid fa-spider"></i>
 					</div>
 					<p className="info-card-title">{bug.title}</p>
 					<div className="flex-grow-1"></div> {/* This div will push the info-footers to the bottom */}
 					<div className="d-flex flex-column justify-content-end align-items-end">
-						<p className="info-footer"><i class="fa-solid fa-user-tag"></i> Assigned to <span className="by-name">
+						<p className="info-footer"><i className="fa-solid fa-user-tag"></i> Assigned to <span className="by-name">
 							{bug.assignedInfo ? bug.assignedInfo.assignedToName : 'No one'}</span>
 						</p>
-						<p className="info-footer"><i class="fa-regular fa-clock"></i> Created by <span className="by-name">
+						<p className="info-footer"><i className="fa-regular fa-clock"></i> Created by <span className="by-name">
 							{bug.createdBy.name}</span> <span className="by-name">{timeElapsedAgo(new Date(bug.dateCreated))}</span>
 						</p>
 					</div>
