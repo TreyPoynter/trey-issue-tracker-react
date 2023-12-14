@@ -12,7 +12,6 @@ import Footer from './Components/Footer.jsx';
 import AddNewBug from './Components/Bug/AddNewBug.jsx';
 import NotFound from './Components/NotFound.jsx';
 import ReassignBug from './Components/Bug/ReassignBug.jsx';
-import Cookies from 'js-cookie';
 import './assets/css/animista.css'
 import './assets/css/styles.css'
 import './assets/css/nav.css'
@@ -63,9 +62,9 @@ function App() {
 		toast(message, { type: 'success', position: 'top-right' });
 	}
 
-	function onLogin(authPayload, user) {
-		setUser(user);
-		Cookies.set('auth', JSON.stringify(authPayload), { expires: 1 / 24, sameSite: 'None', secure: true });
+	function onLogin(auth, user) {
+		setAuth(auth);
+		setUser(user)
 	}
 	function onLogout() {
 		setAuth(null);
