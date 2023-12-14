@@ -4,14 +4,14 @@ import { sortBy } from "lodash";
 import { useEffect, useState } from "react";
 
 export default function SearchBugs({ setBugs, page }) {
-
     const [sort, setSort] = useState('');
     const [classifiedBy, setClassifiedBy] = useState('');
     const [search, setSearch] = useState('');
 
-    const  onFormSubmit = (searchValue) => {
+    const onFormSubmit = (searchValue) => {
         axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/list/`, {
-            withCredentials: true,
+            withCredentials:true,
+            headers:{'Content-Type':'application/json'},
             params: { keywords: searchValue, sortBy: sort, classification:classifiedBy },
             validateStatus:false
         })
@@ -19,9 +19,9 @@ export default function SearchBugs({ setBugs, page }) {
                 console.log(res)
                 if (res.data.length < 1) {
                     setBugs([]);
-                    return;
+                } else {
+                    setBugs(res.data);
                 }
-                setBugs(res.data);
             })
             .catch(err => {
                 console.log(err);

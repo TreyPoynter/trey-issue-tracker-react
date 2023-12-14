@@ -13,7 +13,7 @@ export default function BugsPaging({ setPaging, allBugs, pageSize, pageNum }) {
             <span> {pageNum} </span>
             <button className="btn btn-primary"
                 onClick={() => setPaging(pageNum + 1)}
-                disabled={pageNum > totalPages}
+                disabled={pageNum > totalPages || allBugs.length < pageSize}
             >
                 <i className="fa-solid fa-chevron-right"></i>
             </button>
