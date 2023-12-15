@@ -83,7 +83,7 @@ export default function LoginForm({ showError, showSuccess, onLogin }) {
                             </div>
                             <div className="d-flex flex-column align-items-center justify-content-center">
                                 <button disabled={isLoading} onClick={(e) => { handleBtnAnimation(e); Login(); }}
-                                    type="button" id='btnLogin' className="btn btn-primary mb-3 w-75">
+                                    type="button" id='btnLogin' className="btn btn-primary mb-2 w-75">
                                     {isLoading ? 'Logging in...' : 'Click to Login'}
                                 </button>
                                 <GithubSignin/>
