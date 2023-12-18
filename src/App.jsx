@@ -21,6 +21,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import CommentsList from './Components/Comments/CommentsList.jsx';
+import axios from 'axios';
 /*
 <div id="content">
 			</div>
@@ -32,15 +33,25 @@ function App() {
 	const [now, setNow] = useState(new Date());
 
 	useEffect(() => {
+		const handleGitHubCallback = async () => {
+			try {
+				// Make a request to your backend to complete GitHub OAuth
+				await axios.get(`${import.meta.env.VITE_API_URL}/auth/github/callback`);
+			} catch (error) {
+				console.error('GitHub callback error:', error);
+			}
+		};
+		if (window.location.search.includes('code')) {
+            handleGitHubCallback();
+        }
+
 		const localUser = JSON.parse(localStorage.getItem('user'));
 		// Function to update the current time
 		const updateCurrentTime = () => setNow(new Date());
 
 		// Set up an interval to update the time every second
 		const intervalId = setInterval(updateCurrentTime, 1000);
-	
-		// Clean up the interval when the component unmounts
-		
+
 		if (!localUser) {
 			return;
 		}
@@ -73,26 +84,26 @@ function App() {
 	}
 	return (
 		<BrowserRouter>
-			<Navbar auth={auth} onLogout={onLogout} user={user}/>
+			<Navbar auth={auth} onLogout={onLogout} user={user} />
 			<ToastContainer />
 			<Routes path='/'>
 				<Route path='/' element={<Home user={user} />} />
 				<Route path='login' element={<LoginForm showError={showError}
-					showSuccess={showSuccess} onLogin={onLogin}/>} />
-				<Route path='register' element={<RegisterForm showError={showError} 
-					showSuccess={showSuccess} onLogin={onLogin}/>} />
-				<Route path='bugs/list' element={<BugList user={user}/>} />
-				<Route path='users/list' element={<UserList user={user}/>} />
+					showSuccess={showSuccess} onLogin={onLogin} />} />
+				<Route path='register' element={<RegisterForm showError={showError}
+					showSuccess={showSuccess} onLogin={onLogin} />} />
+				<Route path='bugs/list' element={<BugList user={user} />} />
+				<Route path='users/list' element={<UserList user={user} />} />
 				<Route path='bugs/:bugId' element={<BugSummary />} />
-				<Route path='bugs/:bugId/edit' element={<EditBug auth={auth} showError={showError} showSuccess={showSuccess}/>} />
-				<Route path='users/:userId/edit' element={<EditUser auth={auth} showError={showError} showSuccess={showSuccess} 
-					onLogin={onLogin}/>} />
-				<Route path='users/:userId' element={<UserSummary/>} />
+				<Route path='bugs/:bugId/edit' element={<EditBug auth={auth} showError={showError} showSuccess={showSuccess} />} />
+				<Route path='users/:userId/edit' element={<EditUser auth={auth} showError={showError} showSuccess={showSuccess}
+					onLogin={onLogin} />} />
+				<Route path='users/:userId' element={<UserSummary />} />
 				<Route path='bugs/add' element={<AddNewBug auth={auth} user={user} showError={showError}
-					showSuccess={showSuccess}/>} />
-				<Route path='*' element={<NotFound/>}/>
-				<Route path='bugs/:bugId/reassign' element={<ReassignBug showSuccess={showSuccess}/>}/>
-				<Route path='bugs/:bugId/comments' element={<CommentsList/>}/>
+					showSuccess={showSuccess} />} />
+				<Route path='*' element={<NotFound />} />
+				<Route path='bugs/:bugId/reassign' element={<ReassignBug showSuccess={showSuccess} />} />
+				<Route path='bugs/:bugId/comments' element={<CommentsList />} />
 			</Routes>
 			<Footer />
 		</BrowserRouter>
