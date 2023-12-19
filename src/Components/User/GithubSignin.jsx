@@ -1,39 +1,52 @@
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function GithubSignin() {
+    const [isLoading, setIsLoading] = useState(false);
     const handleGitHubLogin = async () => {
-        const githubAuthURL = 'https://github.com/login/oauth/authorize?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fauth%2Fgithub%2Fcallback&scope=user%3Aemail&client_id=346ddd710f6e72227179';
+        setIsLoading(true);
+        window.location.href = `${import.meta.env.VITE_API_URL}/auth/github`;
+        
+        setIsLoading(false);
+    };
+    const handleGitHubCallback = async () => {
+        try {
+            // Extract the code parameter from the URL
+            const code = new URLSearchParams(window.location.search).get("code");
 
-  // Open GitHub OAuth URL in a new popup window
-  const popup = window.open(githubAuthURL, 'GitHub OAuth', 'width=600,height=400');
+            if (code) {
+                // Make a request to the server to handle the GitHub callback
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/auth/github/callback?code=${code}`);
 
-  // Check for successful authentication in the popup
-  const checkPopupInterval = setInterval(() => {
-    if (popup.closed) {
-      clearInterval(checkPopupInterval);
-
-      // Check authentication status or handle the response as needed
-      axios.get(`${import.meta.env.VITE_API_URL}/user`, { withCredentials: true })
-        .then(response => {
-          const userData = response.data.user;
-          console.log(userData)
-          // Handle the user data
-        })
-        .catch(error => {
-          console.error(error);
-          // Handle errors
-        });
-    }
-  }, 1000);
+                // Check if the response contains user information
+                if (response.data && response.data.user) {
+                    // Set the user state with the retrieved user information
+                    localStorage.setItem('user',response.data.user);
+                } else {
+                    // Handle the case where user information is not available
+                    console.error('User information not found in the response');
+                }
+            } else {
+                // Handle the case where the code parameter is missing
+                console.error('Code parameter not found in the URL');
+            }
+        } catch (error) {
+            console.error('Error handling GitHub callback:', error);
+        } finally {
+            // Set isLoading to false, indicating that the request has completed
+            setIsLoading(false);
+        }
     };
 
     return (
         <button
+            disabled={isLoading}
             className="signin"
             type="button"
             onClick={(e) => {
                 e.preventDefault();
                 handleGitHubLogin();
+                handleGitHubCallback();
             }}
         >
             <i className="fa-brands fa-github fs-4"></i>
