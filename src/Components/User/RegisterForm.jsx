@@ -67,11 +67,11 @@ export default function RegisterForm({showError, showSuccess, onLogin}) {
             onLogin(res.data.authToken, user);
             showSuccess(`Welcome, ${fullName}`);
             setIsLoading(false);
-        }).catch(error => {
+        }).catch(err => {
             // Handle errors
-            console.error(error);
-            console.log(error.response.data.error.details[0].message)
-            showError(error?.response?.data?.error?.details[0]?.message)
+            console.error(err);
+        }).finally(() => {
+            setIsLoading(false);
         });
     }
 

@@ -22,7 +22,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import CommentsList from './Components/Comments/CommentsList.jsx';
 import axios from 'axios';
-import AlmostThere from './Components/User/AlmostThere.jsx';
 /*
 <div id="content">
 			</div>
@@ -92,8 +91,6 @@ function App() {
 				<Route path='login' element={<LoginForm showError={showError}
 					showSuccess={showSuccess} onLogin={onLogin} />} />
 				<Route path='register' element={<RegisterForm showError={showError}
-					showSuccess={showSuccess} onLogin={onLogin} />} />
-				<Route path=':userId/almost-there' element={<AlmostThere showError={showError}
 					showSuccess={showSuccess} onLogin={onLogin} />} />
 				<Route path='bugs/list' element={<BugList user={user} />} />
 				<Route path='users/list' element={<UserList user={user} />} />
