@@ -84,11 +84,7 @@ export default function LoginForm({ showError, showSuccess, onLogin }) {
                                     type="button" id='btnLogin' className="btn btn-primary mb-2 w-75">
                                     {isLoading ? 'Logging in...' : 'Click to Login'}
                                 </button>
-                                <GithubSignin/>
-
                             </div>
-
-
                         </div>
                     </form>
                     <p className="mb-0 register-now">Dont have an account? <Link to='/register'>Register</Link></p>
