@@ -32,6 +32,14 @@ h1 span {
     font-size: 1.5em;
 }
 
+.pop-out {
+    transition: transform 0.3s ease-in-out !important;
+}
+
+.pop-out:hover {
+    transform: scale(1.05) !important;
+}
+
 @media screen and (max-width:480px) {
     .notLoggedIn {
         border-top: 80px solid rgb(215, 218, 223);
@@ -43,14 +51,17 @@ h1 span {
     #jumbotron-content {
         flex-direction: column;
     }
+
     h1 span {
         font-size: 40px;
     }
+
     #header-slogan {
         display: flex;
         flex-direction: column;
         font-size: 35px;
     }
+
     #bug-img {
         height: 150px !important;
     }
@@ -61,15 +72,18 @@ h1 span {
         background-position: center;
     }
 }
+
 @media screen and (max-width:310px) {
 
     .jumbotron {
         border-top: 80px solid rgb(215, 218, 223);
     }
+
     #nav-brand {
         visibility: hidden;
         position: relative;
     }
+
     #nav-brand:after {
         visibility: visible;
         position: absolute;
@@ -83,16 +97,21 @@ h1 span {
     from {
         transform: translateX(-100%);
     }
+
     to {
         transform: translateX(0);
     }
 }
 
 @keyframes colorChange {
-    0%, 25% {
+
+    0%,
+    25% {
         color: white;
     }
-    75%, 100% {
+
+    75%,
+    100% {
         color: rgb(197, 21, 21);
     }
 }

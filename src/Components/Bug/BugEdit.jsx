@@ -7,6 +7,7 @@ import ToggleSlider from './ToggleSlider'
 import Error from '../Error'
 import ConfirmDelete from '../ConfirmDelete';
 
+
 export default function EditBug({ auth, showSuccess, showError }) {
 	const nav = useNavigate();
 	const loggedUser = JSON.parse(localStorage.getItem('user'));
