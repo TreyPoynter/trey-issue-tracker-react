@@ -3,8 +3,6 @@ import { useState } from "react";
 import '../../assets/css/loginForm.css'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
-import dotenv from 'dotenv'
-import GithubSignin from "./GithubSignin";
 
 export default function LoginForm({ showError, showSuccess, onLogin }) {
     const navigate = useNavigate();
