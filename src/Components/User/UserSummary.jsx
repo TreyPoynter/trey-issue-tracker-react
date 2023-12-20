@@ -2,6 +2,7 @@ import '../../assets/css/summaryCard.css'
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import CalendarChart from '../CalendarChart';
 
 export default function UserSummary() {
     const navigate = useNavigate();
@@ -9,7 +10,8 @@ export default function UserSummary() {
     const userId = useParams().userId;
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    console.log(history)
+    const [isViewingProductivity, setViewingProductivity] = useState(false);
+    
     useEffect(() => {
         setIsLoading(true);
         axios.get(`${import.meta.env.VITE_API_URL}/api/users/${userId}`, { withCredentials: true })
@@ -46,8 +48,13 @@ export default function UserSummary() {
     const goBack = () => {
         navigate(-1);
     };
+    const setNotViewing =() => {
+        setViewingProductivity(false);
+    }
     return (
         <div id="body-div">
+            {isViewingProductivity &&
+            <CalendarChart userId={user._id} setNotViewing={setNotViewing}/>}
             <div className="form d-flex flex-column">
                 <div className='d-flex justify-content-between'>
                     <Link onClick={() => goBack()}><i className="fa-solid fa-arrow-left fa-xl text-black"></i></Link>
@@ -67,10 +74,16 @@ export default function UserSummary() {
                         </ul>
                     </div>
                 </div>
+                <div className='d-flex justify-content-center'>
+                    
+                </div>
+                
                 {loggedUser &&
                     (loggedUser.role.includes('technical manager') ||
                         user._id === loggedUser._id) &&
-                    <div id='' className='mt-auto d-flex justify-content-center'>
+                    <div id='' className='mt-auto d-flex flex-column align-items-center justify-content-center'>
+                        <button onClick={() => setViewingProductivity(!isViewingProductivity)} 
+                        className='btn btn-secondary w-75 mb-2'>Show Productivity</button>
                         <Link to={`/users/${user._id}/edit`} className='btn btn-edit w-75'>Edit</Link>
                     </div>
                 }

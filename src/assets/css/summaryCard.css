@@ -8,6 +8,13 @@
     min-height: 75%;
 }
 
+.productivity {
+    z-index: 999;
+    background-color: #fff;
+    padding: 30px;
+    border: #000 solid 1px;
+    border-radius: 8px;
+}
 
 .btn-edit,
 #btn-reassign,
