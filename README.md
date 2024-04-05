@@ -6,6 +6,7 @@ and manage software bugs seamlessly throughout your projects. This platform ensu
 team stay organized and on track with bug tracking and resolution.
 
 Live Site : https://trey-bugtracker-frontend.uc.r.appspot.com/
+Backend : https://github.com/TreyPoynter/trey-issue-tracker/
 
 ## Table of Contents
 - [Features](#features)
