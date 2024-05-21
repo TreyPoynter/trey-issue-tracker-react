@@ -80,18 +80,6 @@ Install the project on your local device with the following steps:
     ```bash
     npm run dev
 
-## Update Live Site
-Install the project on your local device with the following steps:
-1. Select project:
-   ```bash
-   gcloud config set project trey-bugtracker-frontend
-2. Run Build:
-   ```bash
-   npm run build
-3. Deploy to GCloud
-    ```bash
-    gcloud app deploy
-
 ## Support
 For support, email treypoynter@gmail.com for more information.
 
